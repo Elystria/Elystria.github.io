@@ -1,0 +1,316 @@
+var _mpizenberg$demo_elm_image_annotation$View_Main$updateAnnotationsWithImage = F5(
+	function (zoom, image, selectedClassId, annotations, _p0) {
+		var _p1 = _p0;
+		var newAnnotationsWithImage = A4(_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$annotationsWithImage, zoom, image, selectedClassId, annotations);
+		return _elm_lang$core$Native_Utils.update(
+			_p1,
+			{
+				annotationsArea: _elm_lang$core$Native_Utils.update(
+					_p1.annotationsArea,
+					{
+						annotationsWithImage: _elm_lang$core$Maybe$Just(newAnnotationsWithImage)
+					})
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$pageLayout = function (device) {
+	var _p2 = {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Basics$toFloat(device.size.width),
+		_1: _elm_lang$core$Basics$toFloat(
+			_mpizenberg$demo_elm_image_annotation$View_ActionBar$responsiveHeight(device))
+	};
+	var barWidth = _p2._0;
+	var barHeight = _p2._1;
+	var _p3 = {
+		ctor: '_Tuple2',
+		_0: _elm_lang$core$Basics$toFloat(device.size.width) * 0.75,
+		_1: A2(
+			_elm_lang$core$Basics$max,
+			0,
+			_elm_lang$core$Basics$toFloat(device.size.height) - barHeight)
+	};
+	var viewerWidth = _p3._0;
+	var viewerHeight = _p3._1;
+	return {
+		actionBarSize: {ctor: '_Tuple2', _0: barWidth, _1: barHeight},
+		viewerSize: {ctor: '_Tuple2', _0: viewerWidth, _1: viewerHeight}
+	};
+};
+var _mpizenberg$demo_elm_image_annotation$View_Main$updateLayout = F2(
+	function (size, params) {
+		var updateSize = F2(
+			function (newSize, parameters) {
+				return _elm_lang$core$Native_Utils.update(
+					parameters,
+					{size: newSize});
+			});
+		var device = _mpizenberg$demo_elm_image_annotation$Packages_Device$classify(size);
+		var layout = _mpizenberg$demo_elm_image_annotation$View_Main$pageLayout(device);
+		var actionBar = A2(updateSize, layout.actionBarSize, params.actionBar);
+		var annotationsArea = A2(updateSize, layout.viewerSize, params.annotationsArea);
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				params,
+				{device: device, actionBar: actionBar, annotationsArea: annotationsArea}),
+			_1: layout.viewerSize
+		};
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$markHasAnnotation = F2(
+	function (hasAnnotations, _p4) {
+		var _p5 = _p4;
+		var _p7 = _p5;
+		var _p6 = _p5.actionBar;
+		return _elm_lang$core$Native_Utils.eq(_p6.hasAnnotations, hasAnnotations) ? _p7 : _elm_lang$core$Native_Utils.update(
+			_p7,
+			{
+				actionBar: _elm_lang$core$Native_Utils.update(
+					_p6,
+					{hasAnnotations: hasAnnotations})
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$classesSideBar = F2(
+	function (selectClassMsg, classes) {
+		return A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassesSidebar,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$alignLeft,
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$paddingTop(10),
+					_1: {ctor: '[]'}
+				}
+			},
+			A2(_mpizenberg$demo_elm_image_annotation$View_ClassesSideBar$view, selectClassMsg, classes));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$datasetAnnotatedSideBar = F2(
+	function (selectImageMsg, images) {
+		return A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassesSidebar,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$alignRight,
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$paddingTop(10),
+					_1: {ctor: '[]'}
+				}
+			},
+			A2(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewAnnotated, selectImageMsg, images));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$datasetRawSideBar = F2(
+	function (selectImageMsg, images) {
+		return A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassesSidebar,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$alignRight,
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$paddingTop(10),
+					_1: {ctor: '[]'}
+				}
+			},
+			A2(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewRaw, selectImageMsg, images));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
+	_mdgriffith$style_elements$Element$paragraph,
+	_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph),
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$width(
+			_mdgriffith$style_elements$Element_Attributes$percent(25)),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$paddingTop(10),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$yScrollbar,
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$column,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$center,
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Title),
+					{ctor: '[]'},
+					_mdgriffith$style_elements$Element$text('INSTRUCTIONS\n')),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element$text('\n Please outline the objects in the images. \n To do so, select the outline tool and \n press on the image where you want to \n start outlining.\n Continue pressing while outlining until \n you\'re done. \n \n'),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_mdgriffith$style_elements$Element$newTab,
+							'https://google.fr',
+							A3(
+								_mdgriffith$style_elements$Element$el,
+								_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
+								{ctor: '[]'},
+								_mdgriffith$style_elements$Element$text('Good outlines examples\n'))),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_mdgriffith$style_elements$Element$newTab,
+								'https://google.fr',
+								A3(
+									_mdgriffith$style_elements$Element$el,
+									_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('Bad outlines examples\n'))),
+							_1: {
+								ctor: '::',
+								_0: A3(
+									_mdgriffith$style_elements$Element$el,
+									_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Title),
+									{ctor: '[]'},
+									_mdgriffith$style_elements$Element$text('\n GUIDELINES\n')),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element$text('\n 1. The whole object has to be inside the\n outline. \n 2. The outline must follow roughly the \n shape of the image\n 3. If there are more than one objects,\n outline only one \n.'),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_mdgriffith$style_elements$Element$newTab,
+											'https://google.fr',
+											A3(
+												_mdgriffith$style_elements$Element$el,
+												_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
+												{ctor: '[]'},
+												_mdgriffith$style_elements$Element$text('Video Tutorial \n'))),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}),
+		_1: {ctor: '[]'}
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
+	function (params, tools, viewer, _p8, annotatedImages) {
+		var _p9 = _p8;
+		return A2(
+			_mdgriffith$style_elements$Element$layout,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$sheet,
+			A3(
+				_mdgriffith$style_elements$Element$column,
+				_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll, params.actionBar, tools),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element$row,
+							_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _mpizenberg$demo_elm_image_annotation$View_Main$instructionText,
+								_1: {
+									ctor: '::',
+									_0: A3(
+										_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$view,
+										params.annotationsArea,
+										viewer,
+										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(annotatedImages)),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$viewConfig = F3(
+	function (params, tools, classes) {
+		return A2(
+			_mdgriffith$style_elements$Element$layout,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$sheet,
+			A3(
+				_mdgriffith$style_elements$Element$el,
+				_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
+					_1: {ctor: '[]'}
+				},
+				A2(
+					_mdgriffith$style_elements$Element$below,
+					{
+						ctor: '::',
+						_0: A2(_mpizenberg$demo_elm_image_annotation$View_Main$classesSideBar, params.selectClassMsg, classes),
+						_1: {ctor: '[]'}
+					},
+					A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$viewConfig, params.actionBar, tools))));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$viewImages = F3(
+	function (params, viewer, images) {
+		return A2(
+			_mdgriffith$style_elements$Element$layout,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$sheet,
+			A3(
+				_mdgriffith$style_elements$Element$column,
+				_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewImages(params.actionBar),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewImageOnly,
+							viewer,
+							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(images)),
+						_1: {ctor: '[]'}
+					}
+				}));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$viewNothing = function (params) {
+	return A2(
+		_mdgriffith$style_elements$Element$layout,
+		_mpizenberg$demo_elm_image_annotation$StyleSheet$sheet,
+		_mpizenberg$demo_elm_image_annotation$View_ActionBar$emptyView(params.actionBar));
+};
+var _mpizenberg$demo_elm_image_annotation$View_Main$Parameters = F5(
+	function (a, b, c, d, e) {
+		return {device: a, actionBar: b, annotationsArea: c, selectClassMsg: d, selectImageMsg: e};
+	});

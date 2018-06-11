@@ -1,0 +1,70 @@
+var _mpizenberg$elm_pointer_events$Internal_Decode$screenPos = A3(
+	_elm_lang$core$Json_Decode$map2,
+	F2(
+		function (v0, v1) {
+			return {ctor: '_Tuple2', _0: v0, _1: v1};
+		}),
+	A2(_elm_lang$core$Json_Decode$field, 'screenX', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'screenY', _elm_lang$core$Json_Decode$float));
+var _mpizenberg$elm_pointer_events$Internal_Decode$pagePos = A3(
+	_elm_lang$core$Json_Decode$map2,
+	F2(
+		function (v0, v1) {
+			return {ctor: '_Tuple2', _0: v0, _1: v1};
+		}),
+	A2(_elm_lang$core$Json_Decode$field, 'pageX', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'pageY', _elm_lang$core$Json_Decode$float));
+var _mpizenberg$elm_pointer_events$Internal_Decode$offsetPos = A3(
+	_elm_lang$core$Json_Decode$map2,
+	F2(
+		function (v0, v1) {
+			return {ctor: '_Tuple2', _0: v0, _1: v1};
+		}),
+	A2(_elm_lang$core$Json_Decode$field, 'offsetX', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'offsetY', _elm_lang$core$Json_Decode$float));
+var _mpizenberg$elm_pointer_events$Internal_Decode$clientPos = A3(
+	_elm_lang$core$Json_Decode$map2,
+	F2(
+		function (v0, v1) {
+			return {ctor: '_Tuple2', _0: v0, _1: v1};
+		}),
+	A2(_elm_lang$core$Json_Decode$field, 'clientX', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'clientY', _elm_lang$core$Json_Decode$float));
+var _mpizenberg$elm_pointer_events$Internal_Decode$all = A2(
+	_elm_lang$core$List$foldr,
+	_elm_lang$core$Json_Decode$map2(
+		F2(
+			function (x, y) {
+				return {ctor: '::', _0: x, _1: y};
+			})),
+	_elm_lang$core$Json_Decode$succeed(
+		{ctor: '[]'}));
+var _mpizenberg$elm_pointer_events$Internal_Decode$dynamicListOf = function (itemDecoder) {
+	var decodeOne = function (n) {
+		return A2(
+			_elm_lang$core$Json_Decode$field,
+			_elm_lang$core$Basics$toString(n),
+			itemDecoder);
+	};
+	var decodeN = function (n) {
+		return _mpizenberg$elm_pointer_events$Internal_Decode$all(
+			A2(
+				_elm_lang$core$List$map,
+				decodeOne,
+				A2(_elm_lang$core$List$range, 0, n - 1)));
+	};
+	return A2(
+		_elm_lang$core$Json_Decode$andThen,
+		decodeN,
+		A2(_elm_lang$core$Json_Decode$field, 'length', _elm_lang$core$Json_Decode$int));
+};
+var _mpizenberg$elm_pointer_events$Internal_Decode$Keys = F3(
+	function (a, b, c) {
+		return {alt: a, ctrl: b, shift: c};
+	});
+var _mpizenberg$elm_pointer_events$Internal_Decode$keys = A4(
+	_elm_lang$core$Json_Decode$map3,
+	_mpizenberg$elm_pointer_events$Internal_Decode$Keys,
+	A2(_elm_lang$core$Json_Decode$field, 'altKey', _elm_lang$core$Json_Decode$bool),
+	A2(_elm_lang$core$Json_Decode$field, 'ctrlKey', _elm_lang$core$Json_Decode$bool),
+	A2(_elm_lang$core$Json_Decode$field, 'shiftKey', _elm_lang$core$Json_Decode$bool));

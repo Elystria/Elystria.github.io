@@ -1,0 +1,10 @@
+var _mpizenberg$demo_elm_image_annotation$Data_Tool$Tool = F3(
+	function (a, b, c) {
+		return {id: a, type_: b, variant: c};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_Tool$Polygon = {ctor: 'Polygon'};
+var _mpizenberg$demo_elm_image_annotation$Data_Tool$Outline = {ctor: 'Outline'};
+var _mpizenberg$demo_elm_image_annotation$Data_Tool$Stroke = {ctor: 'Stroke'};
+var _mpizenberg$demo_elm_image_annotation$Data_Tool$BBox = {ctor: 'BBox'};
+var _mpizenberg$demo_elm_image_annotation$Data_Tool$Point = {ctor: 'Point'};
+var _mpizenberg$demo_elm_image_annotation$Data_Tool$Move = {ctor: 'Move'};

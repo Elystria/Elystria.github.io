@@ -1,0 +1,3 @@
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$encode = _opensolid$geometry$OpenSolid_Geometry_Encode$point2d;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$coordinates = _opensolid$geometry$OpenSolid_Point2d$coordinates;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates = _opensolid$geometry$OpenSolid_Point2d$fromCoordinates;

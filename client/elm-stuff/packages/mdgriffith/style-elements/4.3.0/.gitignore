@@ -1,0 +1,14 @@
+# elm-package generated files
+elm-stuff/
+# elm-repl generated files
+repl-temp-*
+.DS_Store
+*/index.html
+index.html
+.elm-static-html
+env
+test/html-generation/rendered/*.html
+benchmarks/rendering/staging
+ohno.png
+
+*.notes

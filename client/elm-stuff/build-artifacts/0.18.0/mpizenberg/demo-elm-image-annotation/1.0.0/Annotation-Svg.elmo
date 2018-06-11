@@ -1,0 +1,121 @@
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$outlineStyled = F2(
+	function (lineStyle, fillStyle) {
+		return _opensolid$svg$OpenSolid_Svg$polygon2d(
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$pointerEvents('none'),
+				_1: {
+					ctor: '::',
+					_0: _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillAttribute(fillStyle),
+					_1: _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeAttributes(lineStyle)
+				}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$outline = A2(_mpizenberg$demo_elm_image_annotation$Annotation_Svg$outlineStyled, _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeDefault, _mpizenberg$demo_elm_image_annotation$Annotation_Style$NoFill);
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$outlineWithDetails = _opensolid$svg$OpenSolid_Svg$polygon2d;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$contourStyled = F2(
+	function (lineStyle, fillStyle) {
+		return _opensolid$svg$OpenSolid_Svg$polygon2d(
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$pointerEvents('none'),
+				_1: {
+					ctor: '::',
+					_0: _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillAttribute(fillStyle),
+					_1: _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeAttributes(lineStyle)
+				}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$contour = A2(_mpizenberg$demo_elm_image_annotation$Annotation_Svg$contourStyled, _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeDefault, _mpizenberg$demo_elm_image_annotation$Annotation_Style$NoFill);
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$contourWithDetails = _opensolid$svg$OpenSolid_Svg$polygon2d;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$strokeStyled = function (lineStyle) {
+	return _opensolid$svg$OpenSolid_Svg$polyline2d(
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$pointerEvents('none'),
+			_1: {
+				ctor: '::',
+				_0: _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillAttribute(_mpizenberg$demo_elm_image_annotation$Annotation_Style$NoFill),
+				_1: _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeAttributes(lineStyle)
+			}
+		});
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$stroke = _mpizenberg$demo_elm_image_annotation$Annotation_Svg$strokeStyled(_mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeDefault);
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$strokeWithDetails = _opensolid$svg$OpenSolid_Svg$polyline2d;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$boundingBoxStyled = F3(
+	function (lineStyle, fillStyle, bbox) {
+		return A3(
+			_elm_lang$core$Basics$flip,
+			_elm_lang$svg$Svg$rect,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$pointerEvents('none'),
+				_1: A2(
+					_elm_lang$core$Basics_ops['++'],
+					_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_BoundingBox$svgAttributes(bbox),
+					{
+						ctor: '::',
+						_0: _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillAttribute(fillStyle),
+						_1: _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeAttributes(lineStyle)
+					})
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$boundingBox = A2(_mpizenberg$demo_elm_image_annotation$Annotation_Svg$boundingBoxStyled, _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeDefault, _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillDefault);
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$boundingBoxWithDetails = F2(
+	function (attributes, bbox) {
+		return A3(
+			_elm_lang$core$Basics$flip,
+			_elm_lang$svg$Svg$rect,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_BoundingBox$svgAttributes(bbox),
+				attributes));
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$pointStyled = F4(
+	function (lineStyle, fillStyle, radius, point) {
+		return A3(
+			_elm_lang$core$Basics$flip,
+			_opensolid$svg$OpenSolid_Svg$circle2d,
+			_opensolid$geometry$OpenSolid_Circle2d$with(
+				{centerPoint: point, radius: radius}),
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$pointerEvents('none'),
+				_1: {
+					ctor: '::',
+					_0: _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillAttribute(fillStyle),
+					_1: _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeAttributes(lineStyle)
+				}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$point = A3(_mpizenberg$demo_elm_image_annotation$Annotation_Svg$pointStyled, _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeDefault, _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillDefault, 30);
+var _mpizenberg$demo_elm_image_annotation$Annotation_Svg$pointWithDetails = F2(
+	function (attributes, point) {
+		var _p0 = _opensolid$geometry$OpenSolid_Point2d$coordinates(point);
+		var x = _p0._0;
+		var y = _p0._1;
+		return A3(
+			_elm_lang$core$Basics$flip,
+			_elm_lang$svg$Svg$circle,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$append,
+				attributes,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$cx(
+						_elm_lang$core$Basics$toString(x)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$cy(
+							_elm_lang$core$Basics$toString(y)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$pointerEvents('none'),
+							_1: {ctor: '[]'}
+						}
+					}
+				}));
+	});

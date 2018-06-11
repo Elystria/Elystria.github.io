@@ -1,0 +1,56 @@
+var _mpizenberg$elm_pointer_events$Pointer$stopOptions = {stopPropagation: true, preventDefault: true};
+var _mpizenberg$elm_pointer_events$Pointer$Event = F5(
+	function (a, b, c, d, e) {
+		return {pointerType: a, pointer: b, pointerId: c, isPrimary: d, contactDetails: e};
+	});
+var _mpizenberg$elm_pointer_events$Pointer$ContactDetails = F5(
+	function (a, b, c, d, e) {
+		return {width: a, height: b, pressure: c, tiltX: d, tiltY: e};
+	});
+var _mpizenberg$elm_pointer_events$Pointer$contactDetailsDecoder = A6(
+	_elm_lang$core$Json_Decode$map5,
+	_mpizenberg$elm_pointer_events$Pointer$ContactDetails,
+	A2(_elm_lang$core$Json_Decode$field, 'width', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'height', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'pressure', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'tiltX', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'tiltY', _elm_lang$core$Json_Decode$float));
+var _mpizenberg$elm_pointer_events$Pointer$PenType = {ctor: 'PenType'};
+var _mpizenberg$elm_pointer_events$Pointer$TouchType = {ctor: 'TouchType'};
+var _mpizenberg$elm_pointer_events$Pointer$MouseType = {ctor: 'MouseType'};
+var _mpizenberg$elm_pointer_events$Pointer$stringToPointerType = function (str) {
+	var _p0 = str;
+	switch (_p0) {
+		case 'pen':
+			return _mpizenberg$elm_pointer_events$Pointer$PenType;
+		case 'touch':
+			return _mpizenberg$elm_pointer_events$Pointer$TouchType;
+		default:
+			return _mpizenberg$elm_pointer_events$Pointer$MouseType;
+	}
+};
+var _mpizenberg$elm_pointer_events$Pointer$pointerTypeDecoder = A2(_elm_lang$core$Json_Decode$map, _mpizenberg$elm_pointer_events$Pointer$stringToPointerType, _elm_lang$core$Json_Decode$string);
+var _mpizenberg$elm_pointer_events$Pointer$eventDecoder = A6(
+	_elm_lang$core$Json_Decode$map5,
+	_mpizenberg$elm_pointer_events$Pointer$Event,
+	A2(_elm_lang$core$Json_Decode$field, 'pointerType', _mpizenberg$elm_pointer_events$Pointer$pointerTypeDecoder),
+	_mpizenberg$elm_pointer_events$Mouse$eventDecoder,
+	A2(_elm_lang$core$Json_Decode$field, 'pointerId', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'isPrimary', _elm_lang$core$Json_Decode$bool),
+	_mpizenberg$elm_pointer_events$Pointer$contactDetailsDecoder);
+var _mpizenberg$elm_pointer_events$Pointer$onWithOptions = F3(
+	function (event, options, tag) {
+		return A3(
+			_elm_lang$html$Html_Events$onWithOptions,
+			event,
+			options,
+			A2(_elm_lang$core$Json_Decode$map, tag, _mpizenberg$elm_pointer_events$Pointer$eventDecoder));
+	});
+var _mpizenberg$elm_pointer_events$Pointer$onDown = A2(_mpizenberg$elm_pointer_events$Pointer$onWithOptions, 'pointerdown', _mpizenberg$elm_pointer_events$Pointer$stopOptions);
+var _mpizenberg$elm_pointer_events$Pointer$onMove = A2(_mpizenberg$elm_pointer_events$Pointer$onWithOptions, 'pointermove', _mpizenberg$elm_pointer_events$Pointer$stopOptions);
+var _mpizenberg$elm_pointer_events$Pointer$onUp = A2(_mpizenberg$elm_pointer_events$Pointer$onWithOptions, 'pointerup', _mpizenberg$elm_pointer_events$Pointer$stopOptions);
+var _mpizenberg$elm_pointer_events$Pointer$onCancel = A2(_mpizenberg$elm_pointer_events$Pointer$onWithOptions, 'pointercancel', _mpizenberg$elm_pointer_events$Pointer$stopOptions);
+var _mpizenberg$elm_pointer_events$Pointer$onOver = A2(_mpizenberg$elm_pointer_events$Pointer$onWithOptions, 'pointerover', _mpizenberg$elm_pointer_events$Pointer$stopOptions);
+var _mpizenberg$elm_pointer_events$Pointer$onEnter = A2(_mpizenberg$elm_pointer_events$Pointer$onWithOptions, 'pointerenter', _mpizenberg$elm_pointer_events$Pointer$stopOptions);
+var _mpizenberg$elm_pointer_events$Pointer$onOut = A2(_mpizenberg$elm_pointer_events$Pointer$onWithOptions, 'pointerout', _mpizenberg$elm_pointer_events$Pointer$stopOptions);
+var _mpizenberg$elm_pointer_events$Pointer$onLeave = A2(_mpizenberg$elm_pointer_events$Pointer$onWithOptions, 'pointerleave', _mpizenberg$elm_pointer_events$Pointer$stopOptions);

@@ -1,0 +1,18 @@
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$encode = _opensolid$geometry$OpenSolid_Geometry_Encode$polyline2d;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$close = function (stroke) {
+	return _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Contour$fromPoints(
+		_opensolid$geometry$OpenSolid_Polyline2d$vertices(stroke));
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$points = _opensolid$geometry$OpenSolid_Polyline2d$vertices;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints = _opensolid$geometry$OpenSolid_Polyline2d$fromVertices;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$addPoint = F2(
+	function (point, stroke) {
+		return _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(
+			{
+				ctor: '::',
+				_0: point,
+				_1: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$points(stroke)
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$empty = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(
+	{ctor: '[]'});

@@ -1,0 +1,398 @@
+var _mpizenberg$demo_elm_image_annotation$Data_Config$encodeAnnotation = function (annotation) {
+	var _p0 = annotation;
+	if (_p0.ctor === 'Type') {
+		return _elm_lang$core$Json_Encode$string(
+			_mpizenberg$demo_elm_image_annotation$Data_Annotation$typeToString(_p0._0));
+	} else {
+		return _elm_lang$core$Json_Encode$object(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'type',
+					_1: _elm_lang$core$Json_Encode$string(
+						_mpizenberg$demo_elm_image_annotation$Data_Annotation$typeToString(_p0._0))
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'variations',
+						_1: _elm_lang$core$Json_Encode$list(
+							A2(_elm_lang$core$List$map, _elm_lang$core$Json_Encode$string, _p0._1))
+					},
+					_1: {ctor: '[]'}
+				}
+			});
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$encodeClass = function ($class) {
+	var _p1 = $class;
+	if (_p1.ctor === 'Label') {
+		return _elm_lang$core$Json_Encode$string(_p1._0);
+	} else {
+		return _elm_lang$core$Json_Encode$object(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'category',
+					_1: _elm_lang$core$Json_Encode$string(_p1._0)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'classes',
+						_1: _elm_lang$core$Json_Encode$list(
+							A2(_elm_lang$core$List$map, _mpizenberg$demo_elm_image_annotation$Data_Config$encodeClass, _p1._1))
+					},
+					_1: {ctor: '[]'}
+				}
+			});
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$encode = function (config) {
+	return _elm_lang$core$Json_Encode$object(
+		{
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 'classes',
+				_1: _elm_lang$core$Json_Encode$list(
+					A2(_elm_lang$core$List$map, _mpizenberg$demo_elm_image_annotation$Data_Config$encodeClass, config.classes))
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'annotations',
+					_1: _elm_lang$core$Json_Encode$list(
+						A2(_elm_lang$core$List$map, _mpizenberg$demo_elm_image_annotation$Data_Config$encodeAnnotation, config.annotations))
+				},
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$toolTypefromAnnotationType = function (annotationType) {
+	var _p2 = annotationType;
+	switch (_p2.ctor) {
+		case 'Point':
+			return _mpizenberg$demo_elm_image_annotation$Data_Tool$Point;
+		case 'BBox':
+			return _mpizenberg$demo_elm_image_annotation$Data_Tool$BBox;
+		case 'Stroke':
+			return _mpizenberg$demo_elm_image_annotation$Data_Tool$Stroke;
+		case 'Outline':
+			return _mpizenberg$demo_elm_image_annotation$Data_Tool$Outline;
+		default:
+			return _mpizenberg$demo_elm_image_annotation$Data_Tool$Polygon;
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$toolsFrom = function (configs) {
+	var addVariations = F4(
+		function (variantId, type_, otherVariations, zipper) {
+			addVariations:
+			while (true) {
+				var tool = {
+					id: 1 + function (_) {
+						return _.id;
+					}(
+						_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(zipper)),
+					type_: _mpizenberg$demo_elm_image_annotation$Data_Config$toolTypefromAnnotationType(type_),
+					variant: variantId
+				};
+				var newZipper = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goR(
+					A2(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$insertR, tool, zipper));
+				var _p3 = otherVariations;
+				if (_p3.ctor === '[]') {
+					return newZipper;
+				} else {
+					var _v4 = variantId + 1,
+						_v5 = type_,
+						_v6 = _p3._1,
+						_v7 = newZipper;
+					variantId = _v4;
+					type_ = _v5;
+					otherVariations = _v6;
+					zipper = _v7;
+					continue addVariations;
+				}
+			}
+		});
+	var addTools = F2(
+		function (annotationConfig, zipper) {
+			var _p4 = annotationConfig;
+			if (_p4.ctor === 'Type') {
+				return A4(
+					addVariations,
+					0,
+					_p4._0,
+					{ctor: '[]'},
+					zipper);
+			} else {
+				if (_p4._1.ctor === '[]') {
+					return A4(
+						addVariations,
+						0,
+						_p4._0,
+						{ctor: '[]'},
+						zipper);
+				} else {
+					return A4(addVariations, 1, _p4._0, _p4._1._1, zipper);
+				}
+			}
+		});
+	var moveTool = {id: 0, type_: _mpizenberg$demo_elm_image_annotation$Data_Tool$Move, variant: 0};
+	var zipperWithOnlyMove = A3(
+		_mpizenberg$demo_elm_image_annotation$Packages_Zipper$init,
+		{ctor: '[]'},
+		moveTool,
+		{ctor: '[]'});
+	return _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goStart(
+		A3(_elm_lang$core$List$foldl, addTools, zipperWithOnlyMove, configs));
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$annotationsInfoFrom = function (configs) {
+	var variantsOf = function (annotation) {
+		var _p5 = annotation;
+		if (_p5.ctor === 'Type') {
+			return {
+				ctor: '::',
+				_0: A2(_mpizenberg$demo_elm_image_annotation$Data_Annotation$Info, _p5._0, _elm_lang$core$Maybe$Nothing),
+				_1: {ctor: '[]'}
+			};
+		} else {
+			return A2(
+				_elm_lang$core$List$map,
+				_mpizenberg$demo_elm_image_annotation$Data_Annotation$Info(_p5._0),
+				A2(_elm_lang$core$List$map, _elm_lang$core$Maybe$Just, _p5._1));
+		}
+	};
+	return A2(_elm_lang$core$List$concatMap, variantsOf, configs);
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$Config = F2(
+	function (a, b) {
+		return {classes: a, annotations: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_Config$empty = A2(
+	_mpizenberg$demo_elm_image_annotation$Data_Config$Config,
+	{ctor: '[]'},
+	{ctor: '[]'});
+var _mpizenberg$demo_elm_image_annotation$Data_Config$Category = F2(
+	function (a, b) {
+		return {ctor: 'Category', _0: a, _1: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_Config$classesFrom = function (classes) {
+	var convertNode = function ($class) {
+		var _p6 = $class;
+		if (_p6.ctor === 'Label') {
+			return {
+				ctor: '_Tuple2',
+				_0: _p6._0,
+				_1: {ctor: '[]'}
+			};
+		} else {
+			return {ctor: '_Tuple2', _0: _p6._0, _1: _p6._1};
+		}
+	};
+	return _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$from(
+		A2(
+			_zwilias$elm_rosetree$Tree$unfold,
+			convertNode,
+			A2(_mpizenberg$demo_elm_image_annotation$Data_Config$Category, 'classes-root', classes)));
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$Label = function (a) {
+	return {ctor: 'Label', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$classDecoder = _elm_lang$core$Json_Decode$oneOf(
+	{
+		ctor: '::',
+		_0: A2(_elm_lang$core$Json_Decode$map, _mpizenberg$demo_elm_image_annotation$Data_Config$Label, _elm_lang$core$Json_Decode$string),
+		_1: {
+			ctor: '::',
+			_0: A3(
+				_elm_lang$core$Json_Decode$map2,
+				_mpizenberg$demo_elm_image_annotation$Data_Config$Category,
+				A2(_elm_lang$core$Json_Decode$field, 'category', _elm_lang$core$Json_Decode$string),
+				A2(
+					_elm_lang$core$Json_Decode$field,
+					'classes',
+					_elm_lang$core$Json_Decode$list(
+						_elm_lang$core$Json_Decode$lazy(
+							function (_p7) {
+								return _mpizenberg$demo_elm_image_annotation$Data_Config$classDecoder;
+							})))),
+			_1: {ctor: '[]'}
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_Config$TypeWithVariations = F2(
+	function (a, b) {
+		return {ctor: 'TypeWithVariations', _0: a, _1: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_Config$Type = function (a) {
+	return {ctor: 'Type', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$pascal = {
+	classes: {
+		ctor: '::',
+		_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('person'),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_mpizenberg$demo_elm_image_annotation$Data_Config$Category,
+				'Animal',
+				{
+					ctor: '::',
+					_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('bird'),
+					_1: {
+						ctor: '::',
+						_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('cat'),
+						_1: {
+							ctor: '::',
+							_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('cow'),
+							_1: {
+								ctor: '::',
+								_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('dog'),
+								_1: {
+									ctor: '::',
+									_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('horse'),
+									_1: {
+										ctor: '::',
+										_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('sheep'),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mpizenberg$demo_elm_image_annotation$Data_Config$Category,
+					'Vehicle',
+					{
+						ctor: '::',
+						_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('aeroplane'),
+						_1: {
+							ctor: '::',
+							_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('bicycle'),
+							_1: {
+								ctor: '::',
+								_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('boat'),
+								_1: {
+									ctor: '::',
+									_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('bus'),
+									_1: {
+										ctor: '::',
+										_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('car'),
+										_1: {
+											ctor: '::',
+											_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('motorbike'),
+											_1: {
+												ctor: '::',
+												_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('train'),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_mpizenberg$demo_elm_image_annotation$Data_Config$Category,
+						'Indoor',
+						{
+							ctor: '::',
+							_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('bottle'),
+							_1: {
+								ctor: '::',
+								_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('chair'),
+								_1: {
+									ctor: '::',
+									_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('dining table'),
+									_1: {
+										ctor: '::',
+										_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('potted plant'),
+										_1: {
+											ctor: '::',
+											_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('sofa'),
+											_1: {
+												ctor: '::',
+												_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Label('tv/monitor'),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	},
+	annotations: {
+		ctor: '::',
+		_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Type(_mpizenberg$demo_elm_image_annotation$Data_Annotation$Point),
+		_1: {
+			ctor: '::',
+			_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Type(_mpizenberg$demo_elm_image_annotation$Data_Annotation$BBox),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mpizenberg$demo_elm_image_annotation$Data_Config$TypeWithVariations,
+					_mpizenberg$demo_elm_image_annotation$Data_Annotation$Stroke,
+					{
+						ctor: '::',
+						_0: 'fg',
+						_1: {
+							ctor: '::',
+							_0: 'bg',
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Type(_mpizenberg$demo_elm_image_annotation$Data_Annotation$Outline),
+					_1: {
+						ctor: '::',
+						_0: _mpizenberg$demo_elm_image_annotation$Data_Config$Type(_mpizenberg$demo_elm_image_annotation$Data_Annotation$Polygon),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Config$annotationDecoder = _elm_lang$core$Json_Decode$oneOf(
+	{
+		ctor: '::',
+		_0: A2(_elm_lang$core$Json_Decode$map, _mpizenberg$demo_elm_image_annotation$Data_Config$Type, _mpizenberg$demo_elm_image_annotation$Data_Annotation$typeDecoder),
+		_1: {
+			ctor: '::',
+			_0: A3(
+				_elm_lang$core$Json_Decode$map2,
+				_mpizenberg$demo_elm_image_annotation$Data_Config$TypeWithVariations,
+				A2(_elm_lang$core$Json_Decode$field, 'type', _mpizenberg$demo_elm_image_annotation$Data_Annotation$typeDecoder),
+				A2(
+					_elm_lang$core$Json_Decode$field,
+					'variations',
+					_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string))),
+			_1: {ctor: '[]'}
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_Config$decoder = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_mpizenberg$demo_elm_image_annotation$Data_Config$Config,
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'classes',
+		_elm_lang$core$Json_Decode$list(_mpizenberg$demo_elm_image_annotation$Data_Config$classDecoder)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'annotations',
+		_elm_lang$core$Json_Decode$list(_mpizenberg$demo_elm_image_annotation$Data_Config$annotationDecoder)));

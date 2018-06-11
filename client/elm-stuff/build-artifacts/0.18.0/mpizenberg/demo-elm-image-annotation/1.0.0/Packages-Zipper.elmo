@@ -1,0 +1,285 @@
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getR = function (_p0) {
+	var _p1 = _p0;
+	return _p1._2;
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC = function (_p2) {
+	var _p3 = _p2;
+	return _p3._1;
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getL = function (_p4) {
+	var _p5 = _p4;
+	return _elm_lang$core$List$reverse(_p5._0);
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$hasR = function (_p6) {
+	var _p7 = _p6;
+	var _p8 = _p7._2;
+	if (_p8.ctor === '::') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$hasL = function (_p9) {
+	var _p10 = _p9;
+	var _p11 = _p10._0;
+	if (_p11.ctor === '::') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper = F3(
+	function (a, b, c) {
+		return {ctor: 'Zipper', _0: a, _1: b, _2: c};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$init = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper;
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goL = function (_p12) {
+	var _p13 = _p12;
+	var _p14 = _p13._0;
+	if (_p14.ctor === '[]') {
+		return _p13;
+	} else {
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+			_p14._1,
+			_p14._0,
+			{ctor: '::', _0: _p13._1, _1: _p13._2});
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goToL = F3(
+	function (f, targetId, _p15) {
+		goToL:
+		while (true) {
+			var _p16 = _p15;
+			var _p19 = _p16;
+			var _p18 = _p16._1;
+			if (_elm_lang$core$Native_Utils.cmp(
+				f(_p18),
+				targetId) > 0) {
+				var _p17 = _p16._0;
+				if (_p17.ctor === '[]') {
+					return _p19;
+				} else {
+					var _v11 = f,
+						_v12 = targetId,
+						_v13 = A3(
+						_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+						_p17._1,
+						_p17._0,
+						{ctor: '::', _0: _p18, _1: _p16._2});
+					f = _v11;
+					targetId = _v12;
+					_p15 = _v13;
+					continue goToL;
+				}
+			} else {
+				return _p19;
+			}
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goToR = F3(
+	function (f, targetId, _p20) {
+		goToR:
+		while (true) {
+			var _p21 = _p20;
+			var _p24 = _p21;
+			var _p23 = _p21._1;
+			if (_elm_lang$core$Native_Utils.cmp(
+				f(_p23),
+				targetId) < 0) {
+				var _p22 = _p21._2;
+				if (_p22.ctor === '[]') {
+					return _p24;
+				} else {
+					var _v16 = f,
+						_v17 = targetId,
+						_v18 = A3(
+						_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+						{ctor: '::', _0: _p23, _1: _p21._0},
+						_p22._0,
+						_p22._1);
+					f = _v16;
+					targetId = _v17;
+					_p20 = _v18;
+					continue goToR;
+				}
+			} else {
+				return _p24;
+			}
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goTo = F3(
+	function (f, targetId, _p25) {
+		var _p26 = _p25;
+		var _p28 = _p26;
+		var _p27 = _p26._1;
+		return (_elm_lang$core$Native_Utils.cmp(
+			f(_p27),
+			targetId) < 0) ? A3(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goToR, f, targetId, _p28) : ((_elm_lang$core$Native_Utils.cmp(
+			f(_p27),
+			targetId) > 0) ? A3(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goToL, f, targetId, _p28) : _p28);
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goR = function (_p29) {
+	var _p30 = _p29;
+	var _p31 = _p30._2;
+	if (_p31.ctor === '[]') {
+		return _p30;
+	} else {
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+			{ctor: '::', _0: _p30._1, _1: _p30._0},
+			_p31._0,
+			_p31._1);
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goStart = function (_p32) {
+	goStart:
+	while (true) {
+		var _p33 = _p32;
+		var _p34 = _p33._0;
+		if (_p34.ctor === '[]') {
+			return _p33;
+		} else {
+			var _v24 = A3(
+				_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+				_p34._1,
+				_p34._0,
+				{ctor: '::', _0: _p33._1, _1: _p33._2});
+			_p32 = _v24;
+			continue goStart;
+		}
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$goEnd = function (_p35) {
+	goEnd:
+	while (true) {
+		var _p36 = _p35;
+		var _p37 = _p36._2;
+		if (_p37.ctor === '[]') {
+			return _p36;
+		} else {
+			var _v27 = A3(
+				_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+				{ctor: '::', _0: _p36._1, _1: _p36._0},
+				_p37._0,
+				_p37._1);
+			_p35 = _v27;
+			continue goEnd;
+		}
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getAll = function (_p38) {
+	getAll:
+	while (true) {
+		var _p39 = _p38;
+		var _p42 = _p39._2;
+		var _p41 = _p39._1;
+		var _p40 = _p39._0;
+		if (_p40.ctor === '[]') {
+			return {ctor: '::', _0: _p41, _1: _p42};
+		} else {
+			var _v30 = A3(
+				_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+				_p40._1,
+				_p40._0,
+				{ctor: '::', _0: _p41, _1: _p42});
+			_p38 = _v30;
+			continue getAll;
+		}
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$setL = F2(
+	function (left, _p43) {
+		var _p44 = _p43;
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+			_elm_lang$core$List$reverse(left),
+			_p44._1,
+			_p44._2);
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$setC = F2(
+	function (center, _p45) {
+		var _p46 = _p45;
+		return A3(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper, _p46._0, center, _p46._2);
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$setR = F2(
+	function (right, _p47) {
+		var _p48 = _p47;
+		return A3(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper, _p48._0, _p48._1, right);
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$updateC = F2(
+	function (f, _p49) {
+		var _p50 = _p49;
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+			_p50._0,
+			f(_p50._1),
+			_p50._2);
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$mapAll = F2(
+	function (f, _p51) {
+		var _p52 = _p51;
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+			A2(_elm_lang$core$List$map, f, _p52._0),
+			f(_p52._1),
+			A2(_elm_lang$core$List$map, f, _p52._2));
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$moveMapStart = F2(
+	function (f, _p53) {
+		moveMapStart:
+		while (true) {
+			var _p54 = _p53;
+			var _p57 = _p54._2;
+			var _p56 = _p54._1;
+			var _p55 = _p54._0;
+			if (_p55.ctor === '[]') {
+				return A3(
+					_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+					{ctor: '[]'},
+					f(_p56),
+					_p57);
+			} else {
+				var _v38 = f,
+					_v39 = A3(
+					_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+					_p55._1,
+					_p55._0,
+					{
+						ctor: '::',
+						_0: f(_p56),
+						_1: _p57
+					});
+				f = _v38;
+				_p53 = _v39;
+				continue moveMapStart;
+			}
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$insertL = F2(
+	function (value, _p58) {
+		var _p59 = _p58;
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+			{ctor: '::', _0: value, _1: _p59._0},
+			_p59._1,
+			_p59._2);
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$insertR = F2(
+	function (value, _p60) {
+		var _p61 = _p60;
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+			_p61._0,
+			_p61._1,
+			{ctor: '::', _0: value, _1: _p61._2});
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Zipper$append = F2(
+	function (list, _p62) {
+		var _p63 = _p62;
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$Zipper,
+			_p63._0,
+			_p63._1,
+			A2(_elm_lang$core$Basics_ops['++'], _p63._2, list));
+	});

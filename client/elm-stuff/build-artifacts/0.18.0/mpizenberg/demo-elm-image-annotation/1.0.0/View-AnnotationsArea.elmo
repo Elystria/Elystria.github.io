@@ -1,0 +1,411 @@
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$moreTransparent = function (color) {
+	var rgba = _elm_lang$core$Color$toRgb(color);
+	var newAlpha = 0.25 * rgba.alpha;
+	return A4(_elm_lang$core$Color$rgba, rgba.red, rgba.green, rgba.blue, newAlpha);
+};
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$moreOpaque = function (color) {
+	var rgba = _elm_lang$core$Color$toRgb(color);
+	var newAlpha = 0.25 * (3 + rgba.alpha);
+	return A4(_elm_lang$core$Color$rgba, rgba.red, rgba.green, rgba.blue, newAlpha);
+};
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$fillStyle = F2(
+	function (color, highlight) {
+		return highlight ? _mpizenberg$demo_elm_image_annotation$Annotation_Style$Fill(
+			_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$moreOpaque(color)) : _mpizenberg$demo_elm_image_annotation$Annotation_Style$Fill(color);
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$lineStyle = F4(
+	function (zoom, color, size, highlight) {
+		return highlight ? A2(_mpizenberg$demo_elm_image_annotation$Annotation_Style$Stroke, size / zoom, color) : A2(
+			_mpizenberg$demo_elm_image_annotation$Annotation_Style$Stroke,
+			size / zoom,
+			_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$moreTransparent(color));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewPolygons = F4(
+	function (zoom, fillColor, selectedClassId, drawings) {
+		var polyFillStyle = _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$fillStyle(fillColor);
+		var strokeStyle = A3(_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$lineStyle, zoom, _elm_lang$core$Color$black, 4);
+		var pointStyled = function (highlight) {
+			return A3(
+				_mpizenberg$demo_elm_image_annotation$Annotation_Svg$pointStyled,
+				strokeStyle(highlight),
+				polyFillStyle(highlight),
+				10 / zoom);
+		};
+		var viewOne = function (_p0) {
+			var _p1 = _p0;
+			var highlight = _elm_lang$core$Native_Utils.eq(_p1.classId, selectedClassId);
+			var _p2 = _p1.drawing;
+			if (_p2.ctor === 'PolygonStartedAt') {
+				var _p3 = _p2._1;
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_mpizenberg$demo_elm_image_annotation$Annotation_Svg$strokeStyled,
+							strokeStyle(highlight),
+							_p3),
+						_1: A2(
+							_elm_lang$core$List$map,
+							pointStyled(highlight),
+							_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$points(_p3))
+					});
+			} else {
+				var _p4 = _p2._0;
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A3(
+							_mpizenberg$demo_elm_image_annotation$Annotation_Svg$contourStyled,
+							strokeStyle(highlight),
+							polyFillStyle(highlight),
+							_p4),
+						_1: A2(
+							_elm_lang$core$List$map,
+							pointStyled(highlight),
+							_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Contour$points(_p4))
+					});
+			}
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			A2(_elm_lang$core$List$map, viewOne, drawings));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewOutlines = F4(
+	function (zoom, fillColor, selectedClassId, drawings) {
+		var outlineFillStyle = _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$fillStyle(fillColor);
+		var strokeStyle = A3(_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$lineStyle, zoom, _elm_lang$core$Color$black, 4);
+		var viewOne = function (_p5) {
+			var _p6 = _p5;
+			var highlight = _elm_lang$core$Native_Utils.eq(_p6.classId, selectedClassId);
+			var _p7 = _p6.drawing;
+			if (_p7.ctor === 'DrawingOutline') {
+				return A2(
+					_mpizenberg$demo_elm_image_annotation$Annotation_Svg$strokeStyled,
+					strokeStyle(highlight),
+					_p7._0);
+			} else {
+				return A3(
+					_mpizenberg$demo_elm_image_annotation$Annotation_Svg$outlineStyled,
+					strokeStyle(highlight),
+					outlineFillStyle(highlight),
+					_p7._0);
+			}
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			A2(_elm_lang$core$List$map, viewOne, drawings));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewStrokes = F4(
+	function (zoom, color, selectedClassId, drawings) {
+		var viewOneFG = function (_p8) {
+			var _p9 = _p8;
+			return A2(
+				_mpizenberg$demo_elm_image_annotation$Annotation_Svg$strokeStyled,
+				A4(
+					_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$lineStyle,
+					zoom,
+					color,
+					3,
+					_elm_lang$core$Native_Utils.eq(_p9.classId, selectedClassId)),
+				_p9.drawing);
+		};
+		var viewOneBG = function (_p10) {
+			var _p11 = _p10;
+			return A2(
+				_mpizenberg$demo_elm_image_annotation$Annotation_Svg$strokeStyled,
+				A4(
+					_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$lineStyle,
+					zoom,
+					A4(_elm_lang$core$Color$rgba, 0, 0, 0, 0.5),
+					6,
+					_elm_lang$core$Native_Utils.eq(_p11.classId, selectedClassId)),
+				_p11.drawing);
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_elm_lang$core$List$map, viewOneBG, drawings),
+				A2(_elm_lang$core$List$map, viewOneFG, drawings)));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewBBoxes = F4(
+	function (zoom, fillColor, selectedClassId, drawings) {
+		var bboxFillStyle = _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$fillStyle(fillColor);
+		var bboxStrokeStyle = A3(_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$lineStyle, zoom, _elm_lang$core$Color$black, 4);
+		var viewOne = function (_p12) {
+			var _p13 = _p12;
+			var highlight = _elm_lang$core$Native_Utils.eq(_p13.classId, selectedClassId);
+			return A3(
+				_mpizenberg$demo_elm_image_annotation$Annotation_Svg$boundingBoxStyled,
+				bboxStrokeStyle(highlight),
+				bboxFillStyle(highlight),
+				_p13.drawing);
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			A2(_elm_lang$core$List$map, viewOne, drawings));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewPoints = F4(
+	function (zoom, fillColor, selectedClassId, drawings) {
+		var pointFillStyle = _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$fillStyle(fillColor);
+		var pointLineStyle = A3(_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$lineStyle, zoom, _elm_lang$core$Color$black, 4);
+		var viewOne = function (_p14) {
+			var _p15 = _p14;
+			var highlight = _elm_lang$core$Native_Utils.eq(_p15.classId, selectedClassId);
+			return A4(
+				_mpizenberg$demo_elm_image_annotation$Annotation_Svg$pointStyled,
+				pointLineStyle(highlight),
+				pointFillStyle(highlight),
+				10 / zoom,
+				_p15.drawing);
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			A2(_elm_lang$core$List$map, viewOne, drawings));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewAnnotations = F3(
+	function (zoom, selectedClassId, _p16) {
+		var _p17 = _p16;
+		var _p18 = _p17.annotations;
+		switch (_p18.ctor) {
+			case 'Points':
+				return A4(
+					_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewPoints,
+					zoom,
+					A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.4),
+					selectedClassId,
+					_p18._0);
+			case 'BBoxes':
+				return A4(
+					_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewBBoxes,
+					zoom,
+					A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.4),
+					selectedClassId,
+					_p18._0);
+			case 'Strokes':
+				return A4(
+					_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewStrokes,
+					zoom,
+					A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.4),
+					selectedClassId,
+					_p18._0);
+			case 'Outlines':
+				return A4(
+					_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewOutlines,
+					zoom,
+					A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.4),
+					selectedClassId,
+					_p18._0);
+			default:
+				return A4(
+					_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewPolygons,
+					zoom,
+					A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.4),
+					selectedClassId,
+					_p18._0);
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$allAnnotations = F3(
+	function (zoom, selectedClassId, zipper) {
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$map,
+				A3(_elm_lang$svg$Svg_Lazy$lazy3, _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewAnnotations, zoom, selectedClassId),
+				_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getAll(zipper)));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$annotationsWithImage = F4(
+	function (zoom, image, selectedClassId, zipper) {
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			A2(
+				F2(
+					function (x, y) {
+						return {ctor: '::', _0: x, _1: y};
+					}),
+				A3(
+					_elm_lang$svg$Svg_Lazy$lazy2,
+					_mpizenberg$elm_image_collection$Image$viewSvg,
+					{ctor: '[]'},
+					image),
+				_elm_lang$core$List$singleton(
+					A4(_elm_lang$svg$Svg_Lazy$lazy3, _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$allAnnotations, zoom, selectedClassId, zipper))));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$pointerOffset = function (_p19) {
+	return function (_) {
+		return _.offsetPos;
+	}(
+		function (_) {
+			return _.pointer;
+		}(_p19));
+};
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$view = F3(
+	function (params, viewer, _p20) {
+		var _p21 = _p20;
+		var _p26 = _p21.name;
+		var attributes = {
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'height', _1: '100%'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(_elm_lang$html$Html_Attributes$attribute, 'onpointerdown', 'event.target.setPointerCapture(event.pointerId);'),
+				_1: {
+					ctor: '::',
+					_0: _mpizenberg$elm_pointer_events$Pointer$onDown(
+						function (_p22) {
+							return params.pointerDownMsg(
+								_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$pointerOffset(_p22));
+						}),
+					_1: {
+						ctor: '::',
+						_0: _mpizenberg$elm_pointer_events$Pointer$onMove(
+							function (_p23) {
+								return params.pointerMoveMsg(
+									_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$pointerOffset(_p23));
+							}),
+						_1: {
+							ctor: '::',
+							_0: _mpizenberg$elm_pointer_events$Pointer$onUp(
+								function (_p24) {
+									return params.pointerUpMsg(
+										_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$pointerOffset(_p24));
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		};
+		var _p25 = _p21.status;
+		switch (_p25.ctor) {
+			case 'Loading':
+				return A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$center,
+						_1: {ctor: '[]'}
+					},
+					_mdgriffith$style_elements$Element$text(
+						A2(_elm_lang$core$Basics_ops['++'], 'Loading image ', _p26)));
+			case 'Loaded':
+				return A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$Viewer,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
+						_1: {ctor: '[]'}
+					},
+					_mdgriffith$style_elements$Element$html(
+						A3(
+							_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$viewInWithDetails,
+							attributes,
+							viewer,
+							A2(
+								_elm_lang$core$Maybe$withDefault,
+								_elm_lang$svg$Svg$text('Oups annotationsWithImage should exist'),
+								params.annotationsWithImage))));
+			default:
+				return A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$center,
+						_1: {ctor: '[]'}
+					},
+					_mdgriffith$style_elements$Element$text(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'Error with image ',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_p26,
+								A2(_elm_lang$core$Basics_ops['++'], ': ', _p25._0)))));
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$viewImageOnly = F2(
+	function (viewer, _p27) {
+		var _p28 = _p27;
+		var _p30 = _p28.name;
+		var _p29 = _p28.status;
+		switch (_p29.ctor) {
+			case 'Loading':
+				return A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$center,
+						_1: {ctor: '[]'}
+					},
+					_mdgriffith$style_elements$Element$text(
+						A2(_elm_lang$core$Basics_ops['++'], 'Loading image ', _p30)));
+			case 'Loaded':
+				return A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$Viewer,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
+						_1: {ctor: '[]'}
+					},
+					_mdgriffith$style_elements$Element$html(
+						A3(
+							_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$viewInWithDetails,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'height', _1: '100%'},
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							},
+							viewer,
+							A2(
+								_mpizenberg$elm_image_collection$Image$viewSvg,
+								{ctor: '[]'},
+								_p29._0))));
+			default:
+				return A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$center,
+						_1: {ctor: '[]'}
+					},
+					_mdgriffith$style_elements$Element$text(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'Error with image ',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_p30,
+								A2(_elm_lang$core$Basics_ops['++'], ': ', _p29._0)))));
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$Parameters = F5(
+	function (a, b, c, d, e) {
+		return {size: a, annotationsWithImage: b, pointerDownMsg: c, pointerMoveMsg: d, pointerUpMsg: e};
+	});

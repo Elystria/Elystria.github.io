@@ -1,0 +1,57 @@
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodePolygon = function (polygon) {
+	return _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Contour$encode(polygon);
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodeOutline = function (outline) {
+	return _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Outline$encode(outline);
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodeStroke = function (stroke) {
+	return _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$encode(stroke);
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodeBBox = function (bbox) {
+	return _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_BoundingBox$encode(bbox);
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodePoint = function (point) {
+	return _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$encode(point);
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$typeToString = function (type_) {
+	var _p0 = type_;
+	switch (_p0.ctor) {
+		case 'Point':
+			return 'point';
+		case 'BBox':
+			return 'bbox';
+		case 'Stroke':
+			return 'stroke';
+		case 'Outline':
+			return 'outline';
+		default:
+			return 'polygon';
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$Info = F2(
+	function (a, b) {
+		return {type_: a, variant: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$Polygon = {ctor: 'Polygon'};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$Outline = {ctor: 'Outline'};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$Stroke = {ctor: 'Stroke'};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$BBox = {ctor: 'BBox'};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$Point = {ctor: 'Point'};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$typeFromString = function (str) {
+	var _p1 = str;
+	switch (_p1) {
+		case 'point':
+			return _mpizenberg$demo_elm_image_annotation$Data_Annotation$Point;
+		case 'bbox':
+			return _mpizenberg$demo_elm_image_annotation$Data_Annotation$BBox;
+		case 'stroke':
+			return _mpizenberg$demo_elm_image_annotation$Data_Annotation$Stroke;
+		case 'outline':
+			return _mpizenberg$demo_elm_image_annotation$Data_Annotation$Outline;
+		case 'polygon':
+			return _mpizenberg$demo_elm_image_annotation$Data_Annotation$Polygon;
+		default:
+			return _mpizenberg$demo_elm_image_annotation$Data_Annotation$Point;
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Annotation$typeDecoder = A2(_elm_lang$core$Json_Decode$map, _mpizenberg$demo_elm_image_annotation$Data_Annotation$typeFromString, _elm_lang$core$Json_Decode$string);

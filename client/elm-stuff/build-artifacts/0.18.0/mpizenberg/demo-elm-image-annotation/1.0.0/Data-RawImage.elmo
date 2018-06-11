@@ -1,0 +1,11 @@
+var _mpizenberg$demo_elm_image_annotation$Data_RawImage$RawImage = F3(
+	function (a, b, c) {
+		return {id: a, name: b, status: c};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_RawImage$LoadingError = function (a) {
+	return {ctor: 'LoadingError', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_RawImage$Loaded = function (a) {
+	return {ctor: 'Loaded', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_RawImage$Loading = {ctor: 'Loading'};

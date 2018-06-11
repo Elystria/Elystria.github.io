@@ -1,0 +1,978 @@
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeWithClass = F2(
+	function (encodeDrawing, _p0) {
+		var _p1 = _p0;
+		var _p3 = _p1.drawing;
+		var _p2 = _p1.classId;
+		return _elm_lang$core$Native_Utils.eq(_p2, 0) ? encodeDrawing(_p3) : _elm_lang$core$Json_Encode$object(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'classId',
+					_1: _elm_lang$core$Json_Encode$int(_p2)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'annotation',
+						_1: encodeDrawing(_p3)
+					},
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodePolygonDrawing = function (drawing) {
+	var _p4 = drawing;
+	if (_p4.ctor === 'PolygonStartedAt') {
+		return _elm_lang$core$Json_Encode$object(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'not-finished',
+					_1: _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodeStroke(_p4._1)
+				},
+				_1: {ctor: '[]'}
+			});
+	} else {
+		return _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodePolygon(_p4._0);
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeOutlineDrawing = function (drawing) {
+	var _p5 = drawing;
+	if (_p5.ctor === 'DrawingOutline') {
+		return _elm_lang$core$Json_Encode$object(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'not-finished',
+					_1: _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodeStroke(_p5._0)
+				},
+				_1: {ctor: '[]'}
+			});
+	} else {
+		return _mpizenberg$demo_elm_image_annotation$Data_Annotation$encodeOutline(_p5._0);
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeAnnotations = function (annotations) {
+	return _elm_lang$core$Json_Encode$list(
+		function () {
+			var _p6 = annotations;
+			switch (_p6.ctor) {
+				case 'Points':
+					return A2(
+						_elm_lang$core$List$map,
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeWithClass(_mpizenberg$demo_elm_image_annotation$Data_Annotation$encodePoint),
+						_p6._0);
+				case 'BBoxes':
+					return A2(
+						_elm_lang$core$List$map,
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeWithClass(_mpizenberg$demo_elm_image_annotation$Data_Annotation$encodeBBox),
+						_p6._0);
+				case 'Strokes':
+					return A2(
+						_elm_lang$core$List$map,
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeWithClass(_mpizenberg$demo_elm_image_annotation$Data_Annotation$encodeStroke),
+						_p6._0);
+				case 'Outlines':
+					return A2(
+						_elm_lang$core$List$map,
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeWithClass(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeOutlineDrawing),
+						_p6._0);
+				default:
+					return A2(
+						_elm_lang$core$List$map,
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeWithClass(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodePolygonDrawing),
+						_p6._0);
+			}
+		}());
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodePairIdAnnotations = F2(
+	function (annotationsDict, _p7) {
+		var _p8 = _p7;
+		var _p13 = _p8.annotations;
+		var encodeItem = function (_p9) {
+			var _p10 = _p9;
+			var _p12 = _p10.type_;
+			var _p11 = _p10.variant;
+			if (_p11.ctor === 'Nothing') {
+				return _elm_lang$core$Json_Encode$object(
+					{
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 'type',
+							_1: _elm_lang$core$Json_Encode$string(
+								_mpizenberg$demo_elm_image_annotation$Data_Annotation$typeToString(_p12))
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'annotations',
+								_1: _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeAnnotations(_p13)
+							},
+							_1: {ctor: '[]'}
+						}
+					});
+			} else {
+				return _elm_lang$core$Json_Encode$object(
+					{
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 'type',
+							_1: _elm_lang$core$Json_Encode$string(
+								_mpizenberg$demo_elm_image_annotation$Data_Annotation$typeToString(_p12))
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 'variant',
+								_1: _elm_lang$core$Json_Encode$string(_p11._0)
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'annotations',
+									_1: _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeAnnotations(_p13)
+								},
+								_1: {ctor: '[]'}
+							}
+						}
+					});
+			}
+		};
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			_elm_lang$core$Json_Encode$null,
+			A2(
+				_elm_lang$core$Maybe$map,
+				encodeItem,
+				A2(_elm_lang$core$Dict$get, _p8.toolId, annotationsDict)));
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeStatus = F2(
+	function (annotationsDict, status) {
+		var _p14 = status;
+		if (_p14.ctor === 'Loaded') {
+			return _elm_lang$core$Json_Encode$list(
+				A2(
+					_elm_lang$core$List$map,
+					_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodePairIdAnnotations(annotationsDict),
+					_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getAll(_p14._1)));
+		} else {
+			return _elm_lang$core$Json_Encode$null;
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encode = F2(
+	function (annotationsDict, annotatedImage) {
+		return _elm_lang$core$Json_Encode$object(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 'image',
+					_1: _elm_lang$core$Json_Encode$string(annotatedImage.name)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'annotations',
+						_1: A2(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$encodeStatus, annotationsDict, annotatedImage.status)
+					},
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$distance = F2(
+	function (_p16, _p15) {
+		var _p17 = _p16;
+		var _p18 = _p15;
+		return _elm_lang$core$Basics$abs(_p17._0 - _p18._0) + _elm_lang$core$Basics$abs(_p17._1 - _p18._1);
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateStrokes = F4(
+	function (selectedClassId, pointerMsg, dragState, drawings) {
+		var _p19 = {ctor: '_Tuple3', _0: pointerMsg, _1: dragState, _2: drawings};
+		_v10_3:
+		do {
+			if (_p19.ctor === '_Tuple3') {
+				if (_p19._1.ctor === 'NoDrag') {
+					if (_p19._0.ctor === 'DownAt') {
+						var _p20 = _p19._0._0;
+						var stroke = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(
+							{
+								ctor: '::',
+								_0: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p20),
+								_1: {ctor: '[]'}
+							});
+						return {
+							ctor: '_Tuple3',
+							_0: {
+								ctor: '::',
+								_0: {classId: selectedClassId, drawing: stroke},
+								_1: drawings
+							},
+							_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$DraggingFrom(_p20),
+							_2: true
+						};
+					} else {
+						break _v10_3;
+					}
+				} else {
+					if (_p19._2.ctor === '::') {
+						switch (_p19._0.ctor) {
+							case 'MoveAt':
+								var _p21 = _p19._2._0;
+								var stroke = A2(
+									_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$addPoint,
+									_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p19._0._0),
+									_p21.drawing);
+								return {
+									ctor: '_Tuple3',
+									_0: {
+										ctor: '::',
+										_0: _elm_lang$core$Native_Utils.update(
+											_p21,
+											{drawing: stroke}),
+										_1: _p19._2._1
+									},
+									_1: dragState,
+									_2: true
+								};
+							case 'UpAt':
+								return {ctor: '_Tuple3', _0: drawings, _1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag, _2: true};
+							default:
+								break _v10_3;
+						}
+					} else {
+						break _v10_3;
+					}
+				}
+			} else {
+				break _v10_3;
+			}
+		} while(false);
+		return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateBBoxes = F4(
+	function (selectedClassId, pointerMsg, dragState, drawings) {
+		var _p22 = {ctor: '_Tuple3', _0: pointerMsg, _1: dragState, _2: drawings};
+		_v11_3:
+		do {
+			if (_p22.ctor === '_Tuple3') {
+				if (_p22._1.ctor === 'NoDrag') {
+					if (_p22._0.ctor === 'DownAt') {
+						var _p23 = _p22._0._0;
+						var point = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p23);
+						var bbox = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_BoundingBox$fromPair(
+							{ctor: '_Tuple2', _0: point, _1: point});
+						return {
+							ctor: '_Tuple3',
+							_0: {
+								ctor: '::',
+								_0: {classId: selectedClassId, drawing: bbox},
+								_1: drawings
+							},
+							_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$DraggingFrom(_p23),
+							_2: true
+						};
+					} else {
+						break _v11_3;
+					}
+				} else {
+					if (_p22._2.ctor === '::') {
+						switch (_p22._0.ctor) {
+							case 'MoveAt':
+								var bbox = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_BoundingBox$fromPair(
+									{
+										ctor: '_Tuple2',
+										_0: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p22._1._0),
+										_1: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p22._0._0)
+									});
+								return {
+									ctor: '_Tuple3',
+									_0: {
+										ctor: '::',
+										_0: _elm_lang$core$Native_Utils.update(
+											_p22._2._0,
+											{drawing: bbox}),
+										_1: _p22._2._1
+									},
+									_1: dragState,
+									_2: true
+								};
+							case 'UpAt':
+								if ((_p22._0._0.ctor === '_Tuple2') && (_p22._1._0.ctor === '_Tuple2')) {
+									return (_elm_lang$core$Native_Utils.eq(_p22._0._0._0, _p22._1._0._0) || _elm_lang$core$Native_Utils.eq(_p22._0._0._1, _p22._1._0._1)) ? {ctor: '_Tuple3', _0: _p22._2._1, _1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag, _2: true} : {ctor: '_Tuple3', _0: drawings, _1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag, _2: true};
+								} else {
+									break _v11_3;
+								}
+							default:
+								break _v11_3;
+						}
+					} else {
+						break _v11_3;
+					}
+				}
+			} else {
+				break _v11_3;
+			}
+		} while(false);
+		return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updatePoints = F4(
+	function (selectedClassId, pointerMsg, dragState, drawings) {
+		var _p24 = {ctor: '_Tuple3', _0: pointerMsg, _1: dragState, _2: drawings};
+		_v12_3:
+		do {
+			if (_p24.ctor === '_Tuple3') {
+				switch (_p24._0.ctor) {
+					case 'DownAt':
+						if (_p24._1.ctor === 'NoDrag') {
+							var _p25 = _p24._0._0;
+							return {
+								ctor: '_Tuple3',
+								_0: {
+									ctor: '::',
+									_0: {
+										classId: selectedClassId,
+										drawing: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p25)
+									},
+									_1: drawings
+								},
+								_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$DraggingFrom(_p25),
+								_2: true
+							};
+						} else {
+							break _v12_3;
+						}
+					case 'MoveAt':
+						if ((_p24._1.ctor === 'DraggingFrom') && (_p24._2.ctor === '::')) {
+							return {
+								ctor: '_Tuple3',
+								_0: {
+									ctor: '::',
+									_0: _elm_lang$core$Native_Utils.update(
+										_p24._2._0,
+										{
+											drawing: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p24._0._0)
+										}),
+									_1: _p24._2._1
+								},
+								_1: dragState,
+								_2: true
+							};
+						} else {
+							break _v12_3;
+						}
+					default:
+						return {ctor: '_Tuple3', _0: drawings, _1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag, _2: true};
+				}
+			} else {
+				break _v12_3;
+			}
+		} while(false);
+		return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$addAnnotationsIndicator = F2(
+	function (type_, _p26) {
+		var _p27 = _p26;
+		var _p28 = _p27._0;
+		return {
+			ctor: '_Tuple4',
+			_0: type_(_p28),
+			_1: _p27._1,
+			_2: !_elm_lang$core$List$isEmpty(_p28),
+			_3: _p27._2
+		};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$hasAnnotations = function (annotatedImage) {
+	var _p29 = annotatedImage.status;
+	if (_p29.ctor === 'Loaded') {
+		var _p30 = function (_) {
+			return _.annotations;
+		}(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p29._1));
+		_v15_5:
+		do {
+			switch (_p30.ctor) {
+				case 'Points':
+					if (_p30._0.ctor === '::') {
+						return true;
+					} else {
+						break _v15_5;
+					}
+				case 'BBoxes':
+					if (_p30._0.ctor === '::') {
+						return true;
+					} else {
+						break _v15_5;
+					}
+				case 'Strokes':
+					if (_p30._0.ctor === '::') {
+						return true;
+					} else {
+						break _v15_5;
+					}
+				case 'Outlines':
+					if (_p30._0.ctor === '::') {
+						return true;
+					} else {
+						break _v15_5;
+					}
+				default:
+					if (_p30._0.ctor === '::') {
+						return true;
+					} else {
+						break _v15_5;
+					}
+			}
+		} while(false);
+		return false;
+	} else {
+		return false;
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$AnnotatedImage = F3(
+	function (a, b, c) {
+		return {id: a, name: b, status: c};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$LoadingError = function (a) {
+	return {ctor: 'LoadingError', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loaded = F2(
+	function (a, b) {
+		return {ctor: 'Loaded', _0: a, _1: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$selectTool = F2(
+	function (toolId, annotatedImage) {
+		var _p31 = annotatedImage.status;
+		if (_p31.ctor === 'Loaded') {
+			return _elm_lang$core$Native_Utils.update(
+				annotatedImage,
+				{
+					status: A2(
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loaded,
+						_p31._0,
+						A3(
+							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goTo,
+							function (_) {
+								return _.toolId;
+							},
+							toolId,
+							_p31._1))
+				});
+		} else {
+			return annotatedImage;
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$focusUpdate = F2(
+	function (f, _p32) {
+		var _p33 = _p32;
+		var _p35 = _p33;
+		var _p34 = _p33.status;
+		if (_p34.ctor === 'Loaded') {
+			return _elm_lang$core$Native_Utils.update(
+				_p35,
+				{
+					status: A2(
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loaded,
+						_p34._0,
+						A2(
+							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$updateC,
+							function (a) {
+								return _elm_lang$core$Native_Utils.update(
+									a,
+									{
+										annotations: f(a.annotations)
+									});
+							},
+							_p34._1))
+				});
+		} else {
+			return _p35;
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loading = {ctor: 'Loading'};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Polygons = function (a) {
+	return {ctor: 'Polygons', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Outlines = function (a) {
+	return {ctor: 'Outlines', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Strokes = function (a) {
+	return {ctor: 'Strokes', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$BBoxes = function (a) {
+	return {ctor: 'BBoxes', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Points = function (a) {
+	return {ctor: 'Points', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$removeLatest = function (annotations) {
+	var _p36 = annotations;
+	switch (_p36.ctor) {
+		case 'Points':
+			return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Points(
+				A2(_elm_lang$core$List$drop, 1, _p36._0));
+		case 'BBoxes':
+			return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$BBoxes(
+				A2(_elm_lang$core$List$drop, 1, _p36._0));
+		case 'Strokes':
+			return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Strokes(
+				A2(_elm_lang$core$List$drop, 1, _p36._0));
+		case 'Outlines':
+			return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Outlines(
+				A2(_elm_lang$core$List$drop, 1, _p36._0));
+		default:
+			return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Polygons(
+				A2(_elm_lang$core$List$drop, 1, _p36._0));
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$removeLatestAnnotation = _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$focusUpdate(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$removeLatest);
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$annotationsFromTools = function (tools) {
+	var fromTool = function (tool) {
+		var emptyAnnotations = function () {
+			var _p37 = tool.type_;
+			switch (_p37.ctor) {
+				case 'Point':
+					return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Points(
+						{ctor: '[]'});
+				case 'BBox':
+					return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$BBoxes(
+						{ctor: '[]'});
+				case 'Stroke':
+					return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Strokes(
+						{ctor: '[]'});
+				case 'Outline':
+					return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Outlines(
+						{ctor: '[]'});
+				case 'Polygon':
+					return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Polygons(
+						{ctor: '[]'});
+				default:
+					return _elm_lang$core$Native_Utils.crashCase(
+						'Data.AnnotatedImage',
+						{
+							start: {line: 506, column: 21},
+							end: {line: 523, column: 78}
+						},
+						_p37)('A tool should only be of some kinds');
+			}
+		}();
+		return {toolId: tool.id, annotations: emptyAnnotations};
+	};
+	var filteredTools = A2(
+		_elm_lang$core$List$filter,
+		function (tool) {
+			return !_elm_lang$core$Native_Utils.eq(tool.type_, _mpizenberg$demo_elm_image_annotation$Data_Tool$Move);
+		},
+		_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getAll(tools));
+	var _p39 = filteredTools;
+	if (_p39.ctor === '[]') {
+		return _elm_lang$core$Native_Utils.crashCase(
+			'Data.AnnotatedImage',
+			{
+				start: {line: 527, column: 5},
+				end: {line: 532, column: 74}
+			},
+			_p39)('Config should always provide at least one annotation tool');
+	} else {
+		return A3(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$init,
+			{ctor: '[]'},
+			fromTool(_p39._0),
+			A2(_elm_lang$core$List$map, fromTool, _p39._1));
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$fromRaw = F2(
+	function (tools, _p41) {
+		var _p42 = _p41;
+		var annotatedStatus = function () {
+			var _p43 = _p42.status;
+			switch (_p43.ctor) {
+				case 'Loading':
+					return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loading;
+				case 'LoadingError':
+					return _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$LoadingError(_p43._0);
+				default:
+					return A2(
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loaded,
+						_p43._0,
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$annotationsFromTools(tools));
+			}
+		}();
+		return {id: _p42.id, name: _p42.name, status: annotatedStatus};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$resetWithTools = F2(
+	function (tools, image) {
+		var _p44 = image.status;
+		if (_p44.ctor === 'Loaded') {
+			return _elm_lang$core$Native_Utils.update(
+				image,
+				{
+					status: A2(
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loaded,
+						_p44._0,
+						_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$annotationsFromTools(tools))
+				});
+		} else {
+			return image;
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$EndedOutline = function (a) {
+	return {ctor: 'EndedOutline', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$DrawingOutline = function (a) {
+	return {ctor: 'DrawingOutline', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateOutlines = F4(
+	function (selectedClassId, pointerMsg, dragState, drawings) {
+		var _p45 = {ctor: '_Tuple3', _0: pointerMsg, _1: dragState, _2: drawings};
+		_v25_3:
+		do {
+			if (_p45.ctor === '_Tuple3') {
+				if (_p45._1.ctor === 'NoDrag') {
+					if (_p45._0.ctor === 'DownAt') {
+						var _p46 = _p45._0._0;
+						var outline = _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$DrawingOutline(
+							_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(
+								{
+									ctor: '::',
+									_0: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p46),
+									_1: {ctor: '[]'}
+								}));
+						return {
+							ctor: '_Tuple3',
+							_0: {
+								ctor: '::',
+								_0: {classId: selectedClassId, drawing: outline},
+								_1: drawings
+							},
+							_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$DraggingFrom(_p46),
+							_2: true
+						};
+					} else {
+						break _v25_3;
+					}
+				} else {
+					if (_p45._2.ctor === '::') {
+						switch (_p45._0.ctor) {
+							case 'MoveAt':
+								var _p48 = _p45._2._0;
+								var _p47 = _p48.drawing;
+								if (_p47.ctor === 'DrawingOutline') {
+									var outline = _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$DrawingOutline(
+										A2(
+											_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$addPoint,
+											_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p45._0._0),
+											_p47._0));
+									return {
+										ctor: '_Tuple3',
+										_0: {
+											ctor: '::',
+											_0: _elm_lang$core$Native_Utils.update(
+												_p48,
+												{drawing: outline}),
+											_1: _p45._2._1
+										},
+										_1: dragState,
+										_2: true
+									};
+								} else {
+									return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+								}
+							case 'UpAt':
+								var _p50 = _p45._2._0;
+								var _p49 = _p50.drawing;
+								if (_p49.ctor === 'DrawingOutline') {
+									return {
+										ctor: '_Tuple3',
+										_0: {
+											ctor: '::',
+											_0: _elm_lang$core$Native_Utils.update(
+												_p50,
+												{
+													drawing: _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$EndedOutline(
+														_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$close(_p49._0))
+												}),
+											_1: _p45._2._1
+										},
+										_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag,
+										_2: true
+									};
+								} else {
+									return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+								}
+							default:
+								break _v25_3;
+						}
+					} else {
+						break _v25_3;
+					}
+				}
+			} else {
+				break _v25_3;
+			}
+		} while(false);
+		return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$EndedPolygon = function (a) {
+	return {ctor: 'EndedPolygon', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$PolygonStartedAt = F2(
+	function (a, b) {
+		return {ctor: 'PolygonStartedAt', _0: a, _1: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updatePolygons = F5(
+	function (zoom, selectedClassId, pointerMsg, dragState, drawings) {
+		var _p51 = {ctor: '_Tuple3', _0: pointerMsg, _1: dragState, _2: drawings};
+		_v28_4:
+		do {
+			if (_p51.ctor === '_Tuple3') {
+				if (_p51._1.ctor === 'NoDrag') {
+					if (_p51._0.ctor === 'DownAt') {
+						if (_p51._2.ctor === '[]') {
+							var _p52 = _p51._0._0;
+							var point = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p52);
+							var polygon = A2(
+								_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$PolygonStartedAt,
+								_p52,
+								_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(
+									{
+										ctor: '::',
+										_0: point,
+										_1: {ctor: '[]'}
+									}));
+							return {
+								ctor: '_Tuple3',
+								_0: {
+									ctor: '::',
+									_0: {classId: selectedClassId, drawing: polygon},
+									_1: {ctor: '[]'}
+								},
+								_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$DraggingFrom(_p52),
+								_2: true
+							};
+						} else {
+							var _p55 = _p51._0._0;
+							var _p54 = _p51._2._0;
+							var _p53 = _p54.drawing;
+							if (_p53.ctor === 'EndedPolygon') {
+								var point = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p55);
+								var polygon = A2(
+									_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$PolygonStartedAt,
+									_p55,
+									_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(
+										{
+											ctor: '::',
+											_0: point,
+											_1: {ctor: '[]'}
+										}));
+								return {
+									ctor: '_Tuple3',
+									_0: {
+										ctor: '::',
+										_0: {classId: selectedClassId, drawing: polygon},
+										_1: drawings
+									},
+									_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$DraggingFrom(_p55),
+									_2: true
+								};
+							} else {
+								var point = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p55);
+								var polygon = A2(
+									_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$PolygonStartedAt,
+									_p53._0,
+									A2(_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$addPoint, point, _p53._1));
+								return {
+									ctor: '_Tuple3',
+									_0: {
+										ctor: '::',
+										_0: _elm_lang$core$Native_Utils.update(
+											_p54,
+											{drawing: polygon}),
+										_1: _p51._2._1
+									},
+									_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$DraggingFrom(_p55),
+									_2: true
+								};
+							}
+						}
+					} else {
+						break _v28_4;
+					}
+				} else {
+					if (_p51._2.ctor === '::') {
+						switch (_p51._0.ctor) {
+							case 'MoveAt':
+								var _p62 = _p51._0._0;
+								var _p61 = _p51._2._0;
+								var _p56 = _p61.drawing;
+								if (_p56.ctor === 'PolygonStartedAt') {
+									var _p60 = _p56._1;
+									var _p59 = _p56._0;
+									var point = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Point$fromCoordinates(_p62);
+									var _p57 = function () {
+										var _p58 = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$points(_p60);
+										if (_p58.ctor === '::') {
+											if (_p58._1.ctor === '[]') {
+												return {
+													ctor: '_Tuple2',
+													_0: _p62,
+													_1: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(
+														{
+															ctor: '::',
+															_0: point,
+															_1: {ctor: '[]'}
+														})
+												};
+											} else {
+												return {
+													ctor: '_Tuple2',
+													_0: _p59,
+													_1: _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(
+														{ctor: '::', _0: point, _1: _p58._1})
+												};
+											}
+										} else {
+											return {ctor: '_Tuple2', _0: _p59, _1: _p60};
+										}
+									}();
+									var newStartPos = _p57._0;
+									var newStroke = _p57._1;
+									var polygon = A2(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$PolygonStartedAt, newStartPos, newStroke);
+									return {
+										ctor: '_Tuple3',
+										_0: {
+											ctor: '::',
+											_0: _elm_lang$core$Native_Utils.update(
+												_p61,
+												{drawing: polygon}),
+											_1: _p51._2._1
+										},
+										_1: dragState,
+										_2: true
+									};
+								} else {
+									return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+								}
+							case 'UpAt':
+								var _p65 = _p51._2._0;
+								var _p63 = _p65.drawing;
+								if (_p63.ctor === 'PolygonStartedAt') {
+									var _p64 = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$points(_p63._1);
+									if (_p64.ctor === '::') {
+										if (_p64._1.ctor === '[]') {
+											return {ctor: '_Tuple3', _0: drawings, _1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag, _2: true};
+										} else {
+											if (_elm_lang$core$Native_Utils.cmp(
+												A2(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$distance, _p51._0._0, _p63._0),
+												30 / zoom) > 0) {
+												return {ctor: '_Tuple3', _0: drawings, _1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag, _2: true};
+											} else {
+												var polygon = _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$EndedPolygon(
+													_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$close(
+														_mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Stroke$fromPoints(_p64._1)));
+												return {
+													ctor: '_Tuple3',
+													_0: {
+														ctor: '::',
+														_0: _elm_lang$core$Native_Utils.update(
+															_p65,
+															{drawing: polygon}),
+														_1: _p51._2._1
+													},
+													_1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag,
+													_2: true
+												};
+											}
+										}
+									} else {
+										return {ctor: '_Tuple3', _0: drawings, _1: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag, _2: true};
+									}
+								} else {
+									return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+								}
+							default:
+								break _v28_4;
+						}
+					} else {
+						break _v28_4;
+					}
+				}
+			} else {
+				break _v28_4;
+			}
+		} while(false);
+		return {ctor: '_Tuple3', _0: drawings, _1: dragState, _2: false};
+	});
+var _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateWithPointer = F5(
+	function (zoom, selectedClassId, pointerMsg, dragState, _p66) {
+		var _p67 = _p66;
+		var _p73 = _p67;
+		var _p68 = _p67.status;
+		if (_p68.ctor === 'Loaded') {
+			var _p72 = _p68._1;
+			var _p69 = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p72);
+			var toolId = _p69.toolId;
+			var annotations = _p69.annotations;
+			var _p70 = function () {
+				var _p71 = annotations;
+				switch (_p71.ctor) {
+					case 'Points':
+						return A2(
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$addAnnotationsIndicator,
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Points,
+							A4(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updatePoints, selectedClassId, pointerMsg, dragState, _p71._0));
+					case 'BBoxes':
+						return A2(
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$addAnnotationsIndicator,
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$BBoxes,
+							A4(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateBBoxes, selectedClassId, pointerMsg, dragState, _p71._0));
+					case 'Strokes':
+						return A2(
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$addAnnotationsIndicator,
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Strokes,
+							A4(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateStrokes, selectedClassId, pointerMsg, dragState, _p71._0));
+					case 'Outlines':
+						return A2(
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$addAnnotationsIndicator,
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Outlines,
+							A4(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateOutlines, selectedClassId, pointerMsg, dragState, _p71._0));
+					default:
+						return A2(
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$addAnnotationsIndicator,
+							_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Polygons,
+							A5(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updatePolygons, zoom, selectedClassId, pointerMsg, dragState, _p71._0));
+				}
+			}();
+			var newAnnotations = _p70._0;
+			var newDragState = _p70._1;
+			var hasAnnotations = _p70._2;
+			var hasChanged = _p70._3;
+			var newStatus = A2(
+				_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loaded,
+				_p68._0,
+				A2(
+					_mpizenberg$demo_elm_image_annotation$Packages_Zipper$setC,
+					{toolId: toolId, annotations: newAnnotations},
+					_p72));
+			return {
+				ctor: '_Tuple4',
+				_0: _elm_lang$core$Native_Utils.update(
+					_p73,
+					{status: newStatus}),
+				_1: newDragState,
+				_2: hasAnnotations,
+				_3: hasChanged
+			};
+		} else {
+			return {ctor: '_Tuple4', _0: _p73, _1: dragState, _2: false, _3: false};
+		}
+	});

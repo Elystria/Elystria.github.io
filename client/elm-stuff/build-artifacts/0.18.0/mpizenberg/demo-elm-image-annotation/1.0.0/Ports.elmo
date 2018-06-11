@@ -1,0 +1,54 @@
+var _mpizenberg$demo_elm_image_annotation$Ports$resizes = _elm_lang$core$Native_Platform.incomingPort(
+	'resizes',
+	A2(
+		_elm_lang$core$Json_Decode$andThen,
+		function (width) {
+			return A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (height) {
+					return _elm_lang$core$Json_Decode$succeed(
+						{width: width, height: height});
+				},
+				A2(_elm_lang$core$Json_Decode$field, 'height', _elm_lang$core$Json_Decode$int));
+		},
+		A2(_elm_lang$core$Json_Decode$field, 'width', _elm_lang$core$Json_Decode$int)));
+var _mpizenberg$demo_elm_image_annotation$Ports$loadImageFile = _elm_lang$core$Native_Platform.outgoingPort(
+	'loadImageFile',
+	function (v) {
+		return {id: v.id, file: v.file};
+	});
+var _mpizenberg$demo_elm_image_annotation$Ports$imageLoaded = _elm_lang$core$Native_Platform.incomingPort(
+	'imageLoaded',
+	A2(
+		_elm_lang$core$Json_Decode$andThen,
+		function (id) {
+			return A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (url) {
+					return A2(
+						_elm_lang$core$Json_Decode$andThen,
+						function (width) {
+							return A2(
+								_elm_lang$core$Json_Decode$andThen,
+								function (height) {
+									return _elm_lang$core$Json_Decode$succeed(
+										{id: id, url: url, width: width, height: height});
+								},
+								A2(_elm_lang$core$Json_Decode$field, 'height', _elm_lang$core$Json_Decode$int));
+						},
+						A2(_elm_lang$core$Json_Decode$field, 'width', _elm_lang$core$Json_Decode$int));
+				},
+				A2(_elm_lang$core$Json_Decode$field, 'url', _elm_lang$core$Json_Decode$string));
+		},
+		A2(_elm_lang$core$Json_Decode$field, 'id', _elm_lang$core$Json_Decode$int)));
+var _mpizenberg$demo_elm_image_annotation$Ports$loadConfigFile = _elm_lang$core$Native_Platform.outgoingPort(
+	'loadConfigFile',
+	function (v) {
+		return v;
+	});
+var _mpizenberg$demo_elm_image_annotation$Ports$configLoaded = _elm_lang$core$Native_Platform.incomingPort('configLoaded', _elm_lang$core$Json_Decode$string);
+var _mpizenberg$demo_elm_image_annotation$Ports$export = _elm_lang$core$Native_Platform.outgoingPort(
+	'export',
+	function (v) {
+		return v;
+	});

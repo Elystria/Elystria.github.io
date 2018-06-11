@@ -1,0 +1,16 @@
+INSTRUCTIONS
+
+Please outline the object in the image.
+To do so, select the outline tool and click on the image where you want to start outlining. 
+Click again when you're done.
+If you are not satisfied with the outline, click on the trash and start again.
+
+Click here to see a video demonstration.
+
+HOW TO MAKE A GOOD OUTLINE
+
+ 1. The whole object has to be inside the outline. 
+ 2. The outline must follow roughly the shape of the image
+ 3. If there are more than one objects, outline only one.
+
+See examples of good outlines here and examples of bad outlines here

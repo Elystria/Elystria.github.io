@@ -1,0 +1,55 @@
+var _mpizenberg$elm_pointer_events$Mouse$stopOptions = {stopPropagation: true, preventDefault: true};
+var _mpizenberg$elm_pointer_events$Mouse$Event = F6(
+	function (a, b, c, d, e, f) {
+		return {keys: a, button: b, clientPos: c, offsetPos: d, pagePos: e, screenPos: f};
+	});
+var _mpizenberg$elm_pointer_events$Mouse$Keys = F3(
+	function (a, b, c) {
+		return {alt: a, ctrl: b, shift: c};
+	});
+var _mpizenberg$elm_pointer_events$Mouse$ForwardButton = {ctor: 'ForwardButton'};
+var _mpizenberg$elm_pointer_events$Mouse$BackButton = {ctor: 'BackButton'};
+var _mpizenberg$elm_pointer_events$Mouse$SecondButton = {ctor: 'SecondButton'};
+var _mpizenberg$elm_pointer_events$Mouse$MiddleButton = {ctor: 'MiddleButton'};
+var _mpizenberg$elm_pointer_events$Mouse$MainButton = {ctor: 'MainButton'};
+var _mpizenberg$elm_pointer_events$Mouse$ErrorButton = {ctor: 'ErrorButton'};
+var _mpizenberg$elm_pointer_events$Mouse$buttonFromId = function (id) {
+	var _p0 = id;
+	switch (_p0) {
+		case 0:
+			return _mpizenberg$elm_pointer_events$Mouse$MainButton;
+		case 1:
+			return _mpizenberg$elm_pointer_events$Mouse$MiddleButton;
+		case 2:
+			return _mpizenberg$elm_pointer_events$Mouse$SecondButton;
+		case 3:
+			return _mpizenberg$elm_pointer_events$Mouse$BackButton;
+		case 4:
+			return _mpizenberg$elm_pointer_events$Mouse$ForwardButton;
+		default:
+			return _mpizenberg$elm_pointer_events$Mouse$ErrorButton;
+	}
+};
+var _mpizenberg$elm_pointer_events$Mouse$buttonDecoder = A2(
+	_elm_lang$core$Json_Decode$map,
+	_mpizenberg$elm_pointer_events$Mouse$buttonFromId,
+	A2(_elm_lang$core$Json_Decode$field, 'button', _elm_lang$core$Json_Decode$int));
+var _mpizenberg$elm_pointer_events$Mouse$eventDecoder = A7(_elm_lang$core$Json_Decode$map6, _mpizenberg$elm_pointer_events$Mouse$Event, _mpizenberg$elm_pointer_events$Internal_Decode$keys, _mpizenberg$elm_pointer_events$Mouse$buttonDecoder, _mpizenberg$elm_pointer_events$Internal_Decode$clientPos, _mpizenberg$elm_pointer_events$Internal_Decode$offsetPos, _mpizenberg$elm_pointer_events$Internal_Decode$pagePos, _mpizenberg$elm_pointer_events$Internal_Decode$screenPos);
+var _mpizenberg$elm_pointer_events$Mouse$onWithOptions = F3(
+	function (event, options, tag) {
+		return A3(
+			_elm_lang$html$Html_Events$onWithOptions,
+			event,
+			options,
+			A2(_elm_lang$core$Json_Decode$map, tag, _mpizenberg$elm_pointer_events$Mouse$eventDecoder));
+	});
+var _mpizenberg$elm_pointer_events$Mouse$onDown = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'mousedown', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onMove = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'mousemove', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onUp = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'mouseup', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onClick = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'click', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onDoubleClick = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'dblclick', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onEnter = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'mouseenter', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onOver = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'mouseover', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onLeave = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'mouseleave', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onOut = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'mouseout', _mpizenberg$elm_pointer_events$Mouse$stopOptions);
+var _mpizenberg$elm_pointer_events$Mouse$onContextMenu = A2(_mpizenberg$elm_pointer_events$Mouse$onWithOptions, 'contextmenu', _mpizenberg$elm_pointer_events$Mouse$stopOptions);

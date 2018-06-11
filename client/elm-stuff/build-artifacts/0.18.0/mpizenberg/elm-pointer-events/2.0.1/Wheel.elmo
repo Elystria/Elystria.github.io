@@ -1,0 +1,37 @@
+var _mpizenberg$elm_pointer_events$Wheel$stopOptions = {stopPropagation: true, preventDefault: true};
+var _mpizenberg$elm_pointer_events$Wheel$Event = F3(
+	function (a, b, c) {
+		return {mouseEvent: a, deltaY: b, deltaMode: c};
+	});
+var _mpizenberg$elm_pointer_events$Wheel$DeltaPage = {ctor: 'DeltaPage'};
+var _mpizenberg$elm_pointer_events$Wheel$DeltaLine = {ctor: 'DeltaLine'};
+var _mpizenberg$elm_pointer_events$Wheel$DeltaPixel = {ctor: 'DeltaPixel'};
+var _mpizenberg$elm_pointer_events$Wheel$deltaModeDecoder = function () {
+	var intToMode = function ($int) {
+		var _p0 = $int;
+		switch (_p0) {
+			case 1:
+				return _mpizenberg$elm_pointer_events$Wheel$DeltaLine;
+			case 2:
+				return _mpizenberg$elm_pointer_events$Wheel$DeltaPage;
+			default:
+				return _mpizenberg$elm_pointer_events$Wheel$DeltaPixel;
+		}
+	};
+	return A2(_elm_lang$core$Json_Decode$map, intToMode, _elm_lang$core$Json_Decode$int);
+}();
+var _mpizenberg$elm_pointer_events$Wheel$eventDecoder = A4(
+	_elm_lang$core$Json_Decode$map3,
+	_mpizenberg$elm_pointer_events$Wheel$Event,
+	_mpizenberg$elm_pointer_events$Mouse$eventDecoder,
+	A2(_elm_lang$core$Json_Decode$field, 'deltaY', _elm_lang$core$Json_Decode$float),
+	A2(_elm_lang$core$Json_Decode$field, 'deltaMode', _mpizenberg$elm_pointer_events$Wheel$deltaModeDecoder));
+var _mpizenberg$elm_pointer_events$Wheel$onWithOptions = F2(
+	function (options, tag) {
+		return A3(
+			_elm_lang$html$Html_Events$onWithOptions,
+			'wheel',
+			options,
+			A2(_elm_lang$core$Json_Decode$map, tag, _mpizenberg$elm_pointer_events$Wheel$eventDecoder));
+	});
+var _mpizenberg$elm_pointer_events$Wheel$onWheel = _mpizenberg$elm_pointer_events$Wheel$onWithOptions(_mpizenberg$elm_pointer_events$Wheel$stopOptions);

@@ -1,0 +1,49 @@
+var _mpizenberg$elm_pointer_events$Touch$touchListDecoder = _mpizenberg$elm_pointer_events$Internal_Decode$dynamicListOf;
+var _mpizenberg$elm_pointer_events$Touch$stopOptions = {preventDefault: true, stopPropagation: true};
+var _mpizenberg$elm_pointer_events$Touch$Event = F4(
+	function (a, b, c, d) {
+		return {keys: a, changedTouches: b, targetTouches: c, touches: d};
+	});
+var _mpizenberg$elm_pointer_events$Touch$Keys = F3(
+	function (a, b, c) {
+		return {alt: a, ctrl: b, shift: c};
+	});
+var _mpizenberg$elm_pointer_events$Touch$Touch = F4(
+	function (a, b, c, d) {
+		return {identifier: a, clientPos: b, pagePos: c, screenPos: d};
+	});
+var _mpizenberg$elm_pointer_events$Touch$touchDecoder = A5(
+	_elm_lang$core$Json_Decode$map4,
+	_mpizenberg$elm_pointer_events$Touch$Touch,
+	A2(_elm_lang$core$Json_Decode$field, 'identifier', _elm_lang$core$Json_Decode$int),
+	_mpizenberg$elm_pointer_events$Internal_Decode$clientPos,
+	_mpizenberg$elm_pointer_events$Internal_Decode$pagePos,
+	_mpizenberg$elm_pointer_events$Internal_Decode$screenPos);
+var _mpizenberg$elm_pointer_events$Touch$eventDecoder = A5(
+	_elm_lang$core$Json_Decode$map4,
+	_mpizenberg$elm_pointer_events$Touch$Event,
+	_mpizenberg$elm_pointer_events$Internal_Decode$keys,
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'changedTouches',
+		_mpizenberg$elm_pointer_events$Touch$touchListDecoder(_mpizenberg$elm_pointer_events$Touch$touchDecoder)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'targetTouches',
+		_mpizenberg$elm_pointer_events$Touch$touchListDecoder(_mpizenberg$elm_pointer_events$Touch$touchDecoder)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'touches',
+		_mpizenberg$elm_pointer_events$Touch$touchListDecoder(_mpizenberg$elm_pointer_events$Touch$touchDecoder)));
+var _mpizenberg$elm_pointer_events$Touch$onWithOptions = F3(
+	function (event, options, tag) {
+		return A3(
+			_elm_lang$html$Html_Events$onWithOptions,
+			event,
+			options,
+			A2(_elm_lang$core$Json_Decode$map, tag, _mpizenberg$elm_pointer_events$Touch$eventDecoder));
+	});
+var _mpizenberg$elm_pointer_events$Touch$onStart = A2(_mpizenberg$elm_pointer_events$Touch$onWithOptions, 'touchstart', _mpizenberg$elm_pointer_events$Touch$stopOptions);
+var _mpizenberg$elm_pointer_events$Touch$onMove = A2(_mpizenberg$elm_pointer_events$Touch$onWithOptions, 'touchmove', _mpizenberg$elm_pointer_events$Touch$stopOptions);
+var _mpizenberg$elm_pointer_events$Touch$onEnd = A2(_mpizenberg$elm_pointer_events$Touch$onWithOptions, 'touchend', _mpizenberg$elm_pointer_events$Touch$stopOptions);
+var _mpizenberg$elm_pointer_events$Touch$onCancel = A2(_mpizenberg$elm_pointer_events$Touch$onWithOptions, 'touchcancel', _mpizenberg$elm_pointer_events$Touch$stopOptions);

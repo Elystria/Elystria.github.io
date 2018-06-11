@@ -1,0 +1,13 @@
+var _mpizenberg$demo_elm_image_annotation$Data_Pointer$DraggingFrom = function (a) {
+	return {ctor: 'DraggingFrom', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag = {ctor: 'NoDrag'};
+var _mpizenberg$demo_elm_image_annotation$Data_Pointer$UpAt = function (a) {
+	return {ctor: 'UpAt', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Pointer$MoveAt = function (a) {
+	return {ctor: 'MoveAt', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Data_Pointer$DownAt = function (a) {
+	return {ctor: 'DownAt', _0: a};
+};

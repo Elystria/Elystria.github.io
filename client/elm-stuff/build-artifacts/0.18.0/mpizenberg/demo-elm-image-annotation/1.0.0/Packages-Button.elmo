@@ -1,0 +1,308 @@
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$stopAndPrevent = {stopPropagation: true, preventDefault: true};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$loadFileEvent = function (tagger) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'change',
+		_mpizenberg$demo_elm_image_annotation$Packages_Button$stopAndPrevent,
+		A2(
+			_elm_lang$core$Json_Decode$map,
+			tagger,
+			A2(
+				_elm_lang$core$Json_Decode$at,
+				{
+					ctor: '::',
+					_0: 'target',
+					_1: {
+						ctor: '::',
+						_0: 'files',
+						_1: {
+							ctor: '::',
+							_0: '0',
+							_1: {ctor: '[]'}
+						}
+					}
+				},
+				_elm_lang$core$Json_Decode$value)));
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$decodeAll = A2(
+	_elm_lang$core$List$foldr,
+	_elm_lang$core$Json_Decode$map2(
+		F2(
+			function (x, y) {
+				return {ctor: '::', _0: x, _1: y};
+			})),
+	_elm_lang$core$Json_Decode$succeed(
+		{ctor: '[]'}));
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$dynamicListOf = function (itemDecoder) {
+	var decodeOne = function (n) {
+		return A2(
+			_elm_lang$core$Json_Decode$field,
+			_elm_lang$core$Basics$toString(n),
+			itemDecoder);
+	};
+	var decodeN = function (n) {
+		return _mpizenberg$demo_elm_image_annotation$Packages_Button$decodeAll(
+			A2(
+				_elm_lang$core$List$map,
+				decodeOne,
+				A2(_elm_lang$core$List$range, 0, n - 1)));
+	};
+	return A2(
+		_elm_lang$core$Json_Decode$andThen,
+		decodeN,
+		A2(_elm_lang$core$Json_Decode$field, 'length', _elm_lang$core$Json_Decode$int));
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$viewText = function (button) {
+	var innerButton = A3(
+		_mdgriffith$style_elements$Element$el,
+		button.innerStyle,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$center,
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$paddingLeft(40),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$paddingRight(40),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		},
+		button.innerElement);
+	var sizeAttributes = {
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$height(
+			_mdgriffith$style_elements$Element_Attributes$px(button.height)),
+		_1: {ctor: '[]'}
+	};
+	var attributes = function () {
+		var _p0 = button.actionability;
+		if (_p0.ctor === 'Abled') {
+			return {
+				ctor: '::',
+				_0: button.action,
+				_1: A2(_elm_lang$core$Basics_ops['++'], sizeAttributes, button.otherAttributes)
+			};
+		} else {
+			return A2(_elm_lang$core$Basics_ops['++'], sizeAttributes, button.otherAttributes);
+		}
+	}();
+	return A3(_mdgriffith$style_elements$Element$el, button.outerStyle, attributes, innerButton);
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$view = function (button) {
+	var innerButton = A3(
+		_mdgriffith$style_elements$Element$el,
+		button.innerStyle,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$center,
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+				_1: {ctor: '[]'}
+			}
+		},
+		button.innerElement);
+	var _p1 = button.size;
+	var width = _p1._0;
+	var height = _p1._1;
+	var sizeAttributes = {
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$width(
+			_mdgriffith$style_elements$Element_Attributes$px(width)),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$height(
+				_mdgriffith$style_elements$Element_Attributes$px(height)),
+			_1: {ctor: '[]'}
+		}
+	};
+	var attributes = function () {
+		var _p2 = button.actionability;
+		if (_p2.ctor === 'Abled') {
+			return {
+				ctor: '::',
+				_0: button.action,
+				_1: A2(_elm_lang$core$Basics_ops['++'], sizeAttributes, button.otherAttributes)
+			};
+		} else {
+			return A2(_elm_lang$core$Basics_ops['++'], sizeAttributes, button.otherAttributes);
+		}
+	}();
+	return A3(_mdgriffith$style_elements$Element$el, button.outerStyle, attributes, innerButton);
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$Button = F7(
+	function (a, b, c, d, e, f, g) {
+		return {actionability: a, action: b, innerElement: c, innerStyle: d, size: e, outerStyle: f, otherAttributes: g};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$TextButton = F7(
+	function (a, b, c, d, e, f, g) {
+		return {actionability: a, action: b, innerElement: c, innerStyle: d, height: e, outerStyle: f, otherAttributes: g};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$FileLoader = F6(
+	function (a, b, c, d, e, f) {
+		return {msgTagger: a, uniqueId: b, innerElement: c, size: d, noStyle: e, outerStyle: f};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$MultipleFilesLoader = F6(
+	function (a, b, c, d, e, f) {
+		return {msgTagger: a, uniqueId: b, innerElement: c, size: d, noStyle: e, outerStyle: f};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$File = F2(
+	function (a, b) {
+		return {name: a, file: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$fileDecoder = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_mpizenberg$demo_elm_image_annotation$Packages_Button$File,
+	A2(_elm_lang$core$Json_Decode$field, 'name', _elm_lang$core$Json_Decode$string),
+	_elm_lang$core$Json_Decode$value);
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$loadMultipleFilesEvent = function (tagger) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'change',
+		_mpizenberg$demo_elm_image_annotation$Packages_Button$stopAndPrevent,
+		A2(
+			_elm_lang$core$Json_Decode$map,
+			tagger,
+			A2(
+				_elm_lang$core$Json_Decode$at,
+				{
+					ctor: '::',
+					_0: 'target',
+					_1: {
+						ctor: '::',
+						_0: 'files',
+						_1: {ctor: '[]'}
+					}
+				},
+				_mpizenberg$demo_elm_image_annotation$Packages_Button$dynamicListOf(_mpizenberg$demo_elm_image_annotation$Packages_Button$fileDecoder))));
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$Abled = function (a) {
+	return {ctor: 'Abled', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$Disabled = {ctor: 'Disabled'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$Active = {ctor: 'Active'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$Inactive = {ctor: 'Inactive'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$loadFileInput = F2(
+	function (tooltipText, config) {
+		var labelButton = _mpizenberg$demo_elm_image_annotation$Packages_Button$view(
+			{
+				actionability: _mpizenberg$demo_elm_image_annotation$Packages_Button$Abled(_mpizenberg$demo_elm_image_annotation$Packages_Button$Inactive),
+				action: _mdgriffith$style_elements$Element_Attributes$toAttr(
+					_elm_lang$html$Html_Attributes$for(config.uniqueId)),
+				innerElement: config.innerElement,
+				innerStyle: config.noStyle,
+				size: {ctor: '_Tuple2', _0: config.size, _1: config.size},
+				outerStyle: config.outerStyle,
+				otherAttributes: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+						_elm_lang$html$Html_Attributes$title(tooltipText)),
+					_1: {ctor: '[]'}
+				}
+			});
+		var invisibleInput = A2(
+			_elm_lang$html$Html$input,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$id(config.uniqueId),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$type_('file'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'display', _1: 'none'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _mpizenberg$demo_elm_image_annotation$Packages_Button$loadFileEvent(config.msgTagger),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			{ctor: '[]'});
+		return A3(
+			_mdgriffith$style_elements$Element$row,
+			config.noStyle,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element$html(invisibleInput),
+				_1: {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element$node, 'label', labelButton),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Button$loadMultipleFilesInput = F2(
+	function (tooltipText, config) {
+		var labelButton = _mpizenberg$demo_elm_image_annotation$Packages_Button$view(
+			{
+				actionability: _mpizenberg$demo_elm_image_annotation$Packages_Button$Abled(_mpizenberg$demo_elm_image_annotation$Packages_Button$Inactive),
+				action: _mdgriffith$style_elements$Element_Attributes$toAttr(
+					_elm_lang$html$Html_Attributes$for(config.uniqueId)),
+				innerElement: config.innerElement,
+				innerStyle: config.noStyle,
+				size: {ctor: '_Tuple2', _0: config.size, _1: config.size},
+				outerStyle: config.outerStyle,
+				otherAttributes: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+						_elm_lang$html$Html_Attributes$title(tooltipText)),
+					_1: {ctor: '[]'}
+				}
+			});
+		var invisibleInput = A2(
+			_elm_lang$html$Html$input,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$id(config.uniqueId),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$type_('file'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$multiple(true),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'display', _1: 'none'},
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: _mpizenberg$demo_elm_image_annotation$Packages_Button$loadMultipleFilesEvent(config.msgTagger),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			},
+			{ctor: '[]'});
+		return A3(
+			_mdgriffith$style_elements$Element$row,
+			config.noStyle,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element$html(invisibleInput),
+				_1: {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element$node, 'label', labelButton),
+					_1: {ctor: '[]'}
+				}
+			});
+	});

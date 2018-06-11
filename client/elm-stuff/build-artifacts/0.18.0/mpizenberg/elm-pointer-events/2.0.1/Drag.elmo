@@ -1,0 +1,53 @@
+var _mpizenberg$elm_pointer_events$Drag$fileListDecoder = _mpizenberg$elm_pointer_events$Internal_Decode$dynamicListOf;
+var _mpizenberg$elm_pointer_events$Drag$stopOptions = {preventDefault: true, stopPropagation: true};
+var _mpizenberg$elm_pointer_events$Drag$Event = F2(
+	function (a, b) {
+		return {dataTransfer: a, mouseEvent: b};
+	});
+var _mpizenberg$elm_pointer_events$Drag$DataTransfer = F3(
+	function (a, b, c) {
+		return {files: a, types: b, dropEffect: c};
+	});
+var _mpizenberg$elm_pointer_events$Drag$File = F4(
+	function (a, b, c, d) {
+		return {name: a, typeMIME: b, size: c, data: d};
+	});
+var _mpizenberg$elm_pointer_events$Drag$fileDecoder = A5(
+	_elm_lang$core$Json_Decode$map4,
+	_mpizenberg$elm_pointer_events$Drag$File,
+	A2(_elm_lang$core$Json_Decode$field, 'name', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'type', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode$field, 'size', _elm_lang$core$Json_Decode$int),
+	_elm_lang$core$Json_Decode$value);
+var _mpizenberg$elm_pointer_events$Drag$dataTransferDecoder = A4(
+	_elm_lang$core$Json_Decode$map3,
+	_mpizenberg$elm_pointer_events$Drag$DataTransfer,
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'files',
+		_mpizenberg$elm_pointer_events$Drag$fileListDecoder(_mpizenberg$elm_pointer_events$Drag$fileDecoder)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'types',
+		_elm_lang$core$Json_Decode$list(_elm_lang$core$Json_Decode$string)),
+	A2(_elm_lang$core$Json_Decode$field, 'dropEffect', _elm_lang$core$Json_Decode$string));
+var _mpizenberg$elm_pointer_events$Drag$eventDecoder = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_mpizenberg$elm_pointer_events$Drag$Event,
+	A2(_elm_lang$core$Json_Decode$field, 'dataTransfer', _mpizenberg$elm_pointer_events$Drag$dataTransferDecoder),
+	_mpizenberg$elm_pointer_events$Mouse$eventDecoder);
+var _mpizenberg$elm_pointer_events$Drag$onWithOptions = F3(
+	function (event, options, tag) {
+		return A3(
+			_elm_lang$html$Html_Events$onWithOptions,
+			event,
+			options,
+			A2(_elm_lang$core$Json_Decode$map, tag, _mpizenberg$elm_pointer_events$Drag$eventDecoder));
+	});
+var _mpizenberg$elm_pointer_events$Drag$onDrag = A2(_mpizenberg$elm_pointer_events$Drag$onWithOptions, 'drag', _mpizenberg$elm_pointer_events$Drag$stopOptions);
+var _mpizenberg$elm_pointer_events$Drag$onEnter = A2(_mpizenberg$elm_pointer_events$Drag$onWithOptions, 'dragenter', _mpizenberg$elm_pointer_events$Drag$stopOptions);
+var _mpizenberg$elm_pointer_events$Drag$onStart = A2(_mpizenberg$elm_pointer_events$Drag$onWithOptions, 'dragstart', _mpizenberg$elm_pointer_events$Drag$stopOptions);
+var _mpizenberg$elm_pointer_events$Drag$onOver = A2(_mpizenberg$elm_pointer_events$Drag$onWithOptions, 'dragover', _mpizenberg$elm_pointer_events$Drag$stopOptions);
+var _mpizenberg$elm_pointer_events$Drag$onDrop = A2(_mpizenberg$elm_pointer_events$Drag$onWithOptions, 'drop', _mpizenberg$elm_pointer_events$Drag$stopOptions);
+var _mpizenberg$elm_pointer_events$Drag$onLeave = A2(_mpizenberg$elm_pointer_events$Drag$onWithOptions, 'dragleave', _mpizenberg$elm_pointer_events$Drag$stopOptions);
+var _mpizenberg$elm_pointer_events$Drag$onEnd = A2(_mpizenberg$elm_pointer_events$Drag$onWithOptions, 'dragend', _mpizenberg$elm_pointer_events$Drag$stopOptions);

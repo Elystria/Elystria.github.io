@@ -1,0 +1,430 @@
+var _zwilias$elm_rosetree$Tree_Zipper$reconstruct = F2(
+	function (focus, _p0) {
+		var _p1 = _p0;
+		return A2(
+			_zwilias$elm_rosetree$Tree$tree,
+			_p1.label,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$List$reverse(_p1.before),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: focus,
+						_1: {ctor: '[]'}
+					},
+					_p1.after)));
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$firstOf = F2(
+	function (options, v) {
+		firstOf:
+		while (true) {
+			var _p2 = options;
+			if (_p2.ctor === '[]') {
+				return _elm_lang$core$Maybe$Nothing;
+			} else {
+				var _p3 = _p2._0(v);
+				if (_p3.ctor === 'Just') {
+					return _elm_lang$core$Maybe$Just(_p3._0);
+				} else {
+					var _v3 = _p2._1,
+						_v4 = v;
+					options = _v3;
+					v = _v4;
+					continue firstOf;
+				}
+			}
+		}
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$isLast = function (_p4) {
+	var _p5 = _p4;
+	var _p6 = _p5._0.crumbs;
+	if (_p6.ctor === '::') {
+		return _elm_lang$core$List$isEmpty(_p6._0.after);
+	} else {
+		return false;
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$isFirst = function (_p7) {
+	var _p8 = _p7;
+	var _p9 = _p8._0.crumbs;
+	if (_p9.ctor === '::') {
+		return _elm_lang$core$List$isEmpty(_p9._0.before);
+	} else {
+		return false;
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$isRoot = function (_p10) {
+	var _p11 = _p10;
+	return _elm_lang$core$List$isEmpty(_p11._0.crumbs);
+};
+var _zwilias$elm_rosetree$Tree_Zipper$tree = function (_p12) {
+	var _p13 = _p12;
+	return _p13._0.focus;
+};
+var _zwilias$elm_rosetree$Tree_Zipper$label = function (zipper) {
+	return _zwilias$elm_rosetree$Tree$label(
+		_zwilias$elm_rosetree$Tree_Zipper$tree(zipper));
+};
+var _zwilias$elm_rosetree$Tree_Zipper$find = F3(
+	function (predicate, move, zipper) {
+		find:
+		while (true) {
+			var _p14 = move(zipper);
+			if (_p14.ctor === 'Just') {
+				var _p15 = _p14._0;
+				if (predicate(
+					_zwilias$elm_rosetree$Tree_Zipper$label(_p15))) {
+					return _elm_lang$core$Maybe$Just(_p15);
+				} else {
+					var _v12 = predicate,
+						_v13 = move,
+						_v14 = _p15;
+					predicate = _v12;
+					move = _v13;
+					zipper = _v14;
+					continue find;
+				}
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		}
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$children = function (zipper) {
+	return _zwilias$elm_rosetree$Tree$children(
+		_zwilias$elm_rosetree$Tree_Zipper$tree(zipper));
+};
+var _zwilias$elm_rosetree$Tree_Zipper$hasChildren = function (_p16) {
+	return _elm_lang$core$List$isEmpty(
+		_zwilias$elm_rosetree$Tree_Zipper$children(_p16));
+};
+var _zwilias$elm_rosetree$Tree_Zipper$Crumb = F3(
+	function (a, b, c) {
+		return {before: a, label: b, after: c};
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$Zipper = function (a) {
+	return {ctor: 'Zipper', _0: a};
+};
+var _zwilias$elm_rosetree$Tree_Zipper$fromTree = function (t) {
+	return _zwilias$elm_rosetree$Tree_Zipper$Zipper(
+		{
+			focus: t,
+			crumbs: {ctor: '[]'}
+		});
+};
+var _zwilias$elm_rosetree$Tree_Zipper$parent = function (_p17) {
+	var _p18 = _p17;
+	var _p20 = _p18._0;
+	var _p19 = _p20.crumbs;
+	if (_p19.ctor === '[]') {
+		return _elm_lang$core$Maybe$Nothing;
+	} else {
+		return _elm_lang$core$Maybe$Just(
+			_zwilias$elm_rosetree$Tree_Zipper$Zipper(
+				{
+					focus: A2(_zwilias$elm_rosetree$Tree_Zipper$reconstruct, _p20.focus, _p19._0),
+					crumbs: _p19._1
+				}));
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$root = function (_p21) {
+	root:
+	while (true) {
+		var _p22 = _p21;
+		var _p24 = _p22._0;
+		var _p23 = _p24.crumbs;
+		if (_p23.ctor === '[]') {
+			return _zwilias$elm_rosetree$Tree_Zipper$Zipper(_p24);
+		} else {
+			var _v19 = _zwilias$elm_rosetree$Tree_Zipper$Zipper(
+				{
+					focus: A2(_zwilias$elm_rosetree$Tree_Zipper$reconstruct, _p24.focus, _p23._0),
+					crumbs: _p23._1
+				});
+			_p21 = _v19;
+			continue root;
+		}
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$toTree = function (_p25) {
+	return _zwilias$elm_rosetree$Tree_Zipper$tree(
+		_zwilias$elm_rosetree$Tree_Zipper$root(_p25));
+};
+var _zwilias$elm_rosetree$Tree_Zipper$nextSibling = function (_p26) {
+	var _p27 = _p26;
+	var _p31 = _p27._0;
+	var _p28 = _p31.crumbs;
+	if (_p28.ctor === '::') {
+		var _p30 = _p28._0;
+		var _p29 = _p30.after;
+		if (_p29.ctor === '[]') {
+			return _elm_lang$core$Maybe$Nothing;
+		} else {
+			return _elm_lang$core$Maybe$Just(
+				_zwilias$elm_rosetree$Tree_Zipper$Zipper(
+					{
+						focus: _p29._0,
+						crumbs: {
+							ctor: '::',
+							_0: _elm_lang$core$Native_Utils.update(
+								_p30,
+								{
+									before: {ctor: '::', _0: _p31.focus, _1: _p30.before},
+									after: _p29._1
+								}),
+							_1: _p28._1
+						}
+					}));
+		}
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$nextSiblingOfAncestor = function (zipper) {
+	nextSiblingOfAncestor:
+	while (true) {
+		var _p32 = _zwilias$elm_rosetree$Tree_Zipper$parent(zipper);
+		if (_p32.ctor === 'Nothing') {
+			return _elm_lang$core$Maybe$Nothing;
+		} else {
+			var _p34 = _p32._0;
+			var _p33 = _zwilias$elm_rosetree$Tree_Zipper$nextSibling(_p34);
+			if (_p33.ctor === 'Nothing') {
+				var _v25 = _p34;
+				zipper = _v25;
+				continue nextSiblingOfAncestor;
+			} else {
+				return _elm_lang$core$Maybe$Just(_p33._0);
+			}
+		}
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$previousSibling = function (_p35) {
+	var _p36 = _p35;
+	var _p40 = _p36._0;
+	var _p37 = _p40.crumbs;
+	if (_p37.ctor === '::') {
+		var _p39 = _p37._0;
+		var _p38 = _p39.before;
+		if (_p38.ctor === '[]') {
+			return _elm_lang$core$Maybe$Nothing;
+		} else {
+			return _elm_lang$core$Maybe$Just(
+				_zwilias$elm_rosetree$Tree_Zipper$Zipper(
+					{
+						focus: _p38._0,
+						crumbs: {
+							ctor: '::',
+							_0: _elm_lang$core$Native_Utils.update(
+								_p39,
+								{
+									before: _p38._1,
+									after: {ctor: '::', _0: _p40.focus, _1: _p39.after}
+								}),
+							_1: _p37._1
+						}
+					}));
+		}
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$mapTree = F2(
+	function (f, _p41) {
+		var _p42 = _p41;
+		var _p43 = _p42._0;
+		return _zwilias$elm_rosetree$Tree_Zipper$Zipper(
+			_elm_lang$core$Native_Utils.update(
+				_p43,
+				{
+					focus: f(_p43.focus)
+				}));
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$replaceTree = F2(
+	function (t, zipper) {
+		return A2(
+			_zwilias$elm_rosetree$Tree_Zipper$mapTree,
+			_elm_lang$core$Basics$always(t),
+			zipper);
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$mapLabel = F2(
+	function (f, zipper) {
+		return A2(
+			_zwilias$elm_rosetree$Tree_Zipper$mapTree,
+			_zwilias$elm_rosetree$Tree$mapLabel(f),
+			zipper);
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$replaceLabel = F2(
+	function (l, zipper) {
+		return A2(
+			_zwilias$elm_rosetree$Tree_Zipper$mapLabel,
+			_elm_lang$core$Basics$always(l),
+			zipper);
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$prepend = F2(
+	function (t, _p44) {
+		var _p45 = _p44;
+		var _p48 = _p45._0;
+		var _p46 = _p48.crumbs;
+		if (_p46.ctor === '[]') {
+			return _zwilias$elm_rosetree$Tree_Zipper$Zipper(_p48);
+		} else {
+			var _p47 = _p46._0;
+			return _zwilias$elm_rosetree$Tree_Zipper$Zipper(
+				_elm_lang$core$Native_Utils.update(
+					_p48,
+					{
+						crumbs: {
+							ctor: '::',
+							_0: _elm_lang$core$Native_Utils.update(
+								_p47,
+								{
+									before: {ctor: '::', _0: t, _1: _p47.before}
+								}),
+							_1: _p46._1
+						}
+					}));
+		}
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$append = F2(
+	function (t, _p49) {
+		var _p50 = _p49;
+		var _p53 = _p50._0;
+		var _p51 = _p53.crumbs;
+		if (_p51.ctor === '[]') {
+			return _zwilias$elm_rosetree$Tree_Zipper$Zipper(_p53);
+		} else {
+			var _p52 = _p51._0;
+			return _zwilias$elm_rosetree$Tree_Zipper$Zipper(
+				_elm_lang$core$Native_Utils.update(
+					_p53,
+					{
+						crumbs: {
+							ctor: '::',
+							_0: _elm_lang$core$Native_Utils.update(
+								_p52,
+								{
+									after: {ctor: '::', _0: t, _1: _p52.after}
+								}),
+							_1: _p51._1
+						}
+					}));
+		}
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$withFocus = F2(
+	function (focus, _p54) {
+		var _p55 = _p54;
+		return _zwilias$elm_rosetree$Tree_Zipper$Zipper(
+			_elm_lang$core$Native_Utils.update(
+				_p55._0,
+				{focus: focus}));
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$addCrumb = F2(
+	function (crumb, _p56) {
+		var _p57 = _p56;
+		var _p58 = _p57._0;
+		return _zwilias$elm_rosetree$Tree_Zipper$Zipper(
+			_elm_lang$core$Native_Utils.update(
+				_p58,
+				{
+					crumbs: {ctor: '::', _0: crumb, _1: _p58.crumbs}
+				}));
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$firstChild = function (zipper) {
+	var _p59 = _zwilias$elm_rosetree$Tree_Zipper$children(zipper);
+	if (_p59.ctor === '[]') {
+		return _elm_lang$core$Maybe$Nothing;
+	} else {
+		return _elm_lang$core$Maybe$Just(
+			A2(
+				_zwilias$elm_rosetree$Tree_Zipper$addCrumb,
+				{
+					before: {ctor: '[]'},
+					label: _zwilias$elm_rosetree$Tree_Zipper$label(zipper),
+					after: _p59._1
+				},
+				A2(_zwilias$elm_rosetree$Tree_Zipper$withFocus, _p59._0, zipper)));
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$forward = function (zipper) {
+	return A2(
+		_zwilias$elm_rosetree$Tree_Zipper$firstOf,
+		{
+			ctor: '::',
+			_0: _zwilias$elm_rosetree$Tree_Zipper$firstChild,
+			_1: {
+				ctor: '::',
+				_0: _zwilias$elm_rosetree$Tree_Zipper$nextSibling,
+				_1: {
+					ctor: '::',
+					_0: _zwilias$elm_rosetree$Tree_Zipper$nextSiblingOfAncestor,
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		zipper);
+};
+var _zwilias$elm_rosetree$Tree_Zipper$findNext = F2(
+	function (f, zipper) {
+		return A3(_zwilias$elm_rosetree$Tree_Zipper$find, f, _zwilias$elm_rosetree$Tree_Zipper$forward, zipper);
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$findFromRoot = F2(
+	function (f, zipper) {
+		var r = _zwilias$elm_rosetree$Tree_Zipper$root(zipper);
+		return f(
+			_zwilias$elm_rosetree$Tree_Zipper$label(r)) ? _elm_lang$core$Maybe$Just(r) : A2(_zwilias$elm_rosetree$Tree_Zipper$findNext, f, r);
+	});
+var _zwilias$elm_rosetree$Tree_Zipper$lastChild = function (zipper) {
+	var _p60 = _elm_lang$core$List$reverse(
+		_zwilias$elm_rosetree$Tree_Zipper$children(zipper));
+	if (_p60.ctor === '[]') {
+		return _elm_lang$core$Maybe$Nothing;
+	} else {
+		return _elm_lang$core$Maybe$Just(
+			A2(
+				_zwilias$elm_rosetree$Tree_Zipper$addCrumb,
+				{
+					before: _p60._1,
+					label: _zwilias$elm_rosetree$Tree_Zipper$label(zipper),
+					after: {ctor: '[]'}
+				},
+				A2(_zwilias$elm_rosetree$Tree_Zipper$withFocus, _p60._0, zipper)));
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$lastDescendant = function (zipper) {
+	lastDescendant:
+	while (true) {
+		var _p61 = _zwilias$elm_rosetree$Tree_Zipper$lastChild(zipper);
+		if (_p61.ctor === 'Nothing') {
+			return zipper;
+		} else {
+			var _v39 = _p61._0;
+			zipper = _v39;
+			continue lastDescendant;
+		}
+	}
+};
+var _zwilias$elm_rosetree$Tree_Zipper$backward = function (zipper) {
+	return A2(
+		_zwilias$elm_rosetree$Tree_Zipper$firstOf,
+		{
+			ctor: '::',
+			_0: function (_p62) {
+				return A2(
+					_elm_lang$core$Maybe$map,
+					_zwilias$elm_rosetree$Tree_Zipper$lastDescendant,
+					_zwilias$elm_rosetree$Tree_Zipper$previousSibling(_p62));
+			},
+			_1: {
+				ctor: '::',
+				_0: _zwilias$elm_rosetree$Tree_Zipper$parent,
+				_1: {ctor: '[]'}
+			}
+		},
+		zipper);
+};
+var _zwilias$elm_rosetree$Tree_Zipper$findPrevious = F2(
+	function (f, zipper) {
+		return A3(_zwilias$elm_rosetree$Tree_Zipper$find, f, _zwilias$elm_rosetree$Tree_Zipper$backward, zipper);
+	});

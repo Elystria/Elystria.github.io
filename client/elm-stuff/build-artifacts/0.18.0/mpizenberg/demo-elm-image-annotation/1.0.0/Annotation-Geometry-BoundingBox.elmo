@@ -1,0 +1,38 @@
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_BoundingBox$encode = _opensolid$geometry$OpenSolid_Geometry_Encode$boundingBox2d;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_BoundingBox$svgAttributes = function (bbox) {
+	var _p0 = _opensolid$geometry$OpenSolid_BoundingBox2d$dimensions(bbox);
+	var width = _p0._0;
+	var height = _p0._1;
+	var _p1 = {
+		ctor: '_Tuple2',
+		_0: _opensolid$geometry$OpenSolid_BoundingBox2d$minX(bbox),
+		_1: _opensolid$geometry$OpenSolid_BoundingBox2d$minY(bbox)
+	};
+	var left = _p1._0;
+	var top = _p1._1;
+	return {
+		ctor: '::',
+		_0: _elm_lang$svg$Svg_Attributes$x(
+			_elm_lang$core$Basics$toString(left)),
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$y(
+				_elm_lang$core$Basics$toString(top)),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width(
+					_elm_lang$core$Basics$toString(width)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$height(
+						_elm_lang$core$Basics$toString(height)),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	};
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_BoundingBox$fromPair = function (_p2) {
+	var _p3 = _p2;
+	return A2(_opensolid$geometry$OpenSolid_Point2d$hull, _p3._0, _p3._1);
+};

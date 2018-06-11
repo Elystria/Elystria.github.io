@@ -1,0 +1,142 @@
+var _mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewOne = F4(
+	function (selectImageMsg, isSelected, toLoadingStatus, _p0) {
+		var _p1 = _p0;
+		var _p4 = _p1.name;
+		var _p3 = _p1.id;
+		var helper = F3(
+			function (isSelected, id, textContent) {
+				var attributes = isSelected ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+					_1: {ctor: '[]'}
+				} : {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+							_mpizenberg$elm_pointer_events$Pointer$onDown(
+								_elm_lang$core$Basics$always(
+									selectImageMsg(id)))),
+						_1: {ctor: '[]'}
+					}
+				};
+				return isSelected ? A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassItem(_mpizenberg$demo_elm_image_annotation$StyleSheet$SelectedClass),
+					attributes,
+					textContent) : A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassItem(_mpizenberg$demo_elm_image_annotation$StyleSheet$NonSelectedClass),
+					attributes,
+					textContent);
+			});
+		var _p2 = toLoadingStatus(_p1.status);
+		switch (_p2.ctor) {
+			case 'Loading':
+				return A3(
+					helper,
+					isSelected,
+					_p3,
+					_mdgriffith$style_elements$Element$text(
+						A2(_elm_lang$core$Basics_ops['++'], '... ', _p4)));
+			case 'Loaded':
+				return A3(
+					helper,
+					isSelected,
+					_p3,
+					_mdgriffith$style_elements$Element$text(_p4));
+			default:
+				return A3(
+					helper,
+					isSelected,
+					_p3,
+					_mdgriffith$style_elements$Element$text(
+						A2(_elm_lang$core$Basics_ops['++'], 'X  ', _p4)));
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$toRawLoading = function (status) {
+	var _p5 = status;
+	switch (_p5.ctor) {
+		case 'Loading':
+			return _mpizenberg$demo_elm_image_annotation$Data_RawImage$Loading;
+		case 'Loaded':
+			return _mpizenberg$demo_elm_image_annotation$Data_RawImage$Loaded(_p5._0);
+		default:
+			return _mpizenberg$demo_elm_image_annotation$Data_RawImage$LoadingError(_p5._0);
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewAnnotated = F2(
+	function (selectImageMsg, dataset) {
+		return (_elm_lang$core$List$isEmpty(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getL(dataset)) && _elm_lang$core$List$isEmpty(
+			_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getR(dataset))) ? _mdgriffith$style_elements$Element$empty : A3(
+			_mdgriffith$style_elements$Element$column,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{ctor: '[]'},
+			_elm_lang$core$List$concat(
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$core$List$map,
+						A3(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewOne, selectImageMsg, false, _mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$toRawLoading),
+						_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getL(dataset)),
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '::',
+							_0: A4(
+								_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewOne,
+								selectImageMsg,
+								true,
+								_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$toRawLoading,
+								_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(dataset)),
+							_1: {ctor: '[]'}
+						},
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$core$List$map,
+								A3(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewOne, selectImageMsg, false, _mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$toRawLoading),
+								_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getR(dataset)),
+							_1: {ctor: '[]'}
+						}
+					}
+				}));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewRaw = F2(
+	function (selectImageMsg, dataset) {
+		return A3(
+			_mdgriffith$style_elements$Element$column,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{ctor: '[]'},
+			_elm_lang$core$List$concat(
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$core$List$map,
+						A3(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewOne, selectImageMsg, false, _elm_lang$core$Basics$identity),
+						_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getL(dataset)),
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '::',
+							_0: A4(
+								_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewOne,
+								selectImageMsg,
+								true,
+								_elm_lang$core$Basics$identity,
+								_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(dataset)),
+							_1: {ctor: '[]'}
+						},
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$core$List$map,
+								A3(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewOne, selectImageMsg, false, _elm_lang$core$Basics$identity),
+								_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getR(dataset)),
+							_1: {ctor: '[]'}
+						}
+					}
+				}));
+	});

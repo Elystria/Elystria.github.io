@@ -1,0 +1,426 @@
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$textButton = F4(
+	function (height, clickable, sendMsg, innerText) {
+		return _mpizenberg$demo_elm_image_annotation$Packages_Button$viewText(
+			{
+				actionability: clickable ? _mpizenberg$demo_elm_image_annotation$Packages_Button$Abled(_mpizenberg$demo_elm_image_annotation$Packages_Button$Inactive) : _mpizenberg$demo_elm_image_annotation$Packages_Button$Disabled,
+				action: _mdgriffith$style_elements$Element_Attributes$toAttr(
+					_mpizenberg$elm_pointer_events$Pointer$onDown(
+						_elm_lang$core$Basics$always(sendMsg))),
+				innerElement: _mdgriffith$style_elements$Element$text(innerText),
+				innerStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				height: height,
+				outerStyle: clickable ? _mpizenberg$demo_elm_image_annotation$StyleSheet$TextButton(_mpizenberg$demo_elm_image_annotation$StyleSheet$Abled) : _mpizenberg$demo_elm_image_annotation$StyleSheet$TextButton(_mpizenberg$demo_elm_image_annotation$StyleSheet$Disabled),
+				otherAttributes: {ctor: '[]'}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$actionButton = F5(
+	function (size, clickable, sendMsg, tooltipText, innerSvg) {
+		return _mpizenberg$demo_elm_image_annotation$Packages_Button$view(
+			{
+				actionability: clickable ? _mpizenberg$demo_elm_image_annotation$Packages_Button$Abled(_mpizenberg$demo_elm_image_annotation$Packages_Button$Inactive) : _mpizenberg$demo_elm_image_annotation$Packages_Button$Disabled,
+				action: _mdgriffith$style_elements$Element_Attributes$toAttr(
+					_mpizenberg$elm_pointer_events$Pointer$onDown(
+						_elm_lang$core$Basics$always(sendMsg))),
+				innerElement: _mdgriffith$style_elements$Element$html(
+					A3(_elm_lang$html$Html_Lazy$lazy2, _mpizenberg$demo_elm_image_annotation$View_Icon$toHtml, 0.6 * size, innerSvg)),
+				innerStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				size: {ctor: '_Tuple2', _0: size, _1: size},
+				outerStyle: clickable ? _mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Abled) : _mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Disabled),
+				otherAttributes: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+						_elm_lang$html$Html_Attributes$title(tooltipText)),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$toolIcon = F3(
+	function (size, variant, type_) {
+		var _p0 = function () {
+			var _p1 = type_;
+			switch (_p1.ctor) {
+				case 'Move':
+					return {ctor: '_Tuple2', _0: _mpizenberg$demo_elm_image_annotation$View_Icon$move, _1: 'Move'};
+				case 'Point':
+					return {ctor: '_Tuple2', _0: _mpizenberg$demo_elm_image_annotation$View_Icon$point, _1: 'Point'};
+				case 'BBox':
+					return {ctor: '_Tuple2', _0: _mpizenberg$demo_elm_image_annotation$View_Icon$boundingBox, _1: 'Bounding box'};
+				case 'Stroke':
+					return {ctor: '_Tuple2', _0: _mpizenberg$demo_elm_image_annotation$View_Icon$stroke, _1: 'Stroke'};
+				case 'Outline':
+					return {ctor: '_Tuple2', _0: _mpizenberg$demo_elm_image_annotation$View_Icon$outline, _1: 'Outline'};
+				default:
+					return {ctor: '_Tuple2', _0: _mpizenberg$demo_elm_image_annotation$View_Icon$polygon, _1: 'Polygon'};
+			}
+		}();
+		var svgIcon = _p0._0;
+		var tooltipText = _p0._1;
+		return A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$ToolIcon,
+			{
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Element_Attributes$vary,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$FromPalette(variant),
+					true),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+						_elm_lang$html$Html_Attributes$title(tooltipText)),
+					_1: {ctor: '[]'}
+				}
+			},
+			_mdgriffith$style_elements$Element$html(
+				A3(_elm_lang$html$Html_Lazy$lazy2, _mpizenberg$demo_elm_image_annotation$View_Icon$toHtml, size, svgIcon)));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$disabledToolButton = F2(
+	function (size, tool) {
+		return _mpizenberg$demo_elm_image_annotation$Packages_Button$view(
+			{
+				actionability: _mpizenberg$demo_elm_image_annotation$Packages_Button$Disabled,
+				action: _mdgriffith$style_elements$Element_Attributes$class(''),
+				innerElement: A3(_mpizenberg$demo_elm_image_annotation$View_ActionBar$toolIcon, 0.6 * size, tool.variant, tool.type_),
+				innerStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				size: {ctor: '_Tuple2', _0: size, _1: size},
+				outerStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Disabled),
+				otherAttributes: {ctor: '[]'}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$toolButton = F4(
+	function (selectToolMsg, size, isSelected, tool) {
+		return _mpizenberg$demo_elm_image_annotation$Packages_Button$view(
+			{
+				actionability: isSelected ? _mpizenberg$demo_elm_image_annotation$Packages_Button$Abled(_mpizenberg$demo_elm_image_annotation$Packages_Button$Active) : _mpizenberg$demo_elm_image_annotation$Packages_Button$Abled(_mpizenberg$demo_elm_image_annotation$Packages_Button$Inactive),
+				action: _mdgriffith$style_elements$Element_Attributes$toAttr(
+					_mpizenberg$elm_pointer_events$Pointer$onDown(
+						_elm_lang$core$Basics$always(
+							selectToolMsg(tool.id)))),
+				innerElement: A3(_mpizenberg$demo_elm_image_annotation$View_ActionBar$toolIcon, 0.6 * size, tool.variant, tool.type_),
+				innerStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				size: {ctor: '_Tuple2', _0: size, _1: size},
+				outerStyle: isSelected ? _mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Selected) : _mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Abled),
+				otherAttributes: {ctor: '[]'}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$configButton = F2(
+	function (loadConfigMsg, h) {
+		return A2(
+			_mpizenberg$demo_elm_image_annotation$Packages_Button$loadFileInput,
+			'Load JSON config file',
+			{
+				msgTagger: loadConfigMsg,
+				uniqueId: 'config-loader',
+				innerElement: _mdgriffith$style_elements$Element$html(
+					A3(_elm_lang$html$Html_Lazy$lazy2, _mpizenberg$demo_elm_image_annotation$View_Icon$toHtml, 0.6 * h, _mpizenberg$demo_elm_image_annotation$View_Icon$settings)),
+				size: h,
+				noStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				outerStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Abled)
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton = F2(
+	function (loadImagesMsg, h) {
+		return A2(
+			_mpizenberg$demo_elm_image_annotation$Packages_Button$loadMultipleFilesInput,
+			'Load images',
+			{
+				msgTagger: loadImagesMsg,
+				uniqueId: 'image-loader',
+				innerElement: _mdgriffith$style_elements$Element$html(
+					A3(_elm_lang$html$Html_Lazy$lazy2, _mpizenberg$demo_elm_image_annotation$View_Icon$toHtml, 0.6 * h, _mpizenberg$demo_elm_image_annotation$View_Icon$image)),
+				size: h,
+				noStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				outerStyle: _mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Abled)
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll = F2(
+	function (params, tools) {
+		var _p2 = params.size;
+		var w = _p2._0;
+		var h = _p2._1;
+		var filler = A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$height(
+						_mdgriffith$style_elements$Element_Attributes$px(h)),
+					_1: {ctor: '[]'}
+				}
+			},
+			_mdgriffith$style_elements$Element$empty);
+		var toolButtons = _elm_lang$core$List$concat(
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$core$List$map,
+					A3(_mpizenberg$demo_elm_image_annotation$View_ActionBar$toolButton, params.selectToolMsg, h, false),
+					_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getL(tools)),
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '::',
+						_0: A4(
+							_mpizenberg$demo_elm_image_annotation$View_ActionBar$toolButton,
+							params.selectToolMsg,
+							h,
+							true,
+							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(tools)),
+						_1: {ctor: '[]'}
+					},
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$core$List$map,
+							A3(_mpizenberg$demo_elm_image_annotation$View_ActionBar$toolButton, params.selectToolMsg, h, false),
+							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getR(tools)),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+		var removeLatestButton = A5(_mpizenberg$demo_elm_image_annotation$View_ActionBar$actionButton, h, params.hasAnnotations, params.removeLatestAnnotationMsg, 'Delete latest annotation of current tool', _mpizenberg$demo_elm_image_annotation$View_Icon$trash2);
+		var optionsButtons = params.mturkMode ? {
+			ctor: '::',
+			_0: A4(_mpizenberg$demo_elm_image_annotation$View_ActionBar$textButton, h, true, params.exportMsg, 'Submit'),
+			_1: {ctor: '[]'}
+		} : {
+			ctor: '::',
+			_0: A5(_mpizenberg$demo_elm_image_annotation$View_ActionBar$actionButton, h, true, params.exportMsg, 'Save annotations', _mpizenberg$demo_elm_image_annotation$View_Icon$save),
+			_1: {
+				ctor: '::',
+				_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$configButton, params.loadConfigMsg, h),
+				_1: {
+					ctor: '::',
+					_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton, params.loadImagesMsg, h),
+					_1: {ctor: '[]'}
+				}
+			}
+		};
+		var zoomActions = {
+			ctor: '::',
+			_0: A5(_mpizenberg$demo_elm_image_annotation$View_ActionBar$actionButton, h, true, params.zoomInMsg, 'Zoom in', _mpizenberg$demo_elm_image_annotation$View_Icon$zoomIn),
+			_1: {
+				ctor: '::',
+				_0: A5(_mpizenberg$demo_elm_image_annotation$View_ActionBar$actionButton, h, true, params.zoomOutMsg, 'Zoom out', _mpizenberg$demo_elm_image_annotation$View_Icon$zoomOut),
+				_1: {
+					ctor: '::',
+					_0: A5(_mpizenberg$demo_elm_image_annotation$View_ActionBar$actionButton, h, true, params.zoomFitMsg, 'Fit zoom to image', _mpizenberg$demo_elm_image_annotation$View_Icon$zoomFit),
+					_1: {ctor: '[]'}
+				}
+			}
+		};
+		return A3(
+			_mdgriffith$style_elements$Element$row,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				toolButtons,
+				{
+					ctor: '::',
+					_0: filler,
+					_1: {
+						ctor: '::',
+						_0: removeLatestButton,
+						_1: {ctor: '::', _0: filler, _1: optionsButtons}
+					}
+				}));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewConfig = F2(
+	function (params, tools) {
+		var _p3 = params.size;
+		var w = _p3._0;
+		var h = _p3._1;
+		var filler = A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$height(
+						_mdgriffith$style_elements$Element_Attributes$px(h)),
+					_1: {ctor: '[]'}
+				}
+			},
+			_mdgriffith$style_elements$Element$empty);
+		var toolButtons = _elm_lang$core$List$concat(
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$core$List$map,
+					_mpizenberg$demo_elm_image_annotation$View_ActionBar$disabledToolButton(h),
+					_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getL(tools)),
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '::',
+						_0: A2(
+							_mpizenberg$demo_elm_image_annotation$View_ActionBar$disabledToolButton,
+							h,
+							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(tools)),
+						_1: {ctor: '[]'}
+					},
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$core$List$map,
+							_mpizenberg$demo_elm_image_annotation$View_ActionBar$disabledToolButton(h),
+							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getR(tools)),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+		var configAndDatasetButtons = {
+			ctor: '::',
+			_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$configButton, params.loadConfigMsg, h),
+			_1: {
+				ctor: '::',
+				_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton, params.loadImagesMsg, h),
+				_1: {ctor: '[]'}
+			}
+		};
+		return A3(
+			_mdgriffith$style_elements$Element$row,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				toolButtons,
+				{ctor: '::', _0: filler, _1: configAndDatasetButtons}));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewImages = function (params) {
+	var _p4 = params.size;
+	var w = _p4._0;
+	var h = _p4._1;
+	var filler = A3(
+		_mdgriffith$style_elements$Element$el,
+		_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$height(
+					_mdgriffith$style_elements$Element_Attributes$px(h)),
+				_1: {ctor: '[]'}
+			}
+		},
+		_mdgriffith$style_elements$Element$empty);
+	var instruction = A4(_mpizenberg$demo_elm_image_annotation$View_ActionBar$textButton, h, false, params.exportMsg, 'Load Json config →');
+	return A3(
+		_mdgriffith$style_elements$Element$row,
+		_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: filler,
+			_1: {
+				ctor: '::',
+				_0: instruction,
+				_1: {
+					ctor: '::',
+					_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$configButton, params.loadConfigMsg, h),
+					_1: {
+						ctor: '::',
+						_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton, params.loadImagesMsg, h),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$emptyView = function (params) {
+	var _p5 = params.size;
+	var w = _p5._0;
+	var h = _p5._1;
+	var filler = A3(
+		_mdgriffith$style_elements$Element$el,
+		_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$height(
+					_mdgriffith$style_elements$Element_Attributes$px(h)),
+				_1: {ctor: '[]'}
+			}
+		},
+		_mdgriffith$style_elements$Element$empty);
+	var instruction = A4(_mpizenberg$demo_elm_image_annotation$View_ActionBar$textButton, h, false, params.exportMsg, 'Load images →');
+	return A3(
+		_mdgriffith$style_elements$Element$row,
+		_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: filler,
+			_1: {
+				ctor: '::',
+				_0: instruction,
+				_1: {
+					ctor: '::',
+					_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton, params.loadImagesMsg, h),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$responsiveHeight = function (device) {
+	var _p6 = {ctor: '_Tuple2', _0: device.kind, _1: device.orientation};
+	_v1_4:
+	do {
+		if (_p6.ctor === '_Tuple2') {
+			if (_p6._1.ctor === 'Portrait') {
+				switch (_p6._0.ctor) {
+					case 'Phone':
+						return (device.size.width / 7) | 0;
+					case 'Tablet':
+						return (device.size.width / 10) | 0;
+					default:
+						break _v1_4;
+				}
+			} else {
+				switch (_p6._0.ctor) {
+					case 'Phone':
+						return (device.size.width / 13) | 0;
+					case 'Tablet':
+						return (device.size.width / 16) | 0;
+					default:
+						break _v1_4;
+				}
+			}
+		} else {
+			break _v1_4;
+		}
+	} while(false);
+	return A2(_elm_lang$core$Basics$min, 72, (device.size.width / 16) | 0);
+};
+var _mpizenberg$demo_elm_image_annotation$View_ActionBar$Parameters = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return function (k) {
+											return {size: a, hasAnnotations: b, mturkMode: c, removeLatestAnnotationMsg: d, selectToolMsg: e, zoomInMsg: f, zoomOutMsg: g, zoomFitMsg: h, loadConfigMsg: i, loadImagesMsg: j, exportMsg: k};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};

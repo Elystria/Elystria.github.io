@@ -1,0 +1,77 @@
+var _mpizenberg$demo_elm_image_annotation$View_ClassesSideBar$viewClass = F3(
+	function (selectClassMsg, selectedClassId, foldableItem) {
+		var textContent = foldableItem.folded ? _mdgriffith$style_elements$Element$text(
+			A2(_elm_lang$core$Basics_ops['++'], '+ ', foldableItem.item)) : _mdgriffith$style_elements$Element$text(foldableItem.item);
+		var itemKey = foldableItem.key;
+		var attributes = _elm_lang$core$Native_Utils.eq(itemKey, selectedClassId) ? {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+			_1: {ctor: '[]'}
+		} : {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+			_1: {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+					_mpizenberg$elm_pointer_events$Pointer$onDown(
+						_elm_lang$core$Basics$always(
+							selectClassMsg(itemKey)))),
+				_1: {ctor: '[]'}
+			}
+		};
+		return _elm_lang$core$Native_Utils.eq(itemKey, 0) ? _mdgriffith$style_elements$Element$empty : (_elm_lang$core$Native_Utils.eq(itemKey, selectedClassId) ? A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassItem(_mpizenberg$demo_elm_image_annotation$StyleSheet$SelectedClass),
+			attributes,
+			textContent) : A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassItem(_mpizenberg$demo_elm_image_annotation$StyleSheet$NonSelectedClass),
+			attributes,
+			textContent));
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ClassesSideBar$toListItems = F2(
+	function (classElement, children) {
+		var _p0 = children;
+		if (_p0.ctor === '[]') {
+			return classElement;
+		} else {
+			return A3(
+				_mdgriffith$style_elements$Element$column,
+				_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: classElement,
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element$column,
+							_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$paddingLeft(40),
+								_1: {ctor: '[]'}
+							},
+							children),
+						_1: {ctor: '[]'}
+					}
+				});
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$View_ClassesSideBar$view = F2(
+	function (selectClassMsg, _p1) {
+		var _p2 = _p1;
+		var _p3 = _p2.selected;
+		return A3(
+			_mdgriffith$style_elements$Element$column,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$map,
+				A2(
+					_zwilias$elm_rosetree$Tree$restructure,
+					A2(_mpizenberg$demo_elm_image_annotation$View_ClassesSideBar$viewClass, selectClassMsg, _p3),
+					_mpizenberg$demo_elm_image_annotation$View_ClassesSideBar$toListItems),
+				_zwilias$elm_rosetree$Tree$children(
+					A2(_mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$foldedTree, _p3, _p2.all))));
+	});

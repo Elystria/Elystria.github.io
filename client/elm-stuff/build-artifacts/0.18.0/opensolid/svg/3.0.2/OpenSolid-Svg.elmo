@@ -1,0 +1,830 @@
+var _opensolid$svg$OpenSolid_Svg$placeIn = F2(
+	function (frame, element) {
+		var _p0 = _opensolid$geometry$OpenSolid_Direction2d$components(
+			_opensolid$geometry$OpenSolid_Frame2d$yDirection(frame));
+		var x2 = _p0._0;
+		var y2 = _p0._1;
+		var _p1 = _opensolid$geometry$OpenSolid_Direction2d$components(
+			_opensolid$geometry$OpenSolid_Frame2d$xDirection(frame));
+		var x1 = _p1._0;
+		var y1 = _p1._1;
+		var _p2 = _opensolid$geometry$OpenSolid_Point2d$coordinates(
+			_opensolid$geometry$OpenSolid_Frame2d$originPoint(frame));
+		var px = _p2._0;
+		var py = _p2._1;
+		var components = A2(
+			_elm_lang$core$List$map,
+			_elm_lang$core$Basics$toString,
+			{
+				ctor: '::',
+				_0: x1,
+				_1: {
+					ctor: '::',
+					_0: y1,
+					_1: {
+						ctor: '::',
+						_0: x2,
+						_1: {
+							ctor: '::',
+							_0: y2,
+							_1: {
+								ctor: '::',
+								_0: px,
+								_1: {
+									ctor: '::',
+									_0: py,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			});
+		var transform = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'matrix(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_elm_lang$core$String$join, ' ', components),
+				')'));
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$transform(transform),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: element,
+				_1: {ctor: '[]'}
+			});
+	});
+var _opensolid$svg$OpenSolid_Svg$relativeTo = function (frame) {
+	return _opensolid$svg$OpenSolid_Svg$placeIn(
+		A2(_opensolid$geometry$OpenSolid_Frame2d$relativeTo, frame, _opensolid$geometry$OpenSolid_Frame2d$xy));
+};
+var _opensolid$svg$OpenSolid_Svg$mirrorAcross = function (axis) {
+	return _opensolid$svg$OpenSolid_Svg$placeIn(
+		A2(_opensolid$geometry$OpenSolid_Frame2d$mirrorAcross, axis, _opensolid$geometry$OpenSolid_Frame2d$xy));
+};
+var _opensolid$svg$OpenSolid_Svg$translateBy = F2(
+	function (vector, element) {
+		var _p3 = _opensolid$geometry$OpenSolid_Vector2d$components(vector);
+		var x = _p3._0;
+		var y = _p3._1;
+		var translate = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'translate(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(x),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					' ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(y),
+						')'))));
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$transform(translate),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: element,
+				_1: {ctor: '[]'}
+			});
+	});
+var _opensolid$svg$OpenSolid_Svg$rotateAround = F3(
+	function (point, angle, element) {
+		var angleString = _elm_lang$core$Basics$toString(
+			_elm_community$basics_extra$Basics_Extra$inDegrees(angle));
+		var _p4 = _opensolid$geometry$OpenSolid_Point2d$coordinates(point);
+		var x = _p4._0;
+		var y = _p4._1;
+		var xString = _elm_lang$core$Basics$toString(x);
+		var yString = _elm_lang$core$Basics$toString(y);
+		var rotate = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'rotate(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				angleString,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					' ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						xString,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							' ',
+							A2(_elm_lang$core$Basics_ops['++'], yString, ')'))))));
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$transform(rotate),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: element,
+				_1: {ctor: '[]'}
+			});
+	});
+var _opensolid$svg$OpenSolid_Svg$scaleAbout = F3(
+	function (point, scale, element) {
+		var _p5 = _opensolid$geometry$OpenSolid_Point2d$coordinates(
+			A3(_opensolid$geometry$OpenSolid_Point2d$scaleAbout, point, scale, _opensolid$geometry$OpenSolid_Point2d$origin));
+		var px = _p5._0;
+		var py = _p5._1;
+		var components = A2(
+			_elm_lang$core$List$map,
+			_elm_lang$core$Basics$toString,
+			{
+				ctor: '::',
+				_0: scale,
+				_1: {
+					ctor: '::',
+					_0: 0,
+					_1: {
+						ctor: '::',
+						_0: 0,
+						_1: {
+							ctor: '::',
+							_0: scale,
+							_1: {
+								ctor: '::',
+								_0: px,
+								_1: {
+									ctor: '::',
+									_0: py,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			});
+		var transform = A2(
+			_elm_lang$core$Basics_ops['++'],
+			'matrix(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_elm_lang$core$String$join, ' ', components),
+				')'));
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$transform(transform),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: element,
+				_1: {ctor: '[]'}
+			});
+	});
+var _opensolid$svg$OpenSolid_Svg$text2d = F3(
+	function (attributes, basePoint, text) {
+		var mirrorAxis = _opensolid$geometry$OpenSolid_Axis2d$with(
+			{originPoint: basePoint, direction: _opensolid$geometry$OpenSolid_Direction2d$x});
+		var _p6 = _opensolid$geometry$OpenSolid_Point2d$coordinates(basePoint);
+		var x = _p6._0;
+		var y = _p6._1;
+		var xAttribute = _elm_lang$svg$Svg_Attributes$x(
+			_elm_lang$core$Basics$toString(x));
+		var yAttribute = _elm_lang$svg$Svg_Attributes$y(
+			_elm_lang$core$Basics$toString(y));
+		return A2(
+			_opensolid$svg$OpenSolid_Svg$mirrorAcross,
+			mirrorAxis,
+			A2(
+				_elm_lang$svg$Svg$text_,
+				{
+					ctor: '::',
+					_0: xAttribute,
+					_1: {ctor: '::', _0: yAttribute, _1: attributes}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg$text(text),
+					_1: {ctor: '[]'}
+				}));
+	});
+var _opensolid$svg$OpenSolid_Svg$boundingBox2d = F2(
+	function (attributes, boundingBox) {
+		var _p7 = _opensolid$geometry$OpenSolid_BoundingBox2d$extrema(boundingBox);
+		var minX = _p7.minX;
+		var minY = _p7.minY;
+		var maxX = _p7.maxX;
+		var maxY = _p7.maxY;
+		var x = _elm_lang$svg$Svg_Attributes$x(
+			_elm_lang$core$Basics$toString(minX));
+		var y = _elm_lang$svg$Svg_Attributes$y(
+			_elm_lang$core$Basics$toString(minY));
+		var width = _elm_lang$svg$Svg_Attributes$width(
+			_elm_lang$core$Basics$toString(maxX - minX));
+		var height = _elm_lang$svg$Svg_Attributes$height(
+			_elm_lang$core$Basics$toString(maxY - minY));
+		return A2(
+			_elm_lang$svg$Svg$rect,
+			{
+				ctor: '::',
+				_0: x,
+				_1: {
+					ctor: '::',
+					_0: y,
+					_1: {
+						ctor: '::',
+						_0: width,
+						_1: {ctor: '::', _0: height, _1: attributes}
+					}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$cubicSpline2d = F2(
+	function (attributes, spline) {
+		var _p8 = _opensolid$geometry$OpenSolid_CubicSpline2d$controlPoints(spline);
+		var p1 = _p8._0;
+		var p2 = _p8._1;
+		var p3 = _p8._2;
+		var p4 = _p8._3;
+		var _p9 = _opensolid$geometry$OpenSolid_Point2d$coordinates(p1);
+		var x1 = _p9._0;
+		var y1 = _p9._1;
+		var _p10 = _opensolid$geometry$OpenSolid_Point2d$coordinates(p2);
+		var x2 = _p10._0;
+		var y2 = _p10._1;
+		var _p11 = _opensolid$geometry$OpenSolid_Point2d$coordinates(p3);
+		var x3 = _p11._0;
+		var y3 = _p11._1;
+		var _p12 = _opensolid$geometry$OpenSolid_Point2d$coordinates(p4);
+		var x4 = _p12._0;
+		var y4 = _p12._1;
+		var pathComponents = {
+			ctor: '::',
+			_0: 'M',
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(x1),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Basics$toString(y1),
+					_1: {
+						ctor: '::',
+						_0: 'C',
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$core$Basics$toString(x2),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Basics$toString(y2),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$core$Basics$toString(x3),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$core$Basics$toString(y3),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$core$Basics$toString(x4),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$core$Basics$toString(y4),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		};
+		var pathAttribute = _elm_lang$svg$Svg_Attributes$d(
+			A2(_elm_lang$core$String$join, ' ', pathComponents));
+		return A2(
+			_elm_lang$svg$Svg$path,
+			{ctor: '::', _0: pathAttribute, _1: attributes},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$quadraticSpline2d = F2(
+	function (attributes, spline) {
+		var _p13 = _opensolid$geometry$OpenSolid_QuadraticSpline2d$controlPoints(spline);
+		var p1 = _p13._0;
+		var p2 = _p13._1;
+		var p3 = _p13._2;
+		var _p14 = _opensolid$geometry$OpenSolid_Point2d$coordinates(p1);
+		var x1 = _p14._0;
+		var y1 = _p14._1;
+		var _p15 = _opensolid$geometry$OpenSolid_Point2d$coordinates(p2);
+		var x2 = _p15._0;
+		var y2 = _p15._1;
+		var _p16 = _opensolid$geometry$OpenSolid_Point2d$coordinates(p3);
+		var x3 = _p16._0;
+		var y3 = _p16._1;
+		var pathComponents = {
+			ctor: '::',
+			_0: 'M',
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(x1),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Basics$toString(y1),
+					_1: {
+						ctor: '::',
+						_0: 'Q',
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$core$Basics$toString(x2),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Basics$toString(y2),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$core$Basics$toString(x3),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$core$Basics$toString(y3),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		};
+		var pathAttribute = _elm_lang$svg$Svg_Attributes$d(
+			A2(_elm_lang$core$String$join, ' ', pathComponents));
+		return A2(
+			_elm_lang$svg$Svg$path,
+			{ctor: '::', _0: pathAttribute, _1: attributes},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$ellipse2d = F2(
+	function (attributes, ellipse) {
+		var angle = _opensolid$geometry$OpenSolid_Direction2d$angle(
+			_opensolid$geometry$OpenSolid_Ellipse2d$xDirection(ellipse));
+		var ry = _elm_lang$svg$Svg_Attributes$ry(
+			_elm_lang$core$Basics$toString(
+				_opensolid$geometry$OpenSolid_Ellipse2d$yRadius(ellipse)));
+		var rx = _elm_lang$svg$Svg_Attributes$rx(
+			_elm_lang$core$Basics$toString(
+				_opensolid$geometry$OpenSolid_Ellipse2d$xRadius(ellipse)));
+		var centerPoint = _opensolid$geometry$OpenSolid_Ellipse2d$centerPoint(ellipse);
+		var _p17 = _opensolid$geometry$OpenSolid_Point2d$coordinates(centerPoint);
+		var x = _p17._0;
+		var y = _p17._1;
+		var cx = _elm_lang$svg$Svg_Attributes$cx(
+			_elm_lang$core$Basics$toString(x));
+		var cy = _elm_lang$svg$Svg_Attributes$cy(
+			_elm_lang$core$Basics$toString(y));
+		return A3(
+			_opensolid$svg$OpenSolid_Svg$rotateAround,
+			centerPoint,
+			angle,
+			A2(
+				_elm_lang$svg$Svg$ellipse,
+				{
+					ctor: '::',
+					_0: cx,
+					_1: {
+						ctor: '::',
+						_0: cy,
+						_1: {
+							ctor: '::',
+							_0: rx,
+							_1: {ctor: '::', _0: ry, _1: attributes}
+						}
+					}
+				},
+				{ctor: '[]'}));
+	});
+var _opensolid$svg$OpenSolid_Svg$circle2d = F2(
+	function (attributes, circle) {
+		var r = _elm_lang$svg$Svg_Attributes$r(
+			_elm_lang$core$Basics$toString(
+				_opensolid$geometry$OpenSolid_Circle2d$radius(circle)));
+		var _p18 = _opensolid$geometry$OpenSolid_Point2d$coordinates(
+			_opensolid$geometry$OpenSolid_Circle2d$centerPoint(circle));
+		var x = _p18._0;
+		var y = _p18._1;
+		var cx = _elm_lang$svg$Svg_Attributes$cx(
+			_elm_lang$core$Basics$toString(x));
+		var cy = _elm_lang$svg$Svg_Attributes$cy(
+			_elm_lang$core$Basics$toString(y));
+		return A2(
+			_elm_lang$svg$Svg$circle,
+			{
+				ctor: '::',
+				_0: cx,
+				_1: {
+					ctor: '::',
+					_0: cy,
+					_1: {ctor: '::', _0: r, _1: attributes}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$ellipticalArc2d = F2(
+	function (attributes, arc) {
+		var xDirection = _opensolid$geometry$OpenSolid_EllipticalArc2d$xDirection(arc);
+		var angleString = _elm_lang$core$Basics$toString(
+			_elm_community$basics_extra$Basics_Extra$inDegrees(
+				_opensolid$geometry$OpenSolid_Direction2d$angle(xDirection)));
+		var yRadius = _opensolid$geometry$OpenSolid_EllipticalArc2d$yRadius(arc);
+		var yRadiusString = _elm_lang$core$Basics$toString(yRadius);
+		var xRadius = _opensolid$geometry$OpenSolid_EllipticalArc2d$xRadius(arc);
+		var xRadiusString = _elm_lang$core$Basics$toString(xRadius);
+		var _p19 = _opensolid$geometry$OpenSolid_Point2d$coordinates(
+			_opensolid$geometry$OpenSolid_EllipticalArc2d$startPoint(arc));
+		var x0 = _p19._0;
+		var y0 = _p19._1;
+		var moveCommand = {
+			ctor: '::',
+			_0: 'M',
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(x0),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Basics$toString(y0),
+					_1: {ctor: '[]'}
+				}
+			}
+		};
+		var maxSegmentAngle = (2 * _elm_lang$core$Basics$pi) / 3;
+		var sweptAngle = _opensolid$geometry$OpenSolid_EllipticalArc2d$sweptAngle(arc);
+		var numSegments = 1 + _elm_lang$core$Basics$floor(
+			_elm_lang$core$Basics$abs(sweptAngle) / maxSegmentAngle);
+		var sweepFlag = (_elm_lang$core$Native_Utils.cmp(sweptAngle, 0) > -1) ? '1' : '0';
+		var arcSegment = function (index) {
+			var t = _elm_lang$core$Basics$toFloat(index) / _elm_lang$core$Basics$toFloat(numSegments);
+			var _p20 = _opensolid$geometry$OpenSolid_Point2d$coordinates(
+				A2(_opensolid$geometry$OpenSolid_EllipticalArc2d$pointOn, arc, t));
+			var x = _p20._0;
+			var y = _p20._1;
+			return {
+				ctor: '::',
+				_0: 'A',
+				_1: {
+					ctor: '::',
+					_0: xRadiusString,
+					_1: {
+						ctor: '::',
+						_0: yRadiusString,
+						_1: {
+							ctor: '::',
+							_0: angleString,
+							_1: {
+								ctor: '::',
+								_0: '0',
+								_1: {
+									ctor: '::',
+									_0: sweepFlag,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$core$Basics$toString(x),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$core$Basics$toString(y),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			};
+		};
+		var arcSegments = A2(
+			_elm_lang$core$List$map,
+			arcSegment,
+			A2(_elm_lang$core$List$range, 1, numSegments));
+		var pathComponents = A2(
+			_elm_lang$core$Basics_ops['++'],
+			moveCommand,
+			_elm_lang$core$List$concat(arcSegments));
+		var pathAttribute = _elm_lang$svg$Svg_Attributes$d(
+			A2(_elm_lang$core$String$join, ' ', pathComponents));
+		return A2(
+			_elm_lang$svg$Svg$path,
+			{ctor: '::', _0: pathAttribute, _1: attributes},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$arc2d = F2(
+	function (attributes, arc) {
+		var radius = _opensolid$geometry$OpenSolid_Arc2d$radius(arc);
+		var radiusString = _elm_lang$core$Basics$toString(radius);
+		var _p21 = _opensolid$geometry$OpenSolid_Point2d$coordinates(
+			_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc));
+		var x0 = _p21._0;
+		var y0 = _p21._1;
+		var moveCommand = {
+			ctor: '::',
+			_0: 'M',
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(x0),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Basics$toString(y0),
+					_1: {ctor: '[]'}
+				}
+			}
+		};
+		var maxSegmentAngle = (2 * _elm_lang$core$Basics$pi) / 3;
+		var sweptAngle = _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc);
+		var numSegments = 1 + _elm_lang$core$Basics$floor(
+			_elm_lang$core$Basics$abs(sweptAngle) / maxSegmentAngle);
+		var sweepFlag = (_elm_lang$core$Native_Utils.cmp(sweptAngle, 0) > -1) ? '1' : '0';
+		var arcSegment = function (index) {
+			var t = _elm_lang$core$Basics$toFloat(index) / _elm_lang$core$Basics$toFloat(numSegments);
+			var _p22 = _opensolid$geometry$OpenSolid_Point2d$coordinates(
+				A2(_opensolid$geometry$OpenSolid_Arc2d$pointOn, arc, t));
+			var x = _p22._0;
+			var y = _p22._1;
+			return {
+				ctor: '::',
+				_0: 'A',
+				_1: {
+					ctor: '::',
+					_0: radiusString,
+					_1: {
+						ctor: '::',
+						_0: radiusString,
+						_1: {
+							ctor: '::',
+							_0: '0',
+							_1: {
+								ctor: '::',
+								_0: '0',
+								_1: {
+									ctor: '::',
+									_0: sweepFlag,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$core$Basics$toString(x),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$core$Basics$toString(y),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			};
+		};
+		var arcSegments = A2(
+			_elm_lang$core$List$map,
+			arcSegment,
+			A2(_elm_lang$core$List$range, 1, numSegments));
+		var pathComponents = A2(
+			_elm_lang$core$Basics_ops['++'],
+			moveCommand,
+			_elm_lang$core$List$concat(arcSegments));
+		var pathAttribute = _elm_lang$svg$Svg_Attributes$d(
+			A2(_elm_lang$core$String$join, ' ', pathComponents));
+		return A2(
+			_elm_lang$svg$Svg$path,
+			{ctor: '::', _0: pathAttribute, _1: attributes},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$point2dWith = F3(
+	function (_p23, attributes, point) {
+		var _p24 = _p23;
+		return A2(
+			_opensolid$svg$OpenSolid_Svg$circle2d,
+			attributes,
+			_opensolid$geometry$OpenSolid_Circle2d$with(
+				{centerPoint: point, radius: _p24.radius}));
+	});
+var _opensolid$svg$OpenSolid_Svg$point2d = _opensolid$svg$OpenSolid_Svg$point2dWith(
+	{radius: 3});
+var _opensolid$svg$OpenSolid_Svg$coordinatesString = function (point) {
+	var _p25 = _opensolid$geometry$OpenSolid_Point2d$coordinates(point);
+	var x = _p25._0;
+	var y = _p25._1;
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(x),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			',',
+			_elm_lang$core$Basics$toString(y)));
+};
+var _opensolid$svg$OpenSolid_Svg$pointsAttribute = function (points) {
+	return _elm_lang$svg$Svg_Attributes$points(
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(_elm_lang$core$List$map, _opensolid$svg$OpenSolid_Svg$coordinatesString, points)));
+};
+var _opensolid$svg$OpenSolid_Svg$lineSegment2d = F2(
+	function (attributes, lineSegment) {
+		var _p26 = _opensolid$geometry$OpenSolid_LineSegment2d$endpoints(lineSegment);
+		var p1 = _p26._0;
+		var p2 = _p26._1;
+		return A2(
+			_elm_lang$svg$Svg$polyline,
+			{
+				ctor: '::',
+				_0: _opensolid$svg$OpenSolid_Svg$pointsAttribute(
+					{
+						ctor: '::',
+						_0: p1,
+						_1: {
+							ctor: '::',
+							_0: p2,
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: attributes
+			},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$triangle2d = F2(
+	function (attributes, triangle) {
+		var _p27 = _opensolid$geometry$OpenSolid_Triangle2d$vertices(triangle);
+		var p1 = _p27._0;
+		var p2 = _p27._1;
+		var p3 = _p27._2;
+		return A2(
+			_elm_lang$svg$Svg$polygon,
+			{
+				ctor: '::',
+				_0: _opensolid$svg$OpenSolid_Svg$pointsAttribute(
+					{
+						ctor: '::',
+						_0: p1,
+						_1: {
+							ctor: '::',
+							_0: p2,
+							_1: {
+								ctor: '::',
+								_0: p3,
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: attributes
+			},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$vector2dWith = F4(
+	function (options, attributes, basePoint, vector) {
+		var _p28 = _opensolid$geometry$OpenSolid_Vector2d$lengthAndDirection(vector);
+		if (_p28.ctor === 'Just') {
+			var _p30 = _p28._0._0;
+			var _p29 = _p28._0._1;
+			var tip = A4(_opensolid$svg$OpenSolid_Svg_Internal$tip, options, basePoint, _p30, _p29);
+			var frame = _opensolid$geometry$OpenSolid_Frame2d$with(
+				{originPoint: basePoint, xDirection: _p29});
+			var tipBasePoint = A2(
+				_opensolid$geometry$OpenSolid_Point2d$in_,
+				frame,
+				{ctor: '_Tuple2', _0: _p30 - options.tipLength, _1: 0});
+			var stem = A2(_opensolid$geometry$OpenSolid_LineSegment2d$from, basePoint, tipBasePoint);
+			return A2(
+				_elm_lang$svg$Svg$g,
+				attributes,
+				{
+					ctor: '::',
+					_0: A2(
+						_opensolid$svg$OpenSolid_Svg$lineSegment2d,
+						{ctor: '[]'},
+						stem),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_opensolid$svg$OpenSolid_Svg$triangle2d,
+							{ctor: '[]'},
+							tip),
+						_1: {ctor: '[]'}
+					}
+				});
+		} else {
+			return _elm_lang$svg$Svg$text('');
+		}
+	});
+var _opensolid$svg$OpenSolid_Svg$vector2d = _opensolid$svg$OpenSolid_Svg$vector2dWith(
+	{tipLength: 10, tipWidth: 8});
+var _opensolid$svg$OpenSolid_Svg$direction2dWith = F4(
+	function (options, attributes, basePoint, direction) {
+		return A4(
+			_opensolid$svg$OpenSolid_Svg$vector2dWith,
+			{tipLength: options.tipLength, tipWidth: options.tipWidth},
+			attributes,
+			basePoint,
+			_opensolid$geometry$OpenSolid_Vector2d$with(
+				{length: options.length, direction: direction}));
+	});
+var _opensolid$svg$OpenSolid_Svg$direction2d = _opensolid$svg$OpenSolid_Svg$direction2dWith(
+	{length: 50, tipLength: 9, tipWidth: 9});
+var _opensolid$svg$OpenSolid_Svg$polyline2d = F2(
+	function (attributes, polyline) {
+		var vertices = _opensolid$geometry$OpenSolid_Polyline2d$vertices(polyline);
+		return A2(
+			_elm_lang$svg$Svg$polyline,
+			{
+				ctor: '::',
+				_0: _opensolid$svg$OpenSolid_Svg$pointsAttribute(vertices),
+				_1: attributes
+			},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$polygon2d = F2(
+	function (attributes, polygon) {
+		var vertices = _opensolid$geometry$OpenSolid_Polygon2d$vertices(polygon);
+		return A2(
+			_elm_lang$svg$Svg$polygon,
+			{
+				ctor: '::',
+				_0: _opensolid$svg$OpenSolid_Svg$pointsAttribute(vertices),
+				_1: attributes
+			},
+			{ctor: '[]'});
+	});
+var _opensolid$svg$OpenSolid_Svg$render2d = F2(
+	function (boundingBox, svg) {
+		var _p31 = _opensolid$geometry$OpenSolid_BoundingBox2d$dimensions(boundingBox);
+		var width = _p31._0;
+		var height = _p31._1;
+		var _p32 = _opensolid$geometry$OpenSolid_BoundingBox2d$extrema(boundingBox);
+		var minX = _p32.minX;
+		var maxY = _p32.maxY;
+		var topLeftFrame = _opensolid$geometry$OpenSolid_Frame2d$flipY(
+			_opensolid$geometry$OpenSolid_Frame2d$atPoint(
+				_opensolid$geometry$OpenSolid_Point2d$fromCoordinates(
+					{ctor: '_Tuple2', _0: minX, _1: maxY})));
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'border', _1: '0'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'padding', _1: '0'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin', _1: '0'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'display', _1: 'inline-block'},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$svg,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$width(
+							_elm_lang$core$Basics$toString(width)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$height(
+								_elm_lang$core$Basics$toString(height)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					{
+						ctor: '::',
+						_0: A2(_opensolid$svg$OpenSolid_Svg$relativeTo, topLeftFrame, svg),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			});
+	});

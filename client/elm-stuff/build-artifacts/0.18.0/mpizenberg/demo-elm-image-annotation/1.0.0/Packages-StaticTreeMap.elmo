@@ -1,0 +1,128 @@
+var _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$purgeZipper = function (zipper) {
+	var _p0 = _zwilias$elm_rosetree$Tree_Zipper$children(zipper);
+	if (_p0.ctor === '[]') {
+		return A2(
+			_zwilias$elm_rosetree$Tree_Zipper$mapLabel,
+			function (label) {
+				return _elm_lang$core$Native_Utils.update(
+					label,
+					{folded: false});
+			},
+			zipper);
+	} else {
+		return A2(
+			_zwilias$elm_rosetree$Tree_Zipper$mapTree,
+			_zwilias$elm_rosetree$Tree$replaceChildren(
+				{ctor: '[]'}),
+			A2(
+				_zwilias$elm_rosetree$Tree_Zipper$mapLabel,
+				function (label) {
+					return _elm_lang$core$Native_Utils.update(
+						label,
+						{folded: true});
+				},
+				zipper));
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$purgePreviousSiblings = function (zipper) {
+	purgePreviousSiblings:
+	while (true) {
+		var _p1 = _zwilias$elm_rosetree$Tree_Zipper$previousSibling(zipper);
+		if (_p1.ctor === 'Nothing') {
+			var _p2 = _zwilias$elm_rosetree$Tree_Zipper$parent(zipper);
+			if (_p2.ctor === 'Nothing') {
+				return _elm_lang$core$Maybe$Just(zipper);
+			} else {
+				var _v3 = _p2._0;
+				zipper = _v3;
+				continue purgePreviousSiblings;
+			}
+		} else {
+			var _v4 = _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$purgeZipper(_p1._0);
+			zipper = _v4;
+			continue purgePreviousSiblings;
+		}
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$subFold = F2(
+	function (targetKey, zipper) {
+		subFold:
+		while (true) {
+			var label = _zwilias$elm_rosetree$Tree_Zipper$label(zipper);
+			var key = label.key;
+			var unfoldedZipper = A2(
+				_zwilias$elm_rosetree$Tree_Zipper$replaceLabel,
+				_elm_lang$core$Native_Utils.update(
+					label,
+					{folded: false}),
+				zipper);
+			if (_elm_lang$core$Native_Utils.eq(key, targetKey)) {
+				return _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$purgePreviousSiblings(
+					A2(
+						_elm_lang$core$Maybe$withDefault,
+						unfoldedZipper,
+						A2(
+							_elm_lang$core$Maybe$andThen,
+							_mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$purgePreviousSiblings,
+							A2(
+								_elm_lang$core$Maybe$map,
+								_mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$purgeZipper,
+								_zwilias$elm_rosetree$Tree_Zipper$lastChild(unfoldedZipper)))));
+			} else {
+				if (_elm_lang$core$Native_Utils.cmp(key, targetKey) < 0) {
+					var _p3 = _zwilias$elm_rosetree$Tree_Zipper$lastChild(unfoldedZipper);
+					if (_p3.ctor === 'Nothing') {
+						return _elm_lang$core$Maybe$Nothing;
+					} else {
+						var _v6 = targetKey,
+							_v7 = _p3._0;
+						targetKey = _v6;
+						zipper = _v7;
+						continue subFold;
+					}
+				} else {
+					var _p4 = _zwilias$elm_rosetree$Tree_Zipper$previousSibling(
+						_mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$purgeZipper(zipper));
+					if (_p4.ctor === 'Nothing') {
+						return _elm_lang$core$Maybe$Nothing;
+					} else {
+						var _v9 = targetKey,
+							_v10 = _p4._0;
+						targetKey = _v9;
+						zipper = _v10;
+						continue subFold;
+					}
+				}
+			}
+		}
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$foldedTree = F2(
+	function (targetKey, treeMap) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			treeMap,
+			A2(
+				_elm_lang$core$Maybe$map,
+				_zwilias$elm_rosetree$Tree_Zipper$tree,
+				A2(
+					_mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$subFold,
+					targetKey,
+					_zwilias$elm_rosetree$Tree_Zipper$fromTree(treeMap))));
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$from = function (tree) {
+	return A2(
+		_zwilias$elm_rosetree$Tree$indexedMap,
+		F2(
+			function (id, a) {
+				return {key: id, folded: true, item: a};
+			}),
+		tree);
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$Foldable = F3(
+	function (a, b, c) {
+		return {key: a, folded: b, item: c};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$singleton = function (a) {
+	return _zwilias$elm_rosetree$Tree$singleton(
+		A3(_mpizenberg$demo_elm_image_annotation$Packages_StaticTreeMap$Foldable, 0, true, a));
+};

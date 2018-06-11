@@ -1,0 +1,50 @@
+var _mpizenberg$demo_elm_image_annotation$Annotation_Color$turquoise = A3(_elm_lang$core$Color$rgb, 65, 182, 196);
+var _mpizenberg$demo_elm_image_annotation$Annotation_Color$palette = {
+	ctor: '_Tuple5',
+	_0: A3(_elm_lang$core$Color$rgb, 255, 255, 204),
+	_1: A3(_elm_lang$core$Color$rgb, 161, 218, 180),
+	_2: _mpizenberg$demo_elm_image_annotation$Annotation_Color$turquoise,
+	_3: A3(_elm_lang$core$Color$rgb, 44, 127, 184),
+	_4: A3(_elm_lang$core$Color$rgb, 37, 52, 148)
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Color$toStr = function (color) {
+	var rgba = _elm_lang$core$Color$toRgb(color);
+	return _elm_lang$core$String$concat(
+		{
+			ctor: '::',
+			_0: 'rgba(',
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(rgba.red),
+				_1: {
+					ctor: '::',
+					_0: ',',
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Basics$toString(rgba.green),
+						_1: {
+							ctor: '::',
+							_0: ',',
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Basics$toString(rgba.blue),
+								_1: {
+									ctor: '::',
+									_0: ',',
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$core$Basics$toString(rgba.alpha),
+										_1: {
+											ctor: '::',
+											_0: ')',
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};

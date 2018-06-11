@@ -1,0 +1,376 @@
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$noUserSelect = {
+	ctor: '::',
+	_0: A2(_mdgriffith$style_elements$Style$prop, 'user-select', 'none'),
+	_1: {
+		ctor: '::',
+		_0: A2(_mdgriffith$style_elements$Style$prop, '-webkit-user-select', 'none'),
+		_1: {
+			ctor: '::',
+			_0: A2(_mdgriffith$style_elements$Style$prop, '-moz-user-select', 'none'),
+			_1: {
+				ctor: '::',
+				_0: A2(_mdgriffith$style_elements$Style$prop, '-ms-user-select', 'none'),
+				_1: {ctor: '[]'}
+			}
+		}
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon = {
+	ctor: '::',
+	_0: A2(_mdgriffith$style_elements$Style$prop, 'touch-action', 'none'),
+	_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$noUserSelect
+};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$classesCommonStyles = {
+	ctor: '::',
+	_0: _mdgriffith$style_elements$Style_Font$size(30),
+	_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon
+};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$ToolIcon = {ctor: 'ToolIcon'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Viewer = {ctor: 'Viewer'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$ClassItem = function (a) {
+	return {ctor: 'ClassItem', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction = function (a) {
+	return {ctor: 'Instruction', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$ClassesSidebar = {ctor: 'ClassesSidebar'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$TextButton = function (a) {
+	return {ctor: 'TextButton', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Button = function (a) {
+	return {ctor: 'Button', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$None = {ctor: 'None'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Selected = {ctor: 'Selected'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Abled = {ctor: 'Abled'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Disabled = {ctor: 'Disabled'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$NonSelectedClass = {ctor: 'NonSelectedClass'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$SelectedClass = {ctor: 'SelectedClass'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$FromPalette = function (a) {
+	return {ctor: 'FromPalette', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$colorVariations = function () {
+	var _p0 = _mpizenberg$demo_elm_image_annotation$Annotation_Color$palette;
+	return {
+		ctor: '::',
+		_0: A2(
+			_mdgriffith$style_elements$Style$variation,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$FromPalette(0),
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$black),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_mdgriffith$style_elements$Style$variation,
+				_mpizenberg$demo_elm_image_annotation$StyleSheet$FromPalette(1),
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Style_Color$text(_p0._4),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Style$variation,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$FromPalette(2),
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$text(_p0._3),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_mdgriffith$style_elements$Style$variation,
+						_mpizenberg$demo_elm_image_annotation$StyleSheet$FromPalette(3),
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$text(_p0._2),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_mdgriffith$style_elements$Style$variation,
+							_mpizenberg$demo_elm_image_annotation$StyleSheet$FromPalette(4),
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Color$text(_p0._1),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_mdgriffith$style_elements$Style$variation,
+								_mpizenberg$demo_elm_image_annotation$StyleSheet$FromPalette(5),
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Color$text(_p0._0),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		}
+	};
+}();
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Link = {ctor: 'Link'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph = {ctor: 'Paragraph'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$Title = {ctor: 'Title'};
+var _mpizenberg$demo_elm_image_annotation$StyleSheet$sheet = _mdgriffith$style_elements$Style$styleSheet(
+	{
+		ctor: '::',
+		_0: A2(
+			_mdgriffith$style_elements$Style$style,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{ctor: '[]'}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_mdgriffith$style_elements$Style$style,
+				_mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Disabled),
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Style_Color$background(
+						A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.8)),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style$opacity(0.2),
+						_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Style$style,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Abled),
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$background(
+							A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.8)),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style$hover(
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$lightGrey),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style$cursor('pointer'),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_mdgriffith$style_elements$Style$style,
+						_mpizenberg$demo_elm_image_annotation$StyleSheet$Button(_mpizenberg$demo_elm_image_annotation$StyleSheet$Selected),
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$grey),
+							_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Style$style, _mpizenberg$demo_elm_image_annotation$StyleSheet$ToolIcon, _mpizenberg$demo_elm_image_annotation$StyleSheet$colorVariations),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_mdgriffith$style_elements$Style$style,
+								_mpizenberg$demo_elm_image_annotation$StyleSheet$TextButton(_mpizenberg$demo_elm_image_annotation$StyleSheet$Disabled),
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Color$background(
+										A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.8)),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style$opacity(0.2),
+										_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$classesCommonStyles
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_mdgriffith$style_elements$Style$style,
+									_mpizenberg$demo_elm_image_annotation$StyleSheet$TextButton(_mpizenberg$demo_elm_image_annotation$StyleSheet$Abled),
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Color$background(
+											A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.8)),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style$hover(
+												{
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$lightGrey),
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style$cursor('pointer'),
+														_1: {ctor: '[]'}
+													}
+												}),
+											_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$classesCommonStyles
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_mdgriffith$style_elements$Style$style,
+										_mpizenberg$demo_elm_image_annotation$StyleSheet$TextButton(_mpizenberg$demo_elm_image_annotation$StyleSheet$Selected),
+										{
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$grey),
+											_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$classesCommonStyles
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(_mdgriffith$style_elements$Style$style, _mpizenberg$demo_elm_image_annotation$StyleSheet$Viewer, _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_mdgriffith$style_elements$Style$style,
+												_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassesSidebar,
+												{
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Color$background(
+														A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.8)),
+													_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_mdgriffith$style_elements$Style$style,
+													_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassItem(_mpizenberg$demo_elm_image_annotation$StyleSheet$NonSelectedClass),
+													{
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style$hover(
+															{
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$lightGrey),
+																_1: {
+																	ctor: '::',
+																	_0: _mdgriffith$style_elements$Style$cursor('pointer'),
+																	_1: {ctor: '[]'}
+																}
+															}),
+														_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$classesCommonStyles
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_mdgriffith$style_elements$Style$style,
+														_mpizenberg$demo_elm_image_annotation$StyleSheet$ClassItem(_mpizenberg$demo_elm_image_annotation$StyleSheet$SelectedClass),
+														{
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$grey),
+															_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$classesCommonStyles
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_mdgriffith$style_elements$Style$style,
+															_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Title),
+															{
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Style_Color$background(
+																	A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.8)),
+																_1: {
+																	ctor: '::',
+																	_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$black),
+																	_1: {
+																		ctor: '::',
+																		_0: _mdgriffith$style_elements$Style_Font$typeface(
+																			{
+																				ctor: '::',
+																				_0: _mdgriffith$style_elements$Style_Font$cursive,
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: _mdgriffith$style_elements$Style_Font$size(20),
+																			_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon
+																		}
+																	}
+																}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_mdgriffith$style_elements$Style$style,
+																_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph),
+																{
+																	ctor: '::',
+																	_0: _mdgriffith$style_elements$Style_Color$background(
+																		A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.8)),
+																	_1: {
+																		ctor: '::',
+																		_0: _mdgriffith$style_elements$Style_Color$text(
+																			A4(_elm_lang$core$Color$rgba, 10, 10, 10, 1)),
+																		_1: {
+																			ctor: '::',
+																			_0: _mdgriffith$style_elements$Style_Font$typeface(
+																				{
+																					ctor: '::',
+																					_0: _mdgriffith$style_elements$Style_Font$cursive,
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {
+																				ctor: '::',
+																				_0: _mdgriffith$style_elements$Style_Font$size(15),
+																				_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon
+																			}
+																		}
+																	}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_mdgriffith$style_elements$Style$style,
+																	_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
+																	{
+																		ctor: '::',
+																		_0: _mdgriffith$style_elements$Style_Color$background(
+																			A4(_elm_lang$core$Color$rgba, 255, 255, 255, 0.8)),
+																		_1: {
+																			ctor: '::',
+																			_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$blue),
+																			_1: {
+																				ctor: '::',
+																				_0: _mdgriffith$style_elements$Style_Font$typeface(
+																					{
+																						ctor: '::',
+																						_0: _mdgriffith$style_elements$Style_Font$cursive,
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {
+																					ctor: '::',
+																					_0: _mdgriffith$style_elements$Style_Font$size(15),
+																					_1: _mpizenberg$demo_elm_image_annotation$StyleSheet$preventCommon
+																				}
+																			}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});

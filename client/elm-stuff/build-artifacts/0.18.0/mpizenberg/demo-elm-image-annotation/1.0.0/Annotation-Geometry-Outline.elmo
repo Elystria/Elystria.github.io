@@ -1,0 +1,5 @@
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Outline$encode = _opensolid$geometry$OpenSolid_Geometry_Encode$polygon2d;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Outline$points = _opensolid$geometry$OpenSolid_Polygon2d$vertices;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Outline$fromPoints = _opensolid$geometry$OpenSolid_Polygon2d$fromVertices;
+var _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Outline$empty = _mpizenberg$demo_elm_image_annotation$Annotation_Geometry_Outline$fromPoints(
+	{ctor: '[]'});

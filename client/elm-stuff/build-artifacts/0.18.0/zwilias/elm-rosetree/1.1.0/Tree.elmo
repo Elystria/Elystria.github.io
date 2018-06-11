@@ -1,0 +1,622 @@
+var _zwilias$elm_rosetree$Tree$restructureHelp = F4(
+	function (fLabel, fTree, acc, stack) {
+		restructureHelp:
+		while (true) {
+			var _p0 = acc.todo;
+			if (_p0.ctor === '[]') {
+				var node = A2(
+					fTree,
+					acc.label,
+					_elm_lang$core$List$reverse(acc.done));
+				var _p1 = stack;
+				if (_p1.ctor === '[]') {
+					return node;
+				} else {
+					var _p2 = _p1._0;
+					var _v2 = fLabel,
+						_v3 = fTree,
+						_v4 = _elm_lang$core$Native_Utils.update(
+						_p2,
+						{
+							done: {ctor: '::', _0: node, _1: _p2.done}
+						}),
+						_v5 = _p1._1;
+					fLabel = _v2;
+					fTree = _v3;
+					acc = _v4;
+					stack = _v5;
+					continue restructureHelp;
+				}
+			} else {
+				if (_p0._0._1.ctor === '[]') {
+					var _v6 = fLabel,
+						_v7 = fTree,
+						_v8 = _elm_lang$core$Native_Utils.update(
+						acc,
+						{
+							todo: _p0._1,
+							done: {
+								ctor: '::',
+								_0: A2(
+									fTree,
+									fLabel(_p0._0._0),
+									{ctor: '[]'}),
+								_1: acc.done
+							}
+						}),
+						_v9 = stack;
+					fLabel = _v6;
+					fTree = _v7;
+					acc = _v8;
+					stack = _v9;
+					continue restructureHelp;
+				} else {
+					var _v10 = fLabel,
+						_v11 = fTree,
+						_v12 = {
+						todo: _p0._0._1,
+						done: {ctor: '[]'},
+						label: fLabel(_p0._0._0)
+					},
+						_v13 = {
+						ctor: '::',
+						_0: _elm_lang$core$Native_Utils.update(
+							acc,
+							{todo: _p0._1}),
+						_1: stack
+					};
+					fLabel = _v10;
+					fTree = _v11;
+					acc = _v12;
+					stack = _v13;
+					continue restructureHelp;
+				}
+			}
+		}
+	});
+var _zwilias$elm_rosetree$Tree$restructure = F3(
+	function (convertLabel, convertTree, _p3) {
+		var _p4 = _p3;
+		return A4(
+			_zwilias$elm_rosetree$Tree$restructureHelp,
+			convertLabel,
+			convertTree,
+			{
+				todo: _p4._1,
+				label: convertLabel(_p4._0),
+				done: {ctor: '[]'}
+			},
+			{ctor: '[]'});
+	});
+var _zwilias$elm_rosetree$Tree$foldlHelp = F4(
+	function (f, acc, trees, nextSets) {
+		foldlHelp:
+		while (true) {
+			var _p5 = trees;
+			if (_p5.ctor === '[]') {
+				var _p6 = nextSets;
+				if (_p6.ctor === '::') {
+					var _v17 = f,
+						_v18 = acc,
+						_v19 = _p6._0,
+						_v20 = _p6._1;
+					f = _v17;
+					acc = _v18;
+					trees = _v19;
+					nextSets = _v20;
+					continue foldlHelp;
+				} else {
+					return acc;
+				}
+			} else {
+				if (_p5._0._1.ctor === '[]') {
+					var _v21 = f,
+						_v22 = A2(f, _p5._0._0, acc),
+						_v23 = _p5._1,
+						_v24 = nextSets;
+					f = _v21;
+					acc = _v22;
+					trees = _v23;
+					nextSets = _v24;
+					continue foldlHelp;
+				} else {
+					var _v25 = f,
+						_v26 = A2(f, _p5._0._0, acc),
+						_v27 = _p5._0._1,
+						_v28 = {ctor: '::', _0: _p5._1, _1: nextSets};
+					f = _v25;
+					acc = _v26;
+					trees = _v27;
+					nextSets = _v28;
+					continue foldlHelp;
+				}
+			}
+		}
+	});
+var _zwilias$elm_rosetree$Tree$foldl = F3(
+	function (f, acc, t) {
+		return A4(
+			_zwilias$elm_rosetree$Tree$foldlHelp,
+			f,
+			acc,
+			{
+				ctor: '::',
+				_0: t,
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'});
+	});
+var _zwilias$elm_rosetree$Tree$foldr = F3(
+	function (f, acc, t) {
+		return A3(
+			_elm_lang$core$List$foldl,
+			f,
+			acc,
+			A3(
+				_zwilias$elm_rosetree$Tree$foldl,
+				F2(
+					function (x, y) {
+						return {ctor: '::', _0: x, _1: y};
+					}),
+				{ctor: '[]'},
+				t));
+	});
+var _zwilias$elm_rosetree$Tree$flatten = function (t) {
+	return A3(
+		_zwilias$elm_rosetree$Tree$foldr,
+		F2(
+			function (x, y) {
+				return {ctor: '::', _0: x, _1: y};
+			}),
+		{ctor: '[]'},
+		t);
+};
+var _zwilias$elm_rosetree$Tree$count = function (t) {
+	return A3(
+		_zwilias$elm_rosetree$Tree$foldl,
+		F2(
+			function (_p7, x) {
+				return x + 1;
+			}),
+		0,
+		t);
+};
+var _zwilias$elm_rosetree$Tree$children = function (_p8) {
+	var _p9 = _p8;
+	return _p9._1;
+};
+var _zwilias$elm_rosetree$Tree$label = function (_p10) {
+	var _p11 = _p10;
+	return _p11._0;
+};
+var _zwilias$elm_rosetree$Tree$UnfoldAcc = F3(
+	function (a, b, c) {
+		return {todo: a, done: b, label: c};
+	});
+var _zwilias$elm_rosetree$Tree$MapAcc = F3(
+	function (a, b, c) {
+		return {todo: a, done: b, label: c};
+	});
+var _zwilias$elm_rosetree$Tree$Map2Acc = F4(
+	function (a, b, c, d) {
+		return {todoL: a, todoR: b, done: c, label: d};
+	});
+var _zwilias$elm_rosetree$Tree$ReAcc = F3(
+	function (a, b, c) {
+		return {todo: a, done: b, label: c};
+	});
+var _zwilias$elm_rosetree$Tree$Tree = F2(
+	function (a, b) {
+		return {ctor: 'Tree', _0: a, _1: b};
+	});
+var _zwilias$elm_rosetree$Tree$singleton = function (v) {
+	return A2(
+		_zwilias$elm_rosetree$Tree$Tree,
+		v,
+		{ctor: '[]'});
+};
+var _zwilias$elm_rosetree$Tree$tree = _zwilias$elm_rosetree$Tree$Tree;
+var _zwilias$elm_rosetree$Tree$mapLabel = F2(
+	function (f, _p12) {
+		var _p13 = _p12;
+		return A2(
+			_zwilias$elm_rosetree$Tree$Tree,
+			f(_p13._0),
+			_p13._1);
+	});
+var _zwilias$elm_rosetree$Tree$replaceLabel = F2(
+	function (v, _p14) {
+		var _p15 = _p14;
+		return A2(_zwilias$elm_rosetree$Tree$Tree, v, _p15._1);
+	});
+var _zwilias$elm_rosetree$Tree$mapChildren = F2(
+	function (f, _p16) {
+		var _p17 = _p16;
+		return A2(
+			_zwilias$elm_rosetree$Tree$Tree,
+			_p17._0,
+			f(_p17._1));
+	});
+var _zwilias$elm_rosetree$Tree$replaceChildren = F2(
+	function (cs, _p18) {
+		var _p19 = _p18;
+		return A2(_zwilias$elm_rosetree$Tree$Tree, _p19._0, cs);
+	});
+var _zwilias$elm_rosetree$Tree$prependChild = F2(
+	function (c, _p20) {
+		var _p21 = _p20;
+		return A2(
+			_zwilias$elm_rosetree$Tree$Tree,
+			_p21._0,
+			{ctor: '::', _0: c, _1: _p21._1});
+	});
+var _zwilias$elm_rosetree$Tree$appendChild = F2(
+	function (c, _p22) {
+		var _p23 = _p22;
+		return A2(
+			_zwilias$elm_rosetree$Tree$Tree,
+			_p23._0,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_p23._1,
+				{
+					ctor: '::',
+					_0: c,
+					_1: {ctor: '[]'}
+				}));
+	});
+var _zwilias$elm_rosetree$Tree$unfoldHelp = F3(
+	function (f, acc, stack) {
+		unfoldHelp:
+		while (true) {
+			var _p24 = acc.todo;
+			if (_p24.ctor === '[]') {
+				var node = A2(
+					_zwilias$elm_rosetree$Tree$Tree,
+					acc.label,
+					_elm_lang$core$List$reverse(acc.done));
+				var _p25 = stack;
+				if (_p25.ctor === '[]') {
+					return node;
+				} else {
+					var _p26 = _p25._0;
+					var _v39 = f,
+						_v40 = _elm_lang$core$Native_Utils.update(
+						_p26,
+						{
+							done: {ctor: '::', _0: node, _1: _p26.done}
+						}),
+						_v41 = _p25._1;
+					f = _v39;
+					acc = _v40;
+					stack = _v41;
+					continue unfoldHelp;
+				}
+			} else {
+				var _p28 = _p24._1;
+				var _p27 = f(_p24._0);
+				if (_p27._1.ctor === '[]') {
+					var _v43 = f,
+						_v44 = _elm_lang$core$Native_Utils.update(
+						acc,
+						{
+							todo: _p28,
+							done: {
+								ctor: '::',
+								_0: _zwilias$elm_rosetree$Tree$singleton(_p27._0),
+								_1: acc.done
+							}
+						}),
+						_v45 = stack;
+					f = _v43;
+					acc = _v44;
+					stack = _v45;
+					continue unfoldHelp;
+				} else {
+					var _v46 = f,
+						_v47 = {
+						todo: _p27._1,
+						label: _p27._0,
+						done: {ctor: '[]'}
+					},
+						_v48 = {
+						ctor: '::',
+						_0: _elm_lang$core$Native_Utils.update(
+							acc,
+							{todo: _p28}),
+						_1: stack
+					};
+					f = _v46;
+					acc = _v47;
+					stack = _v48;
+					continue unfoldHelp;
+				}
+			}
+		}
+	});
+var _zwilias$elm_rosetree$Tree$unfold = F2(
+	function (f, seed) {
+		var _p29 = f(seed);
+		var v = _p29._0;
+		var next = _p29._1;
+		return A3(
+			_zwilias$elm_rosetree$Tree$unfoldHelp,
+			f,
+			{
+				todo: next,
+				label: v,
+				done: {ctor: '[]'}
+			},
+			{ctor: '[]'});
+	});
+var _zwilias$elm_rosetree$Tree$mapAccumulateHelp = F4(
+	function (f, state, acc, stack) {
+		mapAccumulateHelp:
+		while (true) {
+			var _p30 = acc.todo;
+			if (_p30.ctor === '[]') {
+				var node = A2(
+					_zwilias$elm_rosetree$Tree$Tree,
+					acc.label,
+					_elm_lang$core$List$reverse(acc.done));
+				var _p31 = stack;
+				if (_p31.ctor === '[]') {
+					return {ctor: '_Tuple2', _0: state, _1: node};
+				} else {
+					var _p32 = _p31._0;
+					var _v51 = f,
+						_v52 = state,
+						_v53 = _elm_lang$core$Native_Utils.update(
+						_p32,
+						{
+							done: {ctor: '::', _0: node, _1: _p32.done}
+						}),
+						_v54 = _p31._1;
+					f = _v51;
+					state = _v52;
+					acc = _v53;
+					stack = _v54;
+					continue mapAccumulateHelp;
+				}
+			} else {
+				if (_p30._0._1.ctor === '[]') {
+					var _p33 = A2(f, state, _p30._0._0);
+					var state_ = _p33._0;
+					var label = _p33._1;
+					var _v55 = f,
+						_v56 = state_,
+						_v57 = _elm_lang$core$Native_Utils.update(
+						acc,
+						{
+							todo: _p30._1,
+							done: {
+								ctor: '::',
+								_0: A2(
+									_zwilias$elm_rosetree$Tree$Tree,
+									label,
+									{ctor: '[]'}),
+								_1: acc.done
+							}
+						}),
+						_v58 = stack;
+					f = _v55;
+					state = _v56;
+					acc = _v57;
+					stack = _v58;
+					continue mapAccumulateHelp;
+				} else {
+					var _p34 = A2(f, state, _p30._0._0);
+					var state_ = _p34._0;
+					var label = _p34._1;
+					var _v59 = f,
+						_v60 = state_,
+						_v61 = {
+						todo: _p30._0._1,
+						done: {ctor: '[]'},
+						label: label
+					},
+						_v62 = {
+						ctor: '::',
+						_0: _elm_lang$core$Native_Utils.update(
+							acc,
+							{todo: _p30._1}),
+						_1: stack
+					};
+					f = _v59;
+					state = _v60;
+					acc = _v61;
+					stack = _v62;
+					continue mapAccumulateHelp;
+				}
+			}
+		}
+	});
+var _zwilias$elm_rosetree$Tree$mapAccumulate = F3(
+	function (f, s, _p35) {
+		var _p36 = _p35;
+		var _p37 = A2(f, s, _p36._0);
+		var s_ = _p37._0;
+		var d_ = _p37._1;
+		return A4(
+			_zwilias$elm_rosetree$Tree$mapAccumulateHelp,
+			f,
+			s_,
+			{
+				todo: _p36._1,
+				done: {ctor: '[]'},
+				label: d_
+			},
+			{ctor: '[]'});
+	});
+var _zwilias$elm_rosetree$Tree$map = F2(
+	function (f, t) {
+		return _elm_lang$core$Tuple$second(
+			A3(
+				_zwilias$elm_rosetree$Tree$mapAccumulate,
+				F2(
+					function (_p38, e) {
+						return {
+							ctor: '_Tuple2',
+							_0: {ctor: '_Tuple0'},
+							_1: f(e)
+						};
+					}),
+				{ctor: '_Tuple0'},
+				t));
+	});
+var _zwilias$elm_rosetree$Tree$indexedMap = F2(
+	function (f, t) {
+		return _elm_lang$core$Tuple$second(
+			A3(
+				_zwilias$elm_rosetree$Tree$mapAccumulate,
+				F2(
+					function (idx, elem) {
+						return {
+							ctor: '_Tuple2',
+							_0: idx + 1,
+							_1: A2(f, idx, elem)
+						};
+					}),
+				0,
+				t));
+	});
+var _zwilias$elm_rosetree$Tree$mapAccumulate2Help = F4(
+	function (f, state, acc, stack) {
+		mapAccumulate2Help:
+		while (true) {
+			var _p39 = {ctor: '_Tuple2', _0: acc.todoL, _1: acc.todoR};
+			if (_p39._0.ctor === '[]') {
+				var node = A2(
+					_zwilias$elm_rosetree$Tree$Tree,
+					acc.label,
+					_elm_lang$core$List$reverse(acc.done));
+				var _p40 = stack;
+				if (_p40.ctor === '[]') {
+					return {ctor: '_Tuple2', _0: state, _1: node};
+				} else {
+					var _p41 = _p40._0;
+					var _v66 = f,
+						_v67 = state,
+						_v68 = _elm_lang$core$Native_Utils.update(
+						_p41,
+						{
+							done: {ctor: '::', _0: node, _1: _p41.done}
+						}),
+						_v69 = _p40._1;
+					f = _v66;
+					state = _v67;
+					acc = _v68;
+					stack = _v69;
+					continue mapAccumulate2Help;
+				}
+			} else {
+				if (_p39._1.ctor === '[]') {
+					var node = A2(
+						_zwilias$elm_rosetree$Tree$Tree,
+						acc.label,
+						_elm_lang$core$List$reverse(acc.done));
+					var _p42 = stack;
+					if (_p42.ctor === '[]') {
+						return {ctor: '_Tuple2', _0: state, _1: node};
+					} else {
+						var _p43 = _p42._0;
+						var _v71 = f,
+							_v72 = state,
+							_v73 = _elm_lang$core$Native_Utils.update(
+							_p43,
+							{
+								done: {ctor: '::', _0: node, _1: _p43.done}
+							}),
+							_v74 = _p42._1;
+						f = _v71;
+						state = _v72;
+						acc = _v73;
+						stack = _v74;
+						continue mapAccumulate2Help;
+					}
+				} else {
+					var _p44 = A3(f, state, _p39._0._0._0, _p39._1._0._0);
+					var state_ = _p44._0;
+					var label = _p44._1;
+					var _v75 = f,
+						_v76 = state_,
+						_v77 = {
+						todoL: _p39._0._0._1,
+						todoR: _p39._1._0._1,
+						done: {ctor: '[]'},
+						label: label
+					},
+						_v78 = {
+						ctor: '::',
+						_0: _elm_lang$core$Native_Utils.update(
+							acc,
+							{todoL: _p39._0._1, todoR: _p39._1._1}),
+						_1: stack
+					};
+					f = _v75;
+					state = _v76;
+					acc = _v77;
+					stack = _v78;
+					continue mapAccumulate2Help;
+				}
+			}
+		}
+	});
+var _zwilias$elm_rosetree$Tree$mapAccumulate2 = F4(
+	function (f, s_, _p46, _p45) {
+		var _p47 = _p46;
+		var _p48 = _p45;
+		var _p49 = A3(f, s_, _p47._0, _p48._0);
+		var s = _p49._0;
+		var z = _p49._1;
+		return A4(
+			_zwilias$elm_rosetree$Tree$mapAccumulate2Help,
+			f,
+			s,
+			{
+				todoL: _p47._1,
+				todoR: _p48._1,
+				done: {ctor: '[]'},
+				label: z
+			},
+			{ctor: '[]'});
+	});
+var _zwilias$elm_rosetree$Tree$map2 = F3(
+	function (f, left, right) {
+		return _elm_lang$core$Tuple$second(
+			A4(
+				_zwilias$elm_rosetree$Tree$mapAccumulate2,
+				F3(
+					function (s, a, b) {
+						return {
+							ctor: '_Tuple2',
+							_0: s,
+							_1: A2(f, a, b)
+						};
+					}),
+				{ctor: '_Tuple0'},
+				left,
+				right));
+	});
+var _zwilias$elm_rosetree$Tree$andMap = _zwilias$elm_rosetree$Tree$map2(
+	F2(
+		function (x, y) {
+			return x(y);
+		}));
+var _zwilias$elm_rosetree$Tree$indexedMap2 = F3(
+	function (f, left, right) {
+		return _elm_lang$core$Tuple$second(
+			A4(
+				_zwilias$elm_rosetree$Tree$mapAccumulate2,
+				F3(
+					function (s, a, b) {
+						return {
+							ctor: '_Tuple2',
+							_0: s + 1,
+							_1: A3(f, s, a, b)
+						};
+					}),
+				0,
+				left,
+				right));
+	});

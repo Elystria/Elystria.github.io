@@ -1,0 +1,145 @@
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$placeIn = F2(
+	function (viewer, svg) {
+		return A3(
+			_opensolid$svg$OpenSolid_Svg$scaleAbout,
+			_opensolid$geometry$OpenSolid_Point2d$origin,
+			viewer.zoom,
+			A2(_opensolid$svg$OpenSolid_Svg$relativeTo, viewer.frame, svg));
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$viewInWithDetails = F3(
+	function (htmlAttributes, viewer, svg) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'display', _1: 'flex'},
+						_1: {ctor: '[]'}
+					}),
+				_1: htmlAttributes
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$svg,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'flex', _1: '1'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$placeIn, viewer, svg),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$viewIn = _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$viewInWithDetails(
+	{ctor: '[]'});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$sizeIn = F2(
+	function (viewer, _p0) {
+		var _p1 = _p0;
+		return {ctor: '_Tuple2', _0: _p1._0 / viewer.zoom, _1: _p1._1 / viewer.zoom};
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$positionIn = F2(
+	function (viewer, point) {
+		return _opensolid$geometry$OpenSolid_Point2d$coordinates(
+			A2(
+				_opensolid$geometry$OpenSolid_Point2d$placeIn,
+				viewer.frame,
+				_opensolid$geometry$OpenSolid_Point2d$fromCoordinates(
+					A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$sizeIn, viewer, point))));
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$grabMove = F2(
+	function (movement, viewer) {
+		var translationVector = A2(
+			_opensolid$geometry$OpenSolid_Vector2d$scaleBy,
+			-1,
+			_opensolid$geometry$OpenSolid_Vector2d$fromComponents(movement));
+		return _elm_lang$core$Native_Utils.update(
+			viewer,
+			{
+				frame: A2(_opensolid$geometry$OpenSolid_Frame2d$translateBy, translationVector, viewer.frame)
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$setZoom = F2(
+	function (zoom, viewer) {
+		return _elm_lang$core$Native_Utils.update(
+			viewer,
+			{zoom: zoom});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$centerAt = F2(
+	function (center, viewer) {
+		var sizeVector = _opensolid$geometry$OpenSolid_Vector2d$fromComponents(viewer.size);
+		var translationVector = A2(_opensolid$geometry$OpenSolid_Vector2d$scaleBy, -0.5 / viewer.zoom, sizeVector);
+		var newOrigin = A2(_opensolid$geometry$OpenSolid_Point2d$translateBy, translationVector, center);
+		return _elm_lang$core$Native_Utils.update(
+			viewer,
+			{
+				frame: _opensolid$geometry$OpenSolid_Frame2d$atPoint(newOrigin)
+			});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$fitImage = F3(
+	function (ratio, image, viewer) {
+		var _p2 = {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Basics$toFloat(image.width),
+			_1: _elm_lang$core$Basics$toFloat(image.height)
+		};
+		var imW = _p2._0;
+		var imH = _p2._1;
+		var _p3 = viewer.size;
+		var vW = _p3._0;
+		var vH = _p3._1;
+		var zoom = ratio * A2(_elm_lang$core$Basics$min, vW / imW, vH / imH);
+		return A2(
+			_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$centerAt,
+			_opensolid$geometry$OpenSolid_Point2d$fromCoordinates(
+				{ctor: '_Tuple2', _0: imW / 2, _1: imH / 2}),
+			A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$setZoom, zoom, viewer));
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$getCenter = function (viewer) {
+	var sizeVector = _opensolid$geometry$OpenSolid_Vector2d$fromComponents(viewer.size);
+	var translationVector = A2(_opensolid$geometry$OpenSolid_Vector2d$scaleBy, 0.5 / viewer.zoom, sizeVector);
+	return A2(
+		_opensolid$geometry$OpenSolid_Point2d$translateBy,
+		translationVector,
+		_opensolid$geometry$OpenSolid_Frame2d$originPoint(viewer.frame));
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$setZoomCentered = F2(
+	function (zoom, viewer) {
+		var currentCenter = _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$getCenter(viewer);
+		return A2(
+			_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$centerAt,
+			currentCenter,
+			A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$setZoom, zoom, viewer));
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$zoomIn = function (viewer) {
+	return A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$setZoomCentered, 2 * viewer.zoom, viewer);
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$zoomOut = function (viewer) {
+	return A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$setZoomCentered, 0.5 * viewer.zoom, viewer);
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$setSize = F2(
+	function (size, viewer) {
+		return _elm_lang$core$Native_Utils.update(
+			viewer,
+			{size: size});
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$default = {
+	frame: _opensolid$geometry$OpenSolid_Frame2d$xy,
+	size: {ctor: '_Tuple2', _0: 800, _1: 400},
+	zoom: 1
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$Viewer = F3(
+	function (a, b, c) {
+		return {frame: a, size: b, zoom: c};
+	});

@@ -1,0 +1,32 @@
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$Device = F3(
+	function (a, b, c) {
+		return {kind: a, orientation: b, size: c};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$Size = F2(
+	function (a, b) {
+		return {width: a, height: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$BigDesktop = {ctor: 'BigDesktop'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$SmallDesktop = {ctor: 'SmallDesktop'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$Tablet = {ctor: 'Tablet'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$Phone = {ctor: 'Phone'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$Landscape = {ctor: 'Landscape'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$Portrait = {ctor: 'Portrait'};
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$default = {
+	kind: _mpizenberg$demo_elm_image_annotation$Packages_Device$Phone,
+	orientation: _mpizenberg$demo_elm_image_annotation$Packages_Device$Portrait,
+	size: A2(_mpizenberg$demo_elm_image_annotation$Packages_Device$Size, 360, 480)
+};
+var _mpizenberg$demo_elm_image_annotation$Packages_Device$classify = function (_p0) {
+	var _p1 = _p0;
+	var _p3 = _p1.width;
+	var _p2 = _p1.height;
+	var deviceOrientation = (_elm_lang$core$Native_Utils.cmp(_p3, _p2) < 0) ? _mpizenberg$demo_elm_image_annotation$Packages_Device$Portrait : _mpizenberg$demo_elm_image_annotation$Packages_Device$Landscape;
+	var minDimension = _elm_lang$core$Native_Utils.eq(deviceOrientation, _mpizenberg$demo_elm_image_annotation$Packages_Device$Portrait) ? _p3 : _p2;
+	var deviceKind = (_elm_lang$core$Native_Utils.cmp(minDimension, 450) < 0) ? _mpizenberg$demo_elm_image_annotation$Packages_Device$Phone : ((_elm_lang$core$Native_Utils.cmp(minDimension, 850) < 0) ? _mpizenberg$demo_elm_image_annotation$Packages_Device$Tablet : ((_elm_lang$core$Native_Utils.cmp(minDimension, 1250) < 0) ? _mpizenberg$demo_elm_image_annotation$Packages_Device$SmallDesktop : _mpizenberg$demo_elm_image_annotation$Packages_Device$BigDesktop));
+	return {
+		kind: deviceKind,
+		orientation: deviceOrientation,
+		size: A2(_mpizenberg$demo_elm_image_annotation$Packages_Device$Size, _p3, _p2)
+	};
+};

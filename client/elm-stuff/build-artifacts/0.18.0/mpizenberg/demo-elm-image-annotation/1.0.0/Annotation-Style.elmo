@@ -1,0 +1,43 @@
+var _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillAttribute = function (fill) {
+	var _p0 = fill;
+	if (_p0.ctor === 'NoFill') {
+		return _elm_lang$svg$Svg_Attributes$fill('none');
+	} else {
+		return _elm_lang$svg$Svg_Attributes$fill(
+			_mpizenberg$demo_elm_image_annotation$Annotation_Color$toStr(_p0._0));
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeAttributes = function (line) {
+	var _p1 = line;
+	if (_p1.ctor === 'NoLine') {
+		return {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$stroke('none'),
+			_1: {ctor: '[]'}
+		};
+	} else {
+		return {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$strokeWidth(
+				_elm_lang$core$Basics$toString(_p1._0)),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke(
+					_mpizenberg$demo_elm_image_annotation$Annotation_Color$toStr(_p1._1)),
+				_1: {ctor: '[]'}
+			}
+		};
+	}
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Style$Stroke = F2(
+	function (a, b) {
+		return {ctor: 'Stroke', _0: a, _1: b};
+	});
+var _mpizenberg$demo_elm_image_annotation$Annotation_Style$strokeDefault = A2(_mpizenberg$demo_elm_image_annotation$Annotation_Style$Stroke, 2, _elm_lang$core$Color$red);
+var _mpizenberg$demo_elm_image_annotation$Annotation_Style$NoLine = {ctor: 'NoLine'};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Style$Fill = function (a) {
+	return {ctor: 'Fill', _0: a};
+};
+var _mpizenberg$demo_elm_image_annotation$Annotation_Style$fillDefault = _mpizenberg$demo_elm_image_annotation$Annotation_Style$Fill(
+	A4(_elm_lang$core$Color$rgba, 255, 0, 0, 0.2));
+var _mpizenberg$demo_elm_image_annotation$Annotation_Style$NoFill = {ctor: 'NoFill'};

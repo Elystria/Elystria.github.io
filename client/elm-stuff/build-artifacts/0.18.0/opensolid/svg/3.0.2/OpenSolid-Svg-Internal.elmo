@@ -1,0 +1,26 @@
+var _opensolid$svg$OpenSolid_Svg_Internal$tip = F4(
+	function (_p0, basePoint, length, direction) {
+		var _p1 = _p0;
+		var _p3 = _p1.tipWidth;
+		var _p2 = _p1.tipLength;
+		var frame = _opensolid$geometry$OpenSolid_Frame2d$with(
+			{originPoint: basePoint, xDirection: direction});
+		var tipPoint = A2(
+			_opensolid$geometry$OpenSolid_Point2d$in_,
+			frame,
+			{ctor: '_Tuple2', _0: length, _1: 0});
+		var tipBasePoint = A2(
+			_opensolid$geometry$OpenSolid_Point2d$in_,
+			frame,
+			{ctor: '_Tuple2', _0: length - _p2, _1: 0});
+		var leftPoint = A2(
+			_opensolid$geometry$OpenSolid_Point2d$in_,
+			frame,
+			{ctor: '_Tuple2', _0: length - _p2, _1: _p3 / 2});
+		var rightPoint = A2(
+			_opensolid$geometry$OpenSolid_Point2d$in_,
+			frame,
+			{ctor: '_Tuple2', _0: length - _p2, _1: (0 - _p3) / 2});
+		return _opensolid$geometry$OpenSolid_Triangle2d$fromVertices(
+			{ctor: '_Tuple3', _0: rightPoint, _1: tipPoint, _2: leftPoint});
+	});
