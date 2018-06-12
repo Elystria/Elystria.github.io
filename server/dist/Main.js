@@ -35955,7 +35955,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 									{
 										ctor: '::',
 										_0: _mdgriffith$style_elements$Element_Attributes$maxHeight(
-											_mdgriffith$style_elements$Element_Attributes$px(1000)),
+											_mdgriffith$style_elements$Element_Attributes$px(500)),
 										_1: {
 											ctor: '::',
 											_0: _mdgriffith$style_elements$Element_Attributes$maxWidth(

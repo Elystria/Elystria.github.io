@@ -98,7 +98,13 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
             [ ActionBar.viewAll params.actionBar tools
             , Element.row Style.None
                 [ Attributes.width fill, Attributes.height fill ]
-                [ Element.column Style.None [ Attributes.maxHeight (Attributes.px 1000), Attributes.maxWidth (Attributes.px 300), Attributes.xScrollbar ] [ instructionText, imageInstruction ]
+                [ Element.column Style.None
+                    [ Attributes.maxHeight (Attributes.px 500)
+                    , Attributes.maxWidth
+                        (Attributes.px 300)
+                    , Attributes.xScrollbar
+                    ]
+                    [ instructionText, imageInstruction ]
                 , AnnotationsArea.view params.annotationsArea viewer (Zipper.getC annotatedImages)
                 ]
             ]
