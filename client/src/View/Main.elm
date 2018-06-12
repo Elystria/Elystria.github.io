@@ -107,7 +107,7 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
 instructionText =
     let
         imageTest =
-            "https://framapic.org/FO8h9kDaxVG4/gR2ckHN8EAkq.JPG"
+            "https://elystria.github.io/images/im_stock.jpg"
     in
         Element.paragraph (Style.Instruction Style.Paragraph)
             [ width (Attributes.percent 25), paddingTop 10, spacing 10, Attributes.yScrollbar ]
