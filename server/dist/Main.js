@@ -35871,6 +35871,11 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$datasetRawSideBar = F2(
 			},
 			A2(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewRaw, selectImageMsg, images));
 	});
+var _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction = A3(
+	_mdgriffith$style_elements$Element$decorativeImage,
+	_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+	{ctor: '[]'},
+	{src: ' https://elystria.github.io/server/images/instruction.png '});
 var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = function () {
 	var imageTest = 'https://elystria.github.io/server/images/instruciton.jpg';
 	return A3(
@@ -35878,20 +35883,11 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = function (
 		_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph),
 		{
 			ctor: '::',
-			_0: _mdgriffith$style_elements$Element_Attributes$width(
-				_mdgriffith$style_elements$Element_Attributes$percent(25)),
+			_0: _mdgriffith$style_elements$Element_Attributes$paddingTop(10),
 			_1: {
 				ctor: '::',
-				_0: _mdgriffith$style_elements$Element_Attributes$paddingTop(10),
-				_1: {
-					ctor: '::',
-					_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
-					_1: {
-						ctor: '::',
-						_0: _mdgriffith$style_elements$Element_Attributes$yScrollbar,
-						_1: {ctor: '[]'}
-					}
-				}
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+				_1: {ctor: '[]'}
 			}
 		},
 		{
@@ -35914,52 +35910,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = function (
 					_1: {
 						ctor: '::',
 						_0: _mdgriffith$style_elements$Element$text('\n Please outline the objects in the images. \n To do so, select the outline tool and \n press on the image where you want to \n start outlining.\n Continue pressing while outlining until \n you\'re done. \n \n'),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_mdgriffith$style_elements$Element$newTab,
-								imageTest,
-								A3(
-									_mdgriffith$style_elements$Element$el,
-									_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
-									{ctor: '[]'},
-									_mdgriffith$style_elements$Element$text('Good outlines examples\n'))),
-							_1: {
-								ctor: '::',
-								_0: A2(
-									_mdgriffith$style_elements$Element$newTab,
-									'https://google.fr',
-									A3(
-										_mdgriffith$style_elements$Element$el,
-										_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
-										{ctor: '[]'},
-										_mdgriffith$style_elements$Element$text('Bad outlines examples\n'))),
-								_1: {
-									ctor: '::',
-									_0: A3(
-										_mdgriffith$style_elements$Element$el,
-										_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Title),
-										{ctor: '[]'},
-										_mdgriffith$style_elements$Element$text('\n GUIDELINES\n')),
-									_1: {
-										ctor: '::',
-										_0: _mdgriffith$style_elements$Element$text('\n 1. The whole object has to be inside the\n outline. \n 2. The outline must follow roughly the \n shape of the image\n 3. If there are more than one objects,\n outline only one \n.'),
-										_1: {
-											ctor: '::',
-											_0: A2(
-												_mdgriffith$style_elements$Element$newTab,
-												'https://google.fr',
-												A3(
-													_mdgriffith$style_elements$Element$el,
-													_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
-													{ctor: '[]'},
-													_mdgriffith$style_elements$Element$text('Video Tutorial \n'))),
-											_1: {ctor: '[]'}
-										}
-									}
-								}
-							}
-						}
+						_1: {ctor: '[]'}
 					}
 				}),
 			_1: {ctor: '[]'}
@@ -35998,7 +35949,33 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 							},
 							{
 								ctor: '::',
-								_0: _mpizenberg$demo_elm_image_annotation$View_Main$instructionText,
+								_0: A3(
+									_mdgriffith$style_elements$Element$column,
+									_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$maxHeight(
+											_mdgriffith$style_elements$Element_Attributes$px(1000)),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Attributes$maxWidth(
+												_mdgriffith$style_elements$Element_Attributes$px(300)),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Element_Attributes$xScrollbar,
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									{
+										ctor: '::',
+										_0: _mpizenberg$demo_elm_image_annotation$View_Main$instructionText,
+										_1: {
+											ctor: '::',
+											_0: _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction,
+											_1: {ctor: '[]'}
+										}
+									}),
 								_1: {
 									ctor: '::',
 									_0: A3(
