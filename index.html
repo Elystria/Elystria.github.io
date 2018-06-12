@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title> Elm image annotation image </title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=devicewidth, initial-scale=1.0">
+		<style>html, body, .style-elements { height: 100%} <style>
+		<script src="elm-pep.js"></script>
+		<script src="utils.js"></script>
+		<script src="Main.js"></script>
+
+
+	</head>
+	<body>
+		<script charset="utf-8">
+		const layoutViewportSize = () => ({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight });
+		const containerSize = layoutViewportSize;
+		const flags = {deviceSize : containerSize(), mturkMode : false, images: [], config : null}
+		const app = Elm.Main.fullscreen(flags);
+		</script>
+		<script src="ports.js"><script>
+
+
+		
+	</body>
+
+
+</html>

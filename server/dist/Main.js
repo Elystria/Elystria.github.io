@@ -35872,7 +35872,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$datasetRawSideBar = F2(
 			A2(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewRaw, selectImageMsg, images));
 	});
 var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = function () {
-	var imageTest = 'https://elystria.github.io/images/im_stock.jpg';
+	var imageTest = 'https://elystria.github.io/server/images/im_stock.jpg';
 	return A3(
 		_mdgriffith$style_elements$Element$paragraph,
 		_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph),
