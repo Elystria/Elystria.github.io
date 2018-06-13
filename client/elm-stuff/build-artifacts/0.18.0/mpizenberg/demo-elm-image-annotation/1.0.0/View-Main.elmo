@@ -166,6 +166,8 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
 var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 	function (params, tools, viewer, _p8, annotatedImages) {
 		var _p9 = _p8;
+		var instructionHeight = _elm_lang$core$Basics$toFloat(params.device.size.height);
+		var instructionWidth = _elm_lang$core$Basics$toFloat(params.device.size.width) * 0.25;
 		return A2(
 			_mdgriffith$style_elements$Element$layout,
 			_mpizenberg$demo_elm_image_annotation$StyleSheet$sheet,
@@ -196,11 +198,11 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 									{
 										ctor: '::',
 										_0: _mdgriffith$style_elements$Element_Attributes$maxHeight(
-											_mdgriffith$style_elements$Element_Attributes$px(500)),
+											_mdgriffith$style_elements$Element_Attributes$px(instructionHeight)),
 										_1: {
 											ctor: '::',
 											_0: _mdgriffith$style_elements$Element_Attributes$maxWidth(
-												_mdgriffith$style_elements$Element_Attributes$px(300)),
+												_mdgriffith$style_elements$Element_Attributes$px(instructionWidth)),
 											_1: {
 												ctor: '::',
 												_0: _mdgriffith$style_elements$Element_Attributes$xScrollbar,

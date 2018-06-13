@@ -103,21 +103,28 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
 
 viewAll : Parameters msg -> Zipper Tool -> Viewer -> { selected : Int, all : StaticTreeMap String } -> Zipper AnnotatedImage -> Html msg
 viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
-    Element.layout Style.sheet <|
-        Element.column Style.None
-            [ Attributes.height fill ]
-            [ ActionBar.viewAll params.actionBar tools
-                |> Element.below
-                    [ Element.column Style.None
-                        [ Attributes.maxHeight (Attributes.px 500)
-                        , Attributes.maxWidth (Attributes.px 300)
-                        , Attributes.xScrollbar
+    let
+        instructionWidth =
+            (params.device.size.width |> toFloat) * 0.25
+
+        instructionHeight =
+            params.device.size.height |> toFloat
+    in
+        Element.layout Style.sheet <|
+            Element.column Style.None
+                [ Attributes.height fill ]
+                [ ActionBar.viewAll params.actionBar tools
+                    |> Element.below
+                        [ Element.column Style.None
+                            [ Attributes.maxHeight (Attributes.px instructionHeight)
+                            , Attributes.maxWidth (Attributes.px instructionWidth)
+                            , Attributes.xScrollbar
+                            ]
+                            [ instructionText, imageInstruction ]
                         ]
-                        [ instructionText, imageInstruction ]
-                    ]
-                |> Element.below [ datasetAnnotatedSideBar params.selectImageMsg annotatedImages ]
-            , AnnotationsArea.view params.annotationsArea viewer (Zipper.getC annotatedImages)
-            ]
+                    |> Element.below [ datasetAnnotatedSideBar params.selectImageMsg annotatedImages ]
+                , AnnotationsArea.view params.annotationsArea viewer (Zipper.getC annotatedImages)
+                ]
 
 
 instructionText =
