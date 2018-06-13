@@ -185,7 +185,7 @@ pageLayout device =
             )
 
         ( viewerWidth, viewerHeight ) =
-            ( (device.size.width |> toFloat)
+            ( (device.size.width |> toFloat) * 1.25
               --ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
             , max 0 (toFloat device.size.height - barHeight)
             )

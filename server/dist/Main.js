@@ -35777,7 +35777,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$pageLayout = function (devic
 	var barHeight = _p2._1;
 	var _p3 = {
 		ctor: '_Tuple2',
-		_0: _elm_lang$core$Basics$toFloat(device.size.width),
+		_0: _elm_lang$core$Basics$toFloat(device.size.width) * 1.25,
 		_1: A2(
 			_elm_lang$core$Basics$max,
 			0,
