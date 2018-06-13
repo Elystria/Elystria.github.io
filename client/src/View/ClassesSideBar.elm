@@ -56,9 +56,9 @@ viewClass selectClassMsg selectedClassId foldableItem =
             else
                 text foldableItem.item
     in
-    if itemKey == 0 then
-        empty
-    else if itemKey == selectedClassId then
-        el (Style.ClassItem Style.SelectedClass) attributes textContent
-    else
-        el (Style.ClassItem Style.NonSelectedClass) attributes textContent
+        if itemKey == 0 then
+            empty
+        else if itemKey == selectedClassId then
+            el (Style.ClassItem Style.SelectedClass) attributes textContent
+        else
+            el (Style.ClassItem Style.NonSelectedClass) attributes textContent

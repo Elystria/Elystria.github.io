@@ -85,19 +85,8 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
         Element.column Style.None
             [ Attributes.height fill ]
             [ ActionBar.viewAll params.actionBar tools
-                |> Element.below [ exampleText2 ]
-            , AnnotationsArea.view params.annotationsArea viewer (Zipper.getC annotatedImages)
-            ] --}
-
-
-viewAll : Parameters msg -> Zipper Tool -> Viewer -> { selected : Int, all : StaticTreeMap String } -> Zipper AnnotatedImage -> Html msg
-viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
-    Element.layout Style.sheet <|
-        Element.column Style.None
-            [ Attributes.height fill ]
-            [ ActionBar.viewAll params.actionBar tools
             , Element.row Style.None
-                [ Attributes.width fill, Attributes.height fill ]
+                [ Attributes.height fill ]
                 [ Element.column Style.None
                     [ Attributes.maxHeight (Attributes.px 500)
                     , Attributes.maxWidth
@@ -109,27 +98,44 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
                 ]
             ]
 
+--}
+
+
+viewAll : Parameters msg -> Zipper Tool -> Viewer -> { selected : Int, all : StaticTreeMap String } -> Zipper AnnotatedImage -> Html msg
+viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
+    Element.layout Style.sheet <|
+        Element.column Style.None
+            [ Attributes.height fill ]
+            [ ActionBar.viewAll params.actionBar tools
+                |> Element.below
+                    [ Element.column Style.None
+                        [ Attributes.maxHeight (Attributes.px 500)
+                        , Attributes.maxWidth (Attributes.px 300)
+                        , Attributes.xScrollbar
+                        ]
+                        [ instructionText, imageInstruction ]
+                    ]
+                |> Element.below [ datasetAnnotatedSideBar params.selectImageMsg annotatedImages ]
+            , AnnotationsArea.view params.annotationsArea viewer (Zipper.getC annotatedImages)
+            ]
+
 
 instructionText =
-    let
-        imageTest =
-            "https://elystria.github.io/server/images/instruciton.jpg"
-    in
-        Element.paragraph (Style.Instruction Style.Paragraph)
-            [ paddingTop 10, spacing 10 ]
-            [ Element.column
-                Style.None
-                [ Attributes.center ]
-                [ Element.el (Style.Instruction Style.Title) [] (Element.text "INSTRUCTIONS\n")
-                , Element.text "\n Please outline the objects in the images. \n To do so, select the outline tool and \n press on the image where you want to \n start outlining.\n Continue pressing while outlining until \n you're done. \n \n"
+    Element.paragraph (Style.Instruction Style.Paragraph)
+        [ paddingTop 10, spacing 10, alignLeft ]
+        [ Element.column
+            Style.None
+            [ Attributes.center ]
+            [ Element.el (Style.Instruction Style.Title) [] (Element.text "INSTRUCTIONS\n")
+            , Element.text "\n Please outline the objects in the images. \n To do so, select the outline tool and \n press on the image where you want to \n start outlining.\n Continue pressing while outlining until \n you're done. \n \n"
 
-                --, Element.newTab imageTest (Element.el (Style.Instruction Style.Link) [] (Element.text "Some examples\n"))
-                --, Element.newTab "https://google.fr" (Element.el (Style.Instruction Style.Link) [] (Element.text "Bad outlines examples\n"))
-                --, Element.el (Style.Instruction Style.Title) [] (Element.text "\n GUIDELINES\n")
-                --, Element.text "\n 1. The whole object has to be inside the\n outline. \n 2. The outline must follow roughly the \n shape of the image\n 3. If there are more than one objects,\n outline only one \n."
-                --, Element.newTab "https://google.fr" (Element.el (Style.Instruction Style.Link) [] (Element.text "Video Tutorial \n"))
-                ]
+            --, Element.newTab imageTest (Element.el (Style.Instruction Style.Link) [] (Element.text "Some examples\n"))
+            --, Element.newTab "https://google.fr" (Element.el (Style.Instruction Style.Link) [] (Element.text "Bad outlines examples\n"))
+            --, Element.el (Style.Instruction Style.Title) [] (Element.text "\n GUIDELINES\n")
+            --, Element.text "\n 1. The whole object has to be inside the\n outline. \n 2. The outline must follow roughly the \n shape of the image\n 3. If there are more than one objects,\n outline only one \n."
+            --, Element.newTab "https://google.fr" (Element.el (Style.Instruction Style.Link) [] (Element.text "Video Tutorial \n"))
             ]
+        ]
 
 
 imageInstruction =
@@ -179,7 +185,7 @@ pageLayout device =
             )
 
         ( viewerWidth, viewerHeight ) =
-            ( (device.size.width |> toFloat) * 0.75
+            ( (device.size.width |> toFloat)
               --ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
             , max 0 (toFloat device.size.height - barHeight)
             )

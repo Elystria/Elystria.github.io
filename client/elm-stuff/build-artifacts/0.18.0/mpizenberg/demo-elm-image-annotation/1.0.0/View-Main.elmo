@@ -23,7 +23,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$pageLayout = function (devic
 	var barHeight = _p2._1;
 	var _p3 = {
 		ctor: '_Tuple2',
-		_0: _elm_lang$core$Basics$toFloat(device.size.width) * 0.75,
+		_0: _elm_lang$core$Basics$toFloat(device.size.width),
 		_1: A2(
 			_elm_lang$core$Basics$max,
 			0,
@@ -122,46 +122,47 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction = A3(
 	_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
 	{ctor: '[]'},
 	{src: ' https://elystria.github.io/server/images/instruction.png '});
-var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = function () {
-	var imageTest = 'https://elystria.github.io/server/images/instruciton.jpg';
-	return A3(
-		_mdgriffith$style_elements$Element$paragraph,
-		_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph),
-		{
+var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
+	_mdgriffith$style_elements$Element$paragraph,
+	_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph),
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Attributes$paddingTop(10),
+		_1: {
 			ctor: '::',
-			_0: _mdgriffith$style_elements$Element_Attributes$paddingTop(10),
+			_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
 			_1: {
 				ctor: '::',
-				_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+				_0: _mdgriffith$style_elements$Element_Attributes$alignLeft,
 				_1: {ctor: '[]'}
 			}
-		},
-		{
-			ctor: '::',
-			_0: A3(
-				_mdgriffith$style_elements$Element$column,
-				_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
-				{
+		}
+	},
+	{
+		ctor: '::',
+		_0: A3(
+			_mdgriffith$style_elements$Element$column,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$center,
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$el,
+					_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Title),
+					{ctor: '[]'},
+					_mdgriffith$style_elements$Element$text('INSTRUCTIONS\n')),
+				_1: {
 					ctor: '::',
-					_0: _mdgriffith$style_elements$Element_Attributes$center,
+					_0: _mdgriffith$style_elements$Element$text('\n Please outline the objects in the images. \n To do so, select the outline tool and \n press on the image where you want to \n start outlining.\n Continue pressing while outlining until \n you\'re done. \n \n'),
 					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A3(
-						_mdgriffith$style_elements$Element$el,
-						_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Title),
-						{ctor: '[]'},
-						_mdgriffith$style_elements$Element$text('INSTRUCTIONS\n')),
-					_1: {
-						ctor: '::',
-						_0: _mdgriffith$style_elements$Element$text('\n Please outline the objects in the images. \n To do so, select the outline tool and \n press on the image where you want to \n start outlining.\n Continue pressing while outlining until \n you\'re done. \n \n'),
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: {ctor: '[]'}
-		});
-}();
+				}
+			}),
+		_1: {ctor: '[]'}
+	});
 var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 	function (params, tools, viewer, _p8, annotatedImages) {
 		var _p9 = _p8;
@@ -178,21 +179,15 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 				},
 				{
 					ctor: '::',
-					_0: A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll, params.actionBar, tools),
-					_1: {
-						ctor: '::',
-						_0: A3(
-							_mdgriffith$style_elements$Element$row,
-							_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
-							{
-								ctor: '::',
-								_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
-								_1: {
-									ctor: '::',
-									_0: _mdgriffith$style_elements$Element_Attributes$height(_mdgriffith$style_elements$Element_Attributes$fill),
-									_1: {ctor: '[]'}
-								}
-							},
+					_0: A2(
+						_mdgriffith$style_elements$Element$below,
+						{
+							ctor: '::',
+							_0: A2(_mpizenberg$demo_elm_image_annotation$View_Main$datasetAnnotatedSideBar, params.selectImageMsg, annotatedImages),
+							_1: {ctor: '[]'}
+						},
+						A2(
+							_mdgriffith$style_elements$Element$below,
 							{
 								ctor: '::',
 								_0: A3(
@@ -222,16 +217,16 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 											_1: {ctor: '[]'}
 										}
 									}),
-								_1: {
-									ctor: '::',
-									_0: A3(
-										_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$view,
-										params.annotationsArea,
-										viewer,
-										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(annotatedImages)),
-									_1: {ctor: '[]'}
-								}
-							}),
+								_1: {ctor: '[]'}
+							},
+							A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll, params.actionBar, tools))),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mpizenberg$demo_elm_image_annotation$View_AnnotationsArea$view,
+							params.annotationsArea,
+							viewer,
+							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(annotatedImages)),
 						_1: {ctor: '[]'}
 					}
 				}));
