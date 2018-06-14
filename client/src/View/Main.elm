@@ -103,6 +103,7 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
 
 viewAll : Parameters msg -> Zipper Tool -> Viewer -> { selected : Int, all : StaticTreeMap String } -> Zipper AnnotatedImage -> Html msg
 viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
+    -- On récupère d'abord la taille de l'écran
     let
         instructionWidth =
             (params.device.size.width |> toFloat) * 0.25
@@ -110,11 +111,15 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
         instructionHeight =
             params.device.size.height |> toFloat
     in
+        -- On ordonne les éléments
         Element.layout Style.sheet <|
             Element.column Style.None
+                --d'abord une grande colonne qui remplit toute la hauteur
                 [ Attributes.height fill ]
                 [ ActionBar.viewAll params.actionBar tools
+                    --On met la barre d'actions
                     |> Element.below
+                        --Sous cette barre on place les instructions à gauche
                         [ Element.column Style.None
                             [ Attributes.maxHeight (Attributes.px instructionHeight)
                             , Attributes.maxWidth (Attributes.px instructionWidth)
@@ -122,7 +127,6 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
                             ]
                             [ instructionText, imageInstruction ]
                         ]
-                    |> Element.below [ datasetAnnotatedSideBar params.selectImageMsg annotatedImages ]
                 , AnnotationsArea.view params.annotationsArea viewer (Zipper.getC annotatedImages)
                 ]
 

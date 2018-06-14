@@ -35939,43 +35939,36 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 						_mdgriffith$style_elements$Element$below,
 						{
 							ctor: '::',
-							_0: A2(_mpizenberg$demo_elm_image_annotation$View_Main$datasetAnnotatedSideBar, params.selectImageMsg, annotatedImages),
-							_1: {ctor: '[]'}
-						},
-						A2(
-							_mdgriffith$style_elements$Element$below,
-							{
-								ctor: '::',
-								_0: A3(
-									_mdgriffith$style_elements$Element$column,
-									_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
-									{
+							_0: A3(
+								_mdgriffith$style_elements$Element$column,
+								_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$maxHeight(
+										_mdgriffith$style_elements$Element_Attributes$px(instructionHeight)),
+									_1: {
 										ctor: '::',
-										_0: _mdgriffith$style_elements$Element_Attributes$maxHeight(
-											_mdgriffith$style_elements$Element_Attributes$px(instructionHeight)),
+										_0: _mdgriffith$style_elements$Element_Attributes$maxWidth(
+											_mdgriffith$style_elements$Element_Attributes$px(instructionWidth)),
 										_1: {
 											ctor: '::',
-											_0: _mdgriffith$style_elements$Element_Attributes$maxWidth(
-												_mdgriffith$style_elements$Element_Attributes$px(instructionWidth)),
-											_1: {
-												ctor: '::',
-												_0: _mdgriffith$style_elements$Element_Attributes$xScrollbar,
-												_1: {ctor: '[]'}
-											}
-										}
-									},
-									{
-										ctor: '::',
-										_0: _mpizenberg$demo_elm_image_annotation$View_Main$instructionText,
-										_1: {
-											ctor: '::',
-											_0: _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction,
+											_0: _mdgriffith$style_elements$Element_Attributes$xScrollbar,
 											_1: {ctor: '[]'}
 										}
-									}),
-								_1: {ctor: '[]'}
-							},
-							A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll, params.actionBar, tools))),
+									}
+								},
+								{
+									ctor: '::',
+									_0: _mpizenberg$demo_elm_image_annotation$View_Main$instructionText,
+									_1: {
+										ctor: '::',
+										_0: _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction,
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						},
+						A2(_mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll, params.actionBar, tools)),
 					_1: {
 						ctor: '::',
 						_0: A3(
