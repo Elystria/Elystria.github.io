@@ -169,7 +169,7 @@ viewAll params tools =
             , actionButton h True params.zoomFitMsg "Fit zoom to image" Icon.zoomFit
             ]
     in
-        (toolButtons ++ filler :: removeLatestButton :: filler :: optionsButtons)
+        (toolButtons ++ filler :: removeLatestButton :: filler :: zoomActions ++ filler :: optionsButtons)
             |> Element.row Style.None []
 
 

@@ -225,7 +225,14 @@ var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll = F2(
 					_1: {
 						ctor: '::',
 						_0: removeLatestButton,
-						_1: {ctor: '::', _0: filler, _1: optionsButtons}
+						_1: {
+							ctor: '::',
+							_0: filler,
+							_1: A2(
+								_elm_lang$core$Basics_ops['++'],
+								zoomActions,
+								{ctor: '::', _0: filler, _1: optionsButtons})
+						}
 					}
 				}));
 	});

@@ -18,16 +18,35 @@
 			width: document.documentElement.clientWidth,
 			height: document.documentElement.clientHeight
 		});
+
+		const img = {
+		    width: 500,
+		    height: 200,
+		    url: "https://picsum.photos/500/200"
+    		// comment to prevent mturk templating system to merge those two '}'
+		};
+
 		const containerSize = layoutViewportSize;
 
 		// Set elm app flags
 		const flags = {
+		    deviceSize: containerSize(),
+		    mturkMode: true,
+		    images: [img],
+		    config: `{
+		        "classes": [],
+		        "annotations": [ "outline" ]
+		    }`
+		};
+
+		// Set elm app flags
+	/*	const flags = {
 			deviceSize: containerSize(),
 			mturkMode: false,
 			images: [],
 			config: null
 		}
-
+*/
 		// Start elm app.
 		const app = Elm.Main.fullscreen(flags);
 	</script>
