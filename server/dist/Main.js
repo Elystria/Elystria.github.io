@@ -35892,7 +35892,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction1 = A3(
 	_mdgriffith$style_elements$Element$decorativeImage,
 	_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
 	{ctor: '[]'},
-	{src: ' https://elystria.github.io/server/images/instruction.gif '});
+	{src: ' https://elystria.github.io/server/images/inst.gif '});
 var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
 	_mdgriffith$style_elements$Element$paragraph,
 	_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph),

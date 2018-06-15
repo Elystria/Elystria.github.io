@@ -151,7 +151,7 @@ instructionText =
 
 
 imageInstruction1 =
-    Element.decorativeImage Style.None [] { src = " https://elystria.github.io/server/images/instruction.gif " }
+    Element.decorativeImage Style.None [] { src = " https://elystria.github.io/server/images/inst.gif " }
 
 
 imageInstruction2 =
