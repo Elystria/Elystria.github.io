@@ -125,7 +125,7 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
                             , Attributes.maxWidth (Attributes.px instructionWidth)
                             , Attributes.xScrollbar
                             ]
-                            [ instructionText, imageInstruction ]
+                            [ instructionText, imageInstruction1, imageInstruction2, imageInstruction3 ]
                         ]
                 , AnnotationsArea.view params.annotationsArea viewer (Zipper.getC annotatedImages)
                 ]
@@ -141,9 +141,8 @@ instructionText =
             , Element.text "\n Please outline the objects in \n the images. \n To do so, select the outline \n tool and press on the image \n where you want to start \n outlining.\n Continue pressing while outlining \n until you're done. \n \n"
 
             --, Element.newTab imageTest (Element.el (Style.Instruction Style.Link) [] (Element.text "Some examples\n"))
-            , Element.newTab "https://elystria.github.io/server/images/special_case_1.png" (Element.el (Style.Instruction Style.Link) [] (Element.text "Special Case 1\n"))
-            , Element.newTab "https://elystria.github.io/server/images/special_case_2.png" (Element.el (Style.Instruction Style.Link) [] (Element.text "Special Case 2\n"))
-
+            --, Element.newTab "https://elystria.github.io/server/images/special_case_1.png" (Element.el (Style.Instruction Style.Link) [] (Element.text "Special Case 1\n"))
+            --, Element.newTab "https://elystria.github.io/server/images/special_case_2.png" (Element.el (Style.Instruction Style.Link) [] (Element.text "Special Case 2\n"))
             --, Element.el (Style.Instruction Style.Title) [] (Element.text "\n GUIDELINES\n")
             --, Element.text "\n 1. The whole object has to be inside the\n outline. \n 2. The outline must follow roughly the \n shape of the image\n 3. If there are more than one objects,\n outline only one \n."
             --, Element.newTab "https://google.fr" (Element.el (Style.Instruction Style.Link) [] (Element.text "Video Tutorial \n"))
@@ -151,8 +150,16 @@ instructionText =
         ]
 
 
-imageInstruction =
-    Element.decorativeImage Style.None [] { src = " https://elystria.github.io/server/images/instruction.png " }
+imageInstruction1 =
+    Element.decorativeImage Style.None [] { src = " https://elystria.github.io/server/images/instruction.gif " }
+
+
+imageInstruction2 =
+    Element.decorativeImage Style.None [] { src = " https://elystria.github.io/server/images/special_case_1.gif " }
+
+
+imageInstruction3 =
+    Element.decorativeImage Style.None [] { src = " https://elystria.github.io/server/images/special_case_2.gif " }
 
 
 

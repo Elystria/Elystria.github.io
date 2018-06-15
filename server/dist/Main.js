@@ -35878,11 +35878,21 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$datasetRawSideBar = F2(
 			},
 			A2(_mpizenberg$demo_elm_image_annotation$View_DatasetSideBar$viewRaw, selectImageMsg, images));
 	});
-var _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction = A3(
+var _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction3 = A3(
 	_mdgriffith$style_elements$Element$decorativeImage,
 	_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
 	{ctor: '[]'},
-	{src: ' https://elystria.github.io/server/images/instruction.png '});
+	{src: ' https://elystria.github.io/server/images/special_case_2.gif '});
+var _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction2 = A3(
+	_mdgriffith$style_elements$Element$decorativeImage,
+	_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+	{ctor: '[]'},
+	{src: ' https://elystria.github.io/server/images/special_case_1.gif '});
+var _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction1 = A3(
+	_mdgriffith$style_elements$Element$decorativeImage,
+	_mpizenberg$demo_elm_image_annotation$StyleSheet$None,
+	{ctor: '[]'},
+	{src: ' https://elystria.github.io/server/images/instruction.gif '});
 var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
 	_mdgriffith$style_elements$Element$paragraph,
 	_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Paragraph),
@@ -35919,29 +35929,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
 				_1: {
 					ctor: '::',
 					_0: _mdgriffith$style_elements$Element$text('\n Please outline the objects in \n the images. \n To do so, select the outline \n tool and press on the image \n where you want to start \n outlining.\n Continue pressing while outlining \n until you\'re done. \n \n'),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_mdgriffith$style_elements$Element$newTab,
-							'https://elystria.github.io/server/images/special_case_1.png',
-							A3(
-								_mdgriffith$style_elements$Element$el,
-								_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
-								{ctor: '[]'},
-								_mdgriffith$style_elements$Element$text('Special Case 1\n'))),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_mdgriffith$style_elements$Element$newTab,
-								'https://elystria.github.io/server/images/special_case_2.png',
-								A3(
-									_mdgriffith$style_elements$Element$el,
-									_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
-									{ctor: '[]'},
-									_mdgriffith$style_elements$Element$text('Special Case 2\n'))),
-							_1: {ctor: '[]'}
-						}
-					}
+					_1: {ctor: '[]'}
 				}
 			}),
 		_1: {ctor: '[]'}
@@ -35991,8 +35979,16 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 									_0: _mpizenberg$demo_elm_image_annotation$View_Main$instructionText,
 									_1: {
 										ctor: '::',
-										_0: _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction,
-										_1: {ctor: '[]'}
+										_0: _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction1,
+										_1: {
+											ctor: '::',
+											_0: _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction2,
+											_1: {
+												ctor: '::',
+												_0: _mpizenberg$demo_elm_image_annotation$View_Main$imageInstruction3,
+												_1: {ctor: '[]'}
+											}
+										}
 									}
 								}),
 							_1: {ctor: '[]'}
