@@ -35931,7 +35931,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
 									_mdgriffith$style_elements$Element$el,
 									_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
 									{ctor: '[]'},
-									_mdgriffith$style_elements$Element$text('Special Case 1\n'))),
+									_mdgriffith$style_elements$Element$text('Special Case 2\n'))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -36428,7 +36428,6 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 										_1: _elm_lang$core$Platform_Cmd$none
 									};
 								case 'AllProvided':
-									var _p20 = _p18._1._2;
 									var newImages = A3(
 										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goTo,
 										function (_) {
@@ -36436,16 +36435,12 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 										},
 										_p18._0._0,
 										_p18._1._3);
-									var _v13 = _mpizenberg$demo_elm_image_annotation$Main$SelectTool(
-										function (_) {
-											return _.id;
-										}(
-											_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p20))),
+									var _v13 = _mpizenberg$demo_elm_image_annotation$Main$SelectTool(1),
 										_v14 = _mpizenberg$demo_elm_image_annotation$Main$fitImage(
 										_elm_lang$core$Native_Utils.update(
 											model,
 											{
-												state: A4(_mpizenberg$demo_elm_image_annotation$Main$AllProvided, _p18._1._0, _p18._1._1, _p20, newImages)
+												state: A4(_mpizenberg$demo_elm_image_annotation$Main$AllProvided, _p18._1._0, _p18._1._1, _p18._1._2, newImages)
 											}));
 									msg = _v13;
 									model = _v14;
@@ -36507,16 +36502,15 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 														function (_) {
 															return _.id;
 														},
-														_p18._0._0,
+														1,
 														_p18._1._2))
 											}),
 										_1: _elm_lang$core$Platform_Cmd$none
 									};
 								case 'AllProvided':
-									var _p21 = _p18._0._0;
 									var newAnnotatedImages = A2(
 										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$updateC,
-										_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$selectTool(_p21),
+										_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$selectTool(1),
 										_p18._1._3);
 									var hasAnnotations = _mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$hasAnnotations(
 										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(newAnnotatedImages));
@@ -36526,7 +36520,7 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 										function (_) {
 											return _.id;
 										},
-										_p21,
+										_p18._0._0,
 										_p18._1._2);
 									var newState = A4(_mpizenberg$demo_elm_image_annotation$Main$AllProvided, _p18._1._0, _p18._1._1, newTools, newAnnotatedImages);
 									return {
@@ -36542,19 +36536,19 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 							}
 						case 'PointerMsg':
 							if (_p18._1.ctor === 'AllProvided') {
-								var _p29 = _p18._1._2;
-								var _p28 = _p18._0._0;
-								var _p27 = _p18._1._3;
-								var _p26 = _p18._1._1;
-								var _p22 = function (_) {
+								var _p27 = _p18._1._2;
+								var _p26 = _p18._0._0;
+								var _p25 = _p18._1._3;
+								var _p24 = _p18._1._1;
+								var _p20 = function (_) {
 									return _.type_;
 								}(
-									_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p29));
-								if (_p22.ctor === 'Move') {
-									var _p23 = A3(_mpizenberg$demo_elm_image_annotation$Main$updateMove, _p28, model.dragState, model.viewer);
-									var newViewer = _p23._0;
-									var newDragState = _p23._1;
-									var hasChanged = _p23._2;
+									_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p27));
+								if (_p20.ctor === 'Move') {
+									var _p21 = A3(_mpizenberg$demo_elm_image_annotation$Main$updateMove, _p26, model.dragState, model.viewer);
+									var newViewer = _p21._0;
+									var newDragState = _p21._1;
+									var hasChanged = _p21._2;
 									return hasChanged ? {
 										ctor: '_Tuple2',
 										_0: _elm_lang$core$Native_Utils.update(
@@ -36563,26 +36557,26 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 										_1: _elm_lang$core$Platform_Cmd$none
 									} : {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 								} else {
-									var img = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p27);
+									var img = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p25);
 									var scaledPointerMsg = function () {
-										var _p24 = _p28;
-										switch (_p24.ctor) {
+										var _p22 = _p26;
+										switch (_p22.ctor) {
 											case 'DownAt':
 												return _mpizenberg$demo_elm_image_annotation$Data_Pointer$DownAt(
-													A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$positionIn, model.viewer, _p24._0));
+													A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$positionIn, model.viewer, _p22._0));
 											case 'MoveAt':
 												return _mpizenberg$demo_elm_image_annotation$Data_Pointer$MoveAt(
-													A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$positionIn, model.viewer, _p24._0));
+													A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$positionIn, model.viewer, _p22._0));
 											default:
 												return _mpizenberg$demo_elm_image_annotation$Data_Pointer$UpAt(
-													A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$positionIn, model.viewer, _p24._0));
+													A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$positionIn, model.viewer, _p22._0));
 										}
 									}();
-									var _p25 = A5(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateWithPointer, model.viewer.zoom, _p26.selected, scaledPointerMsg, model.dragState, img);
-									var newImg = _p25._0;
-									var newDragState = _p25._1;
-									var hasAnnotations = _p25._2;
-									var hasChanged = _p25._3;
+									var _p23 = A5(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$updateWithPointer, model.viewer.zoom, _p24.selected, scaledPointerMsg, model.dragState, img);
+									var newImg = _p23._0;
+									var newDragState = _p23._1;
+									var hasAnnotations = _p23._2;
+									var hasChanged = _p23._3;
 									var viewParameters = A2(_mpizenberg$demo_elm_image_annotation$View_Main$markHasAnnotation, hasAnnotations, model.viewParameters);
 									return hasChanged ? {
 										ctor: '_Tuple2',
@@ -36594,9 +36588,9 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 													state: A4(
 														_mpizenberg$demo_elm_image_annotation$Main$AllProvided,
 														_p18._1._0,
-														_p26,
-														_p29,
-														A2(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$setC, newImg, _p27)),
+														_p24,
+														_p27,
+														A2(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$setC, newImg, _p25)),
 													viewParameters: viewParameters
 												})),
 										_1: _elm_lang$core$Platform_Cmd$none
@@ -36634,12 +36628,12 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 							switch (_p18._1.ctor) {
 								case 'NothingProvided':
 									if (_p18._0._0.ctor === '::') {
-										var _p30 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareRawLoading, 1, _p18._0._0._1);
-										var otherImages = _p30._0;
-										var otherCmds = _p30._1;
-										var _p31 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareOneRawLoading, 0, _p18._0._0._0);
-										var firstImage = _p31._0;
-										var firstCmd = _p31._1;
+										var _p28 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareRawLoading, 1, _p18._0._0._1);
+										var otherImages = _p28._0;
+										var otherCmds = _p28._1;
+										var _p29 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareOneRawLoading, 0, _p18._0._0._0);
+										var firstImage = _p29._0;
+										var firstCmd = _p29._1;
 										return {
 											ctor: '_Tuple2',
 											_0: _elm_lang$core$Native_Utils.update(
@@ -36660,20 +36654,20 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 									}
 								case 'ConfigProvided':
 									if (_p18._0._0.ctor === '::') {
-										var _p34 = _p18._1._2;
-										var _p32 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareRawLoading, 1, _p18._0._0._1);
-										var otherImages = _p32._0;
-										var otherCmds = _p32._1;
-										var _p33 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareOneRawLoading, 0, _p18._0._0._0);
-										var firstImage = _p33._0;
-										var firstCmd = _p33._1;
+										var _p32 = _p18._1._2;
+										var _p30 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareRawLoading, 1, _p18._0._0._1);
+										var otherImages = _p30._0;
+										var otherCmds = _p30._1;
+										var _p31 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareOneRawLoading, 0, _p18._0._0._0);
+										var firstImage = _p31._0;
+										var firstCmd = _p31._1;
 										var annotatedImages = A3(
 											_mpizenberg$demo_elm_image_annotation$Packages_Zipper$init,
 											{ctor: '[]'},
-											A2(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$fromRaw, _p34, firstImage),
+											A2(_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$fromRaw, _p32, firstImage),
 											A2(
 												_elm_lang$core$List$map,
-												_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$fromRaw(_p34),
+												_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$fromRaw(_p32),
 												otherImages));
 										return {
 											ctor: '_Tuple2',
@@ -36681,7 +36675,7 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 												_elm_lang$core$Native_Utils.update(
 													model,
 													{
-														state: A4(_mpizenberg$demo_elm_image_annotation$Main$AllProvided, _p18._1._0, _p18._1._1, _p34, annotatedImages)
+														state: A4(_mpizenberg$demo_elm_image_annotation$Main$AllProvided, _p18._1._0, _p18._1._1, _p32, annotatedImages)
 													})),
 											_1: _elm_lang$core$Platform_Cmd$batch(
 												{ctor: '::', _0: firstCmd, _1: otherCmds})
@@ -36690,43 +36684,43 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 										break _v12_19;
 									}
 								case 'ImagesProvided':
-									var _p37 = _p18._1._0;
-									var startingId = 1 + function (_p35) {
+									var _p35 = _p18._1._0;
+									var startingId = 1 + function (_p33) {
 										return function (_) {
 											return _.id;
 										}(
-											_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p35));
+											_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p33));
 									}(
-										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goEnd(_p37));
-									var _p36 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareRawLoading, startingId, _p18._0._0);
-									var newImages = _p36._0;
-									var cmds = _p36._1;
+										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goEnd(_p35));
+									var _p34 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareRawLoading, startingId, _p18._0._0);
+									var newImages = _p34._0;
+									var cmds = _p34._1;
 									return {
 										ctor: '_Tuple2',
 										_0: _elm_lang$core$Native_Utils.update(
 											model,
 											{
 												state: _mpizenberg$demo_elm_image_annotation$Main$ImagesProvided(
-													A2(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$append, newImages, _p37))
+													A2(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$append, newImages, _p35))
 											}),
 										_1: _elm_lang$core$Platform_Cmd$batch(cmds)
 									};
 								default:
-									var _p41 = _p18._1._2;
-									var _p40 = _p18._1._3;
-									var startingId = 1 + function (_p38) {
+									var _p39 = _p18._1._2;
+									var _p38 = _p18._1._3;
+									var startingId = 1 + function (_p36) {
 										return function (_) {
 											return _.id;
 										}(
-											_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p38));
+											_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p36));
 									}(
-										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goEnd(_p40));
-									var _p39 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareRawLoading, startingId, _p18._0._0);
-									var newImages = _p39._0;
-									var cmds = _p39._1;
+										_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goEnd(_p38));
+									var _p37 = A2(_mpizenberg$demo_elm_image_annotation$Main$prepareRawLoading, startingId, _p18._0._0);
+									var newImages = _p37._0;
+									var cmds = _p37._1;
 									var newAnnotatedImages = A2(
 										_elm_lang$core$List$map,
-										_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$fromRaw(_p41),
+										_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$fromRaw(_p39),
 										newImages);
 									return {
 										ctor: '_Tuple2',
@@ -36738,8 +36732,8 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 														_mpizenberg$demo_elm_image_annotation$Main$AllProvided,
 														_p18._1._0,
 														_p18._1._1,
-														_p41,
-														A2(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$append, newAnnotatedImages, _p40))
+														_p39,
+														A2(_mpizenberg$demo_elm_image_annotation$Packages_Zipper$append, newAnnotatedImages, _p38))
 												})),
 										_1: _elm_lang$core$Platform_Cmd$batch(cmds)
 									};
@@ -36747,12 +36741,12 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 						case 'ImageLoaded':
 							switch (_p18._1.ctor) {
 								case 'ImagesProvided':
-									var _p43 = _p18._1._0;
-									var _p42 = _p18._0._0.id;
+									var _p41 = _p18._1._0;
+									var _p40 = _p18._0._0.id;
 									var newStatus = _mpizenberg$demo_elm_image_annotation$Data_RawImage$Loaded(
 										A3(_mpizenberg$elm_image_collection$Image$Image, _p18._0._0.url, _p18._0._0.width, _p18._0._0.height));
-									var img = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p43);
-									return _elm_lang$core$Native_Utils.eq(_p42, img.id) ? function (state) {
+									var img = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p41);
+									return _elm_lang$core$Native_Utils.eq(_p40, img.id) ? function (state) {
 										return {
 											ctor: '_Tuple2',
 											_0: _mpizenberg$demo_elm_image_annotation$Main$fitImage(
@@ -36768,7 +36762,7 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 												_elm_lang$core$Native_Utils.update(
 													img,
 													{status: newStatus}),
-												_p43))) : function (state) {
+												_p41))) : function (state) {
 										return {
 											ctor: '_Tuple2',
 											_0: _elm_lang$core$Native_Utils.update(
@@ -36796,20 +36790,20 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 														function (_) {
 															return _.id;
 														},
-														_p42,
-														_p43)))));
+														_p40,
+														_p41)))));
 								case 'AllProvided':
-									var _p48 = _p18._1._2;
-									var _p47 = _p18._1._3;
-									var _p46 = _p18._0._0.id;
-									var _p45 = _p18._1._0;
-									var _p44 = _p18._1._1;
+									var _p46 = _p18._1._2;
+									var _p45 = _p18._1._3;
+									var _p44 = _p18._0._0.id;
+									var _p43 = _p18._1._0;
+									var _p42 = _p18._1._1;
 									var newStatus = A2(
 										_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$Loaded,
 										A3(_mpizenberg$elm_image_collection$Image$Image, _p18._0._0.url, _p18._0._0.width, _p18._0._0.height),
-										_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$annotationsFromTools(_p48));
-									var img = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p47);
-									return _elm_lang$core$Native_Utils.eq(_p46, img.id) ? function (model) {
+										_mpizenberg$demo_elm_image_annotation$Data_AnnotatedImage$annotationsFromTools(_p46));
+									var img = _mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(_p45);
+									return _elm_lang$core$Native_Utils.eq(_p44, img.id) ? function (model) {
 										return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 									}(
 										_mpizenberg$demo_elm_image_annotation$Main$updateAnnotationsWithImage(
@@ -36821,15 +36815,15 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 											}(
 												A4(
 													_mpizenberg$demo_elm_image_annotation$Main$AllProvided,
-													_p45,
-													_p44,
-													_p48,
+													_p43,
+													_p42,
+													_p46,
 													A2(
 														_mpizenberg$demo_elm_image_annotation$Packages_Zipper$setC,
 														_elm_lang$core$Native_Utils.update(
 															img,
 															{status: newStatus}),
-														_p47))))) : function (state) {
+														_p45))))) : function (state) {
 										return {
 											ctor: '_Tuple2',
 											_0: _elm_lang$core$Native_Utils.update(
@@ -36840,9 +36834,9 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 									}(
 										A4(
 											_mpizenberg$demo_elm_image_annotation$Main$AllProvided,
-											_p45,
-											_p44,
-											_p48,
+											_p43,
+											_p42,
+											_p46,
 											A3(
 												_mpizenberg$demo_elm_image_annotation$Packages_Zipper$goTo,
 												function (_) {
@@ -36861,8 +36855,8 @@ var _mpizenberg$demo_elm_image_annotation$Main$update = F2(
 														function (_) {
 															return _.id;
 														},
-														_p46,
-														_p47)))));
+														_p44,
+														_p45)))));
 								default:
 									break _v12_19;
 							}
@@ -36935,13 +36929,13 @@ var _mpizenberg$demo_elm_image_annotation$Main$ZoomOut = {ctor: 'ZoomOut'};
 var _mpizenberg$demo_elm_image_annotation$Main$ZoomIn = {ctor: 'ZoomIn'};
 var _mpizenberg$demo_elm_image_annotation$Main$init = function (flags) {
 	var state = function () {
-		var _p49 = flags.config;
-		if (_p49.ctor === 'Nothing') {
+		var _p47 = flags.config;
+		if (_p47.ctor === 'Nothing') {
 			return _mpizenberg$demo_elm_image_annotation$Main$importFlagsImages(flags.images);
 		} else {
 			return A2(
 				_mpizenberg$demo_elm_image_annotation$Main$changeConfig,
-				_p49._0,
+				_p47._0,
 				_mpizenberg$demo_elm_image_annotation$Main$importFlagsImages(flags.images));
 		}
 	}();
@@ -36968,24 +36962,27 @@ var _mpizenberg$demo_elm_image_annotation$Main$init = function (flags) {
 		annotationsArea: {
 			size: layout.viewerSize,
 			annotationsWithImage: _elm_lang$core$Maybe$Nothing,
-			pointerDownMsg: function (_p50) {
+			pointerDownMsg: function (_p48) {
 				return _mpizenberg$demo_elm_image_annotation$Main$PointerMsg(
-					_mpizenberg$demo_elm_image_annotation$Data_Pointer$DownAt(_p50));
+					_mpizenberg$demo_elm_image_annotation$Data_Pointer$DownAt(_p48));
 			},
-			pointerMoveMsg: function (_p51) {
+			pointerMoveMsg: function (_p49) {
 				return _mpizenberg$demo_elm_image_annotation$Main$PointerMsg(
-					_mpizenberg$demo_elm_image_annotation$Data_Pointer$MoveAt(_p51));
+					_mpizenberg$demo_elm_image_annotation$Data_Pointer$MoveAt(_p49));
 			},
-			pointerUpMsg: function (_p52) {
+			pointerUpMsg: function (_p50) {
 				return _mpizenberg$demo_elm_image_annotation$Main$PointerMsg(
-					_mpizenberg$demo_elm_image_annotation$Data_Pointer$UpAt(_p52));
+					_mpizenberg$demo_elm_image_annotation$Data_Pointer$UpAt(_p50));
 			}
 		}
 	};
 	var model = _mpizenberg$demo_elm_image_annotation$Main$updateAnnotationsWithImage(
 		_mpizenberg$demo_elm_image_annotation$Main$fitImage(
 			{viewParameters: viewParameters, state: state, viewer: viewer, dragState: _mpizenberg$demo_elm_image_annotation$Data_Pointer$NoDrag}));
-	return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+	return A2(
+		_mpizenberg$demo_elm_image_annotation$Main$update,
+		_mpizenberg$demo_elm_image_annotation$Main$SelectTool(1),
+		model);
 };
 var _mpizenberg$demo_elm_image_annotation$Main$main = _elm_lang$html$Html$programWithFlags(
 	{

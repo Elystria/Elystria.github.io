@@ -177,7 +177,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
 									_mdgriffith$style_elements$Element$el,
 									_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Link),
 									{ctor: '[]'},
-									_mdgriffith$style_elements$Element$text('Special Case 1\n'))),
+									_mdgriffith$style_elements$Element$text('Special Case 2\n'))),
 							_1: {ctor: '[]'}
 						}
 					}

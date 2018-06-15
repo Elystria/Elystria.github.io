@@ -153,7 +153,8 @@ init flags =
                     , dragState = Pointer.NoDrag
                     }
     in
-        ( model, Cmd.none )
+        --( model, Cmd.none )
+        update (SelectTool 1) model
 
 
 importFlagsImages : List Image -> State
@@ -228,6 +229,7 @@ update msg model =
                     |> fitImage
                     |> update (SelectTool (.id <| Zipper.getC tools))
 
+        --|> update (SelectTool 1)
         ( SelectClass id, ConfigProvided config classes tools ) ->
             ( { model | state = ConfigProvided config { classes | selected = id } tools }
             , Cmd.none
@@ -240,7 +242,8 @@ update msg model =
             )
 
         ( SelectTool toolId, ConfigProvided config classes tools ) ->
-            ( { model | state = ConfigProvided config classes (Zipper.goTo .id toolId tools) }, Cmd.none )
+            --( { model | state = ConfigProvided config classes (Zipper.goTo .id toolId tools) }, Cmd.none )
+            ( { model | state = ConfigProvided config classes (Zipper.goTo .id 1 tools) }, Cmd.none )
 
         ( SelectTool toolId, AllProvided config classes tools imgs ) ->
             let
@@ -250,6 +253,7 @@ update msg model =
                 newAnnotatedImages =
                     Zipper.updateC (AnnotatedImage.selectTool toolId) imgs
 
+                --Zipper.updateC (AnnotatedImage.selectTool 1) imgs
                 newState =
                     AllProvided config classes newTools newAnnotatedImages
 
