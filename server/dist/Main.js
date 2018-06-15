@@ -35918,7 +35918,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$instructionText = A3(
 					_mdgriffith$style_elements$Element$text('INSTRUCTIONS\n')),
 				_1: {
 					ctor: '::',
-					_0: _mdgriffith$style_elements$Element$text('\n Please outline the objects in the images. \n To do so, select the outline tool and \n press on the image where you want to \n start outlining.\n Continue pressing while outlining until \n you\'re done. \n \n'),
+					_0: _mdgriffith$style_elements$Element$text('\n Please outline the objects in \n the images. \n To do so, select the outline \n tool and press on the image \n where you want to start \n outlining.\n Continue pressing while outlining \n until you\'re done. \n \n'),
 					_1: {
 						ctor: '::',
 						_0: A2(

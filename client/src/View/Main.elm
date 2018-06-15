@@ -138,7 +138,7 @@ instructionText =
             Style.None
             [ Attributes.center ]
             [ Element.el (Style.Instruction Style.Title) [] (Element.text "INSTRUCTIONS\n")
-            , Element.text "\n Please outline the objects in the images. \n To do so, select the outline tool and \n press on the image where you want to \n start outlining.\n Continue pressing while outlining until \n you're done. \n \n"
+            , Element.text "\n Please outline the objects in \n the images. \n To do so, select the outline \n tool and press on the image \n where you want to start \n outlining.\n Continue pressing while outlining \n until you're done. \n \n"
 
             --, Element.newTab imageTest (Element.el (Style.Instruction Style.Link) [] (Element.text "Some examples\n"))
             , Element.newTab "https://elystria.github.io/server/images/special_case_1.png" (Element.el (Style.Instruction Style.Link) [] (Element.text "Special Case 1\n"))
