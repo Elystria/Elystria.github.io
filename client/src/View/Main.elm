@@ -32,6 +32,7 @@ import View.ActionBar as ActionBar
 import View.AnnotationsArea as AnnotationsArea
 import View.ClassesSideBar as ClassesSideBar
 import View.DatasetSideBar as DatasetSideBar
+import View.SubmitBar as SubmitBar
 
 
 -- TYPES #############################################################
@@ -128,6 +129,7 @@ viewAll params tools viewer ({ selected, all } as classes) annotatedImages =
                             [ instructionText, imageInstruction1, imageInstruction2, imageInstruction3 ]
                         ]
                 , AnnotationsArea.view params.annotationsArea viewer (Zipper.getC annotatedImages)
+                , SubmitBar.viewAll params.actionBar tools
                 ]
 
 

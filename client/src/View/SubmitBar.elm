@@ -3,7 +3,7 @@
 -- file, You can obtain one at http://mozilla.org/MPL/2.0/
 
 
-module View.ActionBar
+module View.SubmitBar
     exposing
         ( Parameters
         , emptyView
@@ -15,7 +15,7 @@ module View.ActionBar
 
 import Data.Tool as Tool exposing (Tool)
 import Element exposing (Element, el, empty)
-import Element.Attributes as Attributes exposing (fill, height, px, toAttr, vary, width)
+import Element.Attributes as Attributes exposing (fill, height, px, toAttr, vary, width, center)
 import Html.Attributes
 import Html.Lazy exposing (lazy, lazy2, lazy3)
 import Json.Decode as Decode exposing (Decoder, Value)
@@ -142,18 +142,6 @@ viewAll params tools =
         filler =
             el Style.None [ width fill, height (px h) ] empty
 
-        toolButtons =
-            List.concat
-                [ Zipper.getL tools
-                    |> List.map (toolButton params.selectToolMsg h False)
-                , [ toolButton params.selectToolMsg h True (Zipper.getC tools) ]
-                , Zipper.getR tools
-                    |> List.map (toolButton params.selectToolMsg h False)
-                ]
-
-        removeLatestButton =
-            actionButton h params.hasAnnotations params.removeLatestAnnotationMsg "Delete latest annotation of current tool" Icon.trash2
-
         optionsButtons =
             if params.mturkMode then
                 [ textButton h True params.exportMsg "Submit" ]
@@ -162,16 +150,9 @@ viewAll params tools =
                 , configButton params.loadConfigMsg h
                 , datasetButton params.loadImagesMsg h
                 ]
-
-        zoomActions =
-            [ actionButton h True params.zoomInMsg "Zoom in" Icon.zoomIn
-            , actionButton h True params.zoomOutMsg "Zoom out" Icon.zoomOut
-            , actionButton h True params.zoomFitMsg "Fit zoom to image" Icon.zoomFit
-            ]
     in
-        --(toolButtons ++ filler :: removeLatestButton :: filler :: zoomActions ++ filler :: optionsButtons)
-        (toolButtons ++ filler :: removeLatestButton :: filler :: zoomActions)
-            |> Element.row Style.None []
+        (optionsButtons)
+            |> Element.row Style.None [ center ]
 
 
 datasetButton : (List { name : String, file : Value } -> msg) -> Float -> Element Style ColorVariations msg

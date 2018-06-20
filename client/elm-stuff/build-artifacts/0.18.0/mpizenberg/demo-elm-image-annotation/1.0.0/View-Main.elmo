@@ -240,7 +240,11 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewAll = F5(
 							params.annotationsArea,
 							viewer,
 							_mpizenberg$demo_elm_image_annotation$Packages_Zipper$getC(annotatedImages)),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: A2(_mpizenberg$demo_elm_image_annotation$View_SubmitBar$viewAll, params.actionBar, tools),
+							_1: {ctor: '[]'}
+						}
 					}
 				}));
 	});
