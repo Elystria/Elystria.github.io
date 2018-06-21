@@ -168,9 +168,12 @@ viewAll params tools =
             , actionButton h True params.zoomOutMsg "Zoom out" Icon.zoomOut
             , actionButton h True params.zoomFitMsg "Fit zoom to image" Icon.zoomFit
             ]
+
+        consigne =
+            Element.text "Please outline the following object(s) : "
     in
         --(toolButtons ++ filler :: removeLatestButton :: filler :: zoomActions ++ filler :: optionsButtons)
-        (toolButtons ++ filler :: removeLatestButton :: filler :: zoomActions)
+        (toolButtons ++ filler :: consigne :: filler :: removeLatestButton :: filler :: zoomActions)
             |> Element.row Style.None []
 
 

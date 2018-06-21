@@ -34829,6 +34829,7 @@ var _mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton = F2(
 	});
 var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll = F2(
 	function (params, tools) {
+		var consigne = _mdgriffith$style_elements$Element$text('Please outline the following object(s) : ');
 		var _p2 = params.size;
 		var w = _p2._0;
 		var h = _p2._1;
@@ -34918,8 +34919,16 @@ var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll = F2(
 					_0: filler,
 					_1: {
 						ctor: '::',
-						_0: removeLatestButton,
-						_1: {ctor: '::', _0: filler, _1: zoomActions}
+						_0: consigne,
+						_1: {
+							ctor: '::',
+							_0: filler,
+							_1: {
+								ctor: '::',
+								_0: removeLatestButton,
+								_1: {ctor: '::', _0: filler, _1: zoomActions}
+							}
+						}
 					}
 				}));
 	});
