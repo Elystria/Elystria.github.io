@@ -170,7 +170,7 @@ viewAll params tools =
             ]
 
         consigne =
-            Element.text "Please outline the following object(s) : "
+            Element.text " Please outline the following object(s) : "
     in
         --(toolButtons ++ filler :: removeLatestButton :: filler :: zoomActions ++ filler :: optionsButtons)
         (toolButtons ++ filler :: consigne :: filler :: removeLatestButton :: filler :: zoomActions)
