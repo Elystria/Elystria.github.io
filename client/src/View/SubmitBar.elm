@@ -45,6 +45,7 @@ type alias Parameters msg =
     , loadConfigMsg : Value -> msg
     , loadImagesMsg : List { name : String, file : Value } -> msg
     , exportMsg : msg
+    , manualClass : String
     }
 
 

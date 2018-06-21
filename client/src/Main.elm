@@ -90,6 +90,7 @@ type alias Flags =
     , mturkMode : Bool
     , images : List Image
     , config : Maybe String
+    , annotation : String
     }
 
 
@@ -102,6 +103,9 @@ init flags =
     let
         device =
             Device.classify flags.deviceSize
+
+        classe =
+            flags.annotation
 
         layout =
             View.pageLayout device
@@ -125,6 +129,7 @@ init flags =
                 , loadConfigMsg = LoadConfig
                 , loadImagesMsg = LoadImages
                 , exportMsg = Export
+                , manualClass = classe
                 }
             , annotationsArea =
                 { size = layout.viewerSize
@@ -132,6 +137,20 @@ init flags =
                 , pointerDownMsg = PointerMsg << Pointer.DownAt
                 , pointerMoveMsg = PointerMsg << Pointer.MoveAt
                 , pointerUpMsg = PointerMsg << Pointer.UpAt
+                }
+            , submitBar =
+                { size = layout.actionBarSize
+                , hasAnnotations = False
+                , mturkMode = flags.mturkMode
+                , removeLatestAnnotationMsg = RemoveLatestAnnotation
+                , selectToolMsg = SelectTool
+                , zoomInMsg = ZoomMsg ZoomIn
+                , zoomOutMsg = ZoomMsg ZoomOut
+                , zoomFitMsg = ZoomMsg ZoomFit
+                , loadConfigMsg = LoadConfig
+                , loadImagesMsg = LoadImages
+                , exportMsg = Export
+                , manualClass = classe
                 }
             }
 

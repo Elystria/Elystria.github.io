@@ -41,6 +41,7 @@ import View.SubmitBar as SubmitBar
 type alias Parameters msg =
     { device : Device
     , actionBar : ActionBar.Parameters msg
+    , submitBar : SubmitBar.Parameters msg
     , annotationsArea : AnnotationsArea.Parameters msg
     , selectClassMsg : Int -> msg
     , selectImageMsg : Int -> msg

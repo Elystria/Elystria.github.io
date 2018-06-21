@@ -45,6 +45,7 @@ type alias Parameters msg =
     , loadConfigMsg : Value -> msg
     , loadImagesMsg : List { name : String, file : Value } -> msg
     , exportMsg : msg
+    , manualClass : String
     }
 
 
@@ -170,7 +171,7 @@ viewAll params tools =
             ]
 
         consigne =
-            Element.text " Please outline the following object(s) : "
+            Element.text (" Please outline the following object(s) : " ++ params.manualClass)
     in
         --(toolButtons ++ filler :: removeLatestButton :: filler :: zoomActions ++ filler :: optionsButtons)
         (toolButtons ++ filler :: consigne :: filler :: removeLatestButton :: filler :: zoomActions)

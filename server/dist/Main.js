@@ -34829,7 +34829,8 @@ var _mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton = F2(
 	});
 var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll = F2(
 	function (params, tools) {
-		var consigne = _mdgriffith$style_elements$Element$text('Please outline the following object(s) : ');
+		var consigne = _mdgriffith$style_elements$Element$text(
+			A2(_elm_lang$core$Basics_ops['++'], ' Please outline the following object(s) : ', params.manualClass));
 		var _p2 = params.size;
 		var w = _p2._0;
 		var h = _p2._1;
@@ -35115,7 +35116,9 @@ var _mpizenberg$demo_elm_image_annotation$View_ActionBar$Parameters = function (
 								return function (i) {
 									return function (j) {
 										return function (k) {
-											return {size: a, hasAnnotations: b, mturkMode: c, removeLatestAnnotationMsg: d, selectToolMsg: e, zoomInMsg: f, zoomOutMsg: g, zoomFitMsg: h, loadConfigMsg: i, loadImagesMsg: j, exportMsg: k};
+											return function (l) {
+												return {size: a, hasAnnotations: b, mturkMode: c, removeLatestAnnotationMsg: d, selectToolMsg: e, zoomInMsg: f, zoomOutMsg: g, zoomFitMsg: h, loadConfigMsg: i, loadImagesMsg: j, exportMsg: k, manualClass: l};
+											};
 										};
 									};
 								};
@@ -36125,7 +36128,9 @@ var _mpizenberg$demo_elm_image_annotation$View_SubmitBar$Parameters = function (
 								return function (i) {
 									return function (j) {
 										return function (k) {
-											return {size: a, hasAnnotations: b, mturkMode: c, removeLatestAnnotationMsg: d, selectToolMsg: e, zoomInMsg: f, zoomOutMsg: g, zoomFitMsg: h, loadConfigMsg: i, loadImagesMsg: j, exportMsg: k};
+											return function (l) {
+												return {size: a, hasAnnotations: b, mturkMode: c, removeLatestAnnotationMsg: d, selectToolMsg: e, zoomInMsg: f, zoomOutMsg: g, zoomFitMsg: h, loadConfigMsg: i, loadImagesMsg: j, exportMsg: k, manualClass: l};
+											};
 										};
 									};
 								};
@@ -36438,9 +36443,9 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewNothing = function (para
 		_mpizenberg$demo_elm_image_annotation$StyleSheet$sheet,
 		_mpizenberg$demo_elm_image_annotation$View_ActionBar$emptyView(params.actionBar));
 };
-var _mpizenberg$demo_elm_image_annotation$View_Main$Parameters = F5(
-	function (a, b, c, d, e) {
-		return {device: a, actionBar: b, annotationsArea: c, selectClassMsg: d, selectImageMsg: e};
+var _mpizenberg$demo_elm_image_annotation$View_Main$Parameters = F6(
+	function (a, b, c, d, e, f) {
+		return {device: a, actionBar: b, submitBar: c, annotationsArea: d, selectClassMsg: e, selectImageMsg: f};
 	});
 
 var _mpizenberg$demo_elm_image_annotation$Main$encode = F2(
@@ -36666,9 +36671,9 @@ var _mpizenberg$demo_elm_image_annotation$Main$Classes = F2(
 	function (a, b) {
 		return {selected: a, all: b};
 	});
-var _mpizenberg$demo_elm_image_annotation$Main$Flags = F4(
-	function (a, b, c, d) {
-		return {deviceSize: a, mturkMode: b, images: c, config: d};
+var _mpizenberg$demo_elm_image_annotation$Main$Flags = F5(
+	function (a, b, c, d, e) {
+		return {deviceSize: a, mturkMode: b, images: c, config: d, annotation: e};
 	});
 var _mpizenberg$demo_elm_image_annotation$Main$AllProvided = F4(
 	function (a, b, c, d) {
@@ -37327,6 +37332,7 @@ var _mpizenberg$demo_elm_image_annotation$Main$init = function (flags) {
 				_mpizenberg$demo_elm_image_annotation$Main$importFlagsImages(flags.images));
 		}
 	}();
+	var classe = flags.annotation;
 	var device = _mpizenberg$demo_elm_image_annotation$Packages_Device$classify(flags.deviceSize);
 	var layout = _mpizenberg$demo_elm_image_annotation$View_Main$pageLayout(device);
 	var viewer = A2(_mpizenberg$demo_elm_image_annotation$Annotation_Viewer$setSize, layout.viewerSize, _mpizenberg$demo_elm_image_annotation$Annotation_Viewer$default);
@@ -37345,7 +37351,8 @@ var _mpizenberg$demo_elm_image_annotation$Main$init = function (flags) {
 			zoomFitMsg: _mpizenberg$demo_elm_image_annotation$Main$ZoomMsg(_mpizenberg$demo_elm_image_annotation$Main$ZoomFit),
 			loadConfigMsg: _mpizenberg$demo_elm_image_annotation$Main$LoadConfig,
 			loadImagesMsg: _mpizenberg$demo_elm_image_annotation$Main$LoadImages,
-			exportMsg: _mpizenberg$demo_elm_image_annotation$Main$Export
+			exportMsg: _mpizenberg$demo_elm_image_annotation$Main$Export,
+			manualClass: classe
 		},
 		annotationsArea: {
 			size: layout.viewerSize,
@@ -37362,6 +37369,20 @@ var _mpizenberg$demo_elm_image_annotation$Main$init = function (flags) {
 				return _mpizenberg$demo_elm_image_annotation$Main$PointerMsg(
 					_mpizenberg$demo_elm_image_annotation$Data_Pointer$UpAt(_p52));
 			}
+		},
+		submitBar: {
+			size: layout.actionBarSize,
+			hasAnnotations: false,
+			mturkMode: flags.mturkMode,
+			removeLatestAnnotationMsg: _mpizenberg$demo_elm_image_annotation$Main$RemoveLatestAnnotation,
+			selectToolMsg: _mpizenberg$demo_elm_image_annotation$Main$SelectTool,
+			zoomInMsg: _mpizenberg$demo_elm_image_annotation$Main$ZoomMsg(_mpizenberg$demo_elm_image_annotation$Main$ZoomIn),
+			zoomOutMsg: _mpizenberg$demo_elm_image_annotation$Main$ZoomMsg(_mpizenberg$demo_elm_image_annotation$Main$ZoomOut),
+			zoomFitMsg: _mpizenberg$demo_elm_image_annotation$Main$ZoomMsg(_mpizenberg$demo_elm_image_annotation$Main$ZoomFit),
+			loadConfigMsg: _mpizenberg$demo_elm_image_annotation$Main$LoadConfig,
+			loadImagesMsg: _mpizenberg$demo_elm_image_annotation$Main$LoadImages,
+			exportMsg: _mpizenberg$demo_elm_image_annotation$Main$Export,
+			manualClass: classe
 		}
 	};
 	var model = _mpizenberg$demo_elm_image_annotation$Main$updateAnnotationsWithImage(
@@ -37381,72 +37402,77 @@ var _mpizenberg$demo_elm_image_annotation$Main$main = _elm_lang$html$Html$progra
 	})(
 	A2(
 		_elm_lang$core$Json_Decode$andThen,
-		function (config) {
+		function (annotation) {
 			return A2(
 				_elm_lang$core$Json_Decode$andThen,
-				function (deviceSize) {
+				function (config) {
 					return A2(
 						_elm_lang$core$Json_Decode$andThen,
-						function (images) {
+						function (deviceSize) {
 							return A2(
 								_elm_lang$core$Json_Decode$andThen,
-								function (mturkMode) {
-									return _elm_lang$core$Json_Decode$succeed(
-										{config: config, deviceSize: deviceSize, images: images, mturkMode: mturkMode});
+								function (images) {
+									return A2(
+										_elm_lang$core$Json_Decode$andThen,
+										function (mturkMode) {
+											return _elm_lang$core$Json_Decode$succeed(
+												{annotation: annotation, config: config, deviceSize: deviceSize, images: images, mturkMode: mturkMode});
+										},
+										A2(_elm_lang$core$Json_Decode$field, 'mturkMode', _elm_lang$core$Json_Decode$bool));
 								},
-								A2(_elm_lang$core$Json_Decode$field, 'mturkMode', _elm_lang$core$Json_Decode$bool));
+								A2(
+									_elm_lang$core$Json_Decode$field,
+									'images',
+									_elm_lang$core$Json_Decode$list(
+										A2(
+											_elm_lang$core$Json_Decode$andThen,
+											function (height) {
+												return A2(
+													_elm_lang$core$Json_Decode$andThen,
+													function (url) {
+														return A2(
+															_elm_lang$core$Json_Decode$andThen,
+															function (width) {
+																return _elm_lang$core$Json_Decode$succeed(
+																	{height: height, url: url, width: width});
+															},
+															A2(_elm_lang$core$Json_Decode$field, 'width', _elm_lang$core$Json_Decode$int));
+													},
+													A2(_elm_lang$core$Json_Decode$field, 'url', _elm_lang$core$Json_Decode$string));
+											},
+											A2(_elm_lang$core$Json_Decode$field, 'height', _elm_lang$core$Json_Decode$int)))));
 						},
 						A2(
 							_elm_lang$core$Json_Decode$field,
-							'images',
-							_elm_lang$core$Json_Decode$list(
-								A2(
-									_elm_lang$core$Json_Decode$andThen,
-									function (height) {
-										return A2(
-											_elm_lang$core$Json_Decode$andThen,
-											function (url) {
-												return A2(
-													_elm_lang$core$Json_Decode$andThen,
-													function (width) {
-														return _elm_lang$core$Json_Decode$succeed(
-															{height: height, url: url, width: width});
-													},
-													A2(_elm_lang$core$Json_Decode$field, 'width', _elm_lang$core$Json_Decode$int));
-											},
-											A2(_elm_lang$core$Json_Decode$field, 'url', _elm_lang$core$Json_Decode$string));
-									},
-									A2(_elm_lang$core$Json_Decode$field, 'height', _elm_lang$core$Json_Decode$int)))));
+							'deviceSize',
+							A2(
+								_elm_lang$core$Json_Decode$andThen,
+								function (height) {
+									return A2(
+										_elm_lang$core$Json_Decode$andThen,
+										function (width) {
+											return _elm_lang$core$Json_Decode$succeed(
+												{height: height, width: width});
+										},
+										A2(_elm_lang$core$Json_Decode$field, 'width', _elm_lang$core$Json_Decode$int));
+								},
+								A2(_elm_lang$core$Json_Decode$field, 'height', _elm_lang$core$Json_Decode$int))));
 				},
 				A2(
 					_elm_lang$core$Json_Decode$field,
-					'deviceSize',
-					A2(
-						_elm_lang$core$Json_Decode$andThen,
-						function (height) {
-							return A2(
-								_elm_lang$core$Json_Decode$andThen,
-								function (width) {
-									return _elm_lang$core$Json_Decode$succeed(
-										{height: height, width: width});
-								},
-								A2(_elm_lang$core$Json_Decode$field, 'width', _elm_lang$core$Json_Decode$int));
-						},
-						A2(_elm_lang$core$Json_Decode$field, 'height', _elm_lang$core$Json_Decode$int))));
+					'config',
+					_elm_lang$core$Json_Decode$oneOf(
+						{
+							ctor: '::',
+							_0: _elm_lang$core$Json_Decode$null(_elm_lang$core$Maybe$Nothing),
+							_1: {
+								ctor: '::',
+								_0: A2(_elm_lang$core$Json_Decode$map, _elm_lang$core$Maybe$Just, _elm_lang$core$Json_Decode$string),
+								_1: {ctor: '[]'}
+							}
+						})));
 		},
-		A2(
-			_elm_lang$core$Json_Decode$field,
-			'config',
-			_elm_lang$core$Json_Decode$oneOf(
-				{
-					ctor: '::',
-					_0: _elm_lang$core$Json_Decode$null(_elm_lang$core$Maybe$Nothing),
-					_1: {
-						ctor: '::',
-						_0: A2(_elm_lang$core$Json_Decode$map, _elm_lang$core$Maybe$Just, _elm_lang$core$Json_Decode$string),
-						_1: {ctor: '[]'}
-					}
-				}))));
+		A2(_elm_lang$core$Json_Decode$field, 'annotation', _elm_lang$core$Json_Decode$string)));
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};

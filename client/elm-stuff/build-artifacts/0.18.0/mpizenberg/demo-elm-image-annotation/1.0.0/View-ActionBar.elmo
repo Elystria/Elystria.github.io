@@ -135,7 +135,8 @@ var _mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton = F2(
 	});
 var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll = F2(
 	function (params, tools) {
-		var consigne = _mdgriffith$style_elements$Element$text('Please outline the following object(s) : ');
+		var consigne = _mdgriffith$style_elements$Element$text(
+			A2(_elm_lang$core$Basics_ops['++'], ' Please outline the following object(s) : ', params.manualClass));
 		var _p2 = params.size;
 		var w = _p2._0;
 		var h = _p2._1;
@@ -421,7 +422,9 @@ var _mpizenberg$demo_elm_image_annotation$View_ActionBar$Parameters = function (
 								return function (i) {
 									return function (j) {
 										return function (k) {
-											return {size: a, hasAnnotations: b, mturkMode: c, removeLatestAnnotationMsg: d, selectToolMsg: e, zoomInMsg: f, zoomOutMsg: g, zoomFitMsg: h, loadConfigMsg: i, loadImagesMsg: j, exportMsg: k};
+											return function (l) {
+												return {size: a, hasAnnotations: b, mturkMode: c, removeLatestAnnotationMsg: d, selectToolMsg: e, zoomInMsg: f, zoomOutMsg: g, zoomFitMsg: h, loadConfigMsg: i, loadImagesMsg: j, exportMsg: k, manualClass: l};
+											};
 										};
 									};
 								};

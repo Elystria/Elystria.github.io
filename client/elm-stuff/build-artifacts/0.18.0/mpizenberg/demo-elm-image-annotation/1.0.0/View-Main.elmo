@@ -298,7 +298,7 @@ var _mpizenberg$demo_elm_image_annotation$View_Main$viewNothing = function (para
 		_mpizenberg$demo_elm_image_annotation$StyleSheet$sheet,
 		_mpizenberg$demo_elm_image_annotation$View_ActionBar$emptyView(params.actionBar));
 };
-var _mpizenberg$demo_elm_image_annotation$View_Main$Parameters = F5(
-	function (a, b, c, d, e) {
-		return {device: a, actionBar: b, annotationsArea: c, selectClassMsg: d, selectImageMsg: e};
+var _mpizenberg$demo_elm_image_annotation$View_Main$Parameters = F6(
+	function (a, b, c, d, e, f) {
+		return {device: a, actionBar: b, submitBar: c, annotationsArea: d, selectClassMsg: e, selectImageMsg: f};
 	});
