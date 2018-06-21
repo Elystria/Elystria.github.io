@@ -34829,8 +34829,12 @@ var _mpizenberg$demo_elm_image_annotation$View_ActionBar$datasetButton = F2(
 	});
 var _mpizenberg$demo_elm_image_annotation$View_ActionBar$viewAll = F2(
 	function (params, tools) {
-		var consigne = _mdgriffith$style_elements$Element$text(
-			A2(_elm_lang$core$Basics_ops['++'], ' Please outline the following object(s) : ', params.manualClass));
+		var consigne = A3(
+			_mdgriffith$style_elements$Element$el,
+			_mpizenberg$demo_elm_image_annotation$StyleSheet$Instruction(_mpizenberg$demo_elm_image_annotation$StyleSheet$Title),
+			{ctor: '[]'},
+			_mdgriffith$style_elements$Element$text(
+				A2(_elm_lang$core$Basics_ops['++'], ' Please outline the following object(s) : \n', params.manualClass)));
 		var _p2 = params.size;
 		var w = _p2._0;
 		var h = _p2._1;
