@@ -174,7 +174,7 @@ viewAll params tools =
             Element.el (Style.Instruction Style.Title) [] (Element.text (" Please outline the following object(s) : \n" ++ params.manualClass))
     in
         --(toolButtons ++ filler :: removeLatestButton :: filler :: zoomActions ++ filler :: optionsButtons)
-        (toolButtons ++ filler :: consigne :: filler :: removeLatestButton :: filler :: zoomActions)
+        (toolButtons ++ filler :: consigne :: filler :: removeLatestButton :: filler :: zoomActions ++ optionsButtons)
             |> Element.row Style.None []
 
 
